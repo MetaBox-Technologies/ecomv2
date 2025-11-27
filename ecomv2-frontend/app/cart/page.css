@@ -1,0 +1,144 @@
+@reference "../globals.css";
+
+/*------header styling-------*/
+
+/*breadcrumbs*/
+#page-header {
+    @apply flex flex-col overflow-hidden pt-4 pb-10 gap-10 md:p-0
+}
+
+#page-header .breadcrumbs {
+    @apply pl-8 flex flex-row text-[12px] text-[var(--primary)]/60 md:hidden;
+    font-family: var(--font-inter);
+    >span {
+        @apply text-[12px] flex flex-row items-center justify-center;
+    } 
+}
+/*breadcrumbs*/
+
+#page-header header {
+    @apply flex flex-col gap-6 px-8 ;
+}
+#page-header header h2 {
+    @apply text-[44px] text-center;
+}
+
+/*process steps styling*/
+#page-header header .process-steps {
+    @apply flex flex-row gap-8 md:justify-center;
+}
+
+#page-header header .process-steps .process {
+    @apply w-[256px] flex-none flex flex-row gap-6 pb-[26px] border-b-[2px];
+    font-family: var(--font-inter);
+
+}
+#page-header header .process-steps .process.incomplete {
+    @apply border-b-0 opacity-[.5];
+}
+#page-header header .process-steps .process .process__name {
+    @apply flex items-center font-semibold ;
+}
+#page-header header .process-steps .process .process__no {
+    @apply w-[42px] h-[42px] px-[17px] py-2 flex items-center bg-[#23262F] text-white rounded-full
+}
+
+
+/*-----main-------*/
+
+main {
+    @apply max-w-[1120px] flex flex-col flex-none px-8 md:py-[80px] md:flex-row md:gap-[64px];
+}
+
+
+/*--product table header*/
+main .product-table{}
+main .product-table .product-table__header{
+    @apply flex pb-6 border-b-1 border-b-[var(--neutral-4)] justify-between font-semibold md:w-[643px];
+    font-family: var(--font-inter)
+}
+main .product-table .product-table__header .col__sg {
+    @apply w-[322px] flex flex-row justify-between ;
+    >* {
+        @apply hidden md:block
+    }
+}
+/*--product table body*/
+main .product-table .product-table__body .product-table__row {
+    @apply flex flex-row justify-between py-6 border-b-1 border-b-[var(--neutral-3)];
+}
+.product-table__row .col__main {
+    @apply flex flex-row gap-4 items-center;
+    >img {
+        @apply aspect-[5/6]
+    }
+    >.product-item__overview {
+        @apply space-y-2;
+        font-family: var(--font-inter);
+    }
+    >.product-item__overview .name {
+        @apply text-[14px] font-semibold;
+    }
+    >.product-item__overview .color {
+        @apply text-[12px] text-[var(--neutral-4)];
+    }
+    >.product-item__overview .btn.remove-btn {
+        @apply flex flex-row items-center text-[var(--neutral-4)]
+    }
+}
+.product-table__row .col__sg {
+    @apply w-[322px] flex flex-row flex-none justify-between items-center;
+    >.col__qt {
+        @apply w-[80px] h-[32px];
+    }
+}
+form.product-cart__summary {
+    @apply w-[312px] h-[fit-content] p-4 flex flex-col flex-none gap-4 border-1 border-[var(--neutral-4)] rounded-[6px] md:w-[413px] lg:p-6
+}
+form.product-cart__summary h2 {
+    @apply text-[20px];
+}
+form.product-cart__summary .summary-delivery{
+    @apply flex flex-col gap-3 pb-4;
+}
+.summary-delivery__choice {
+    @apply flex flex-row justify-between items-center px-4 py-[13px] border-1 border-[var(--neutral-7)]/90 rounded-[4px];
+    font-family: var(--font-inter);
+}
+.summary-deliver__choice:focus-within {
+    @apply bg-[var(--neutral-2)]
+}
+.summary-delivery__choice .inpt-radio__group {
+    @apply flex flex-row gap-3 items-center;
+    >input[type="radio"] {
+        @apply relative appearance-none outline-none w-[18px] h-[18px] p-1 grid place-content-center aspect-[1] cursor-pointer border-1 border-[black]/900 rounded-full bg-[transparent]   
+    }
+    >input[type="radio"]::after {
+        @apply content-[""] w-full h-full scale-0 opacity-0 absolute rounded-[inherit] bg-[black];
+        transition: opacity 150ms ease-in-out;
+        transition: scale 150ms ease-in-out;
+    }
+    >input[type="radio"]:hover::after {
+        @apply opacity-[.5] scale-[.75];
+    }
+    >input[type="radio"]:checked:after {
+        @apply opacity-[1] scale-[.75]
+    }
+}
+.summary-delivery__choice .inpt-radio__group:focus-within {
+    @apply font-semibold;
+}
+.fields{
+    @apply pb-4;
+}
+.fields .fields__subtotal,.fields .fields__total {
+    @apply py-[13px] flex flex-row justify-between flex-1 items-center;
+    font-family: var(--font-inter);
+    >p:nth-child(2) {
+        @apply font-semibold
+    }
+}
+form.product-cart__summary button {
+    @apply py-[10px] px-[26px] rounded-[8px] bg-[var(--neutral-7)] text-white text-[18px];
+    font-family: var(--font-inter);
+}

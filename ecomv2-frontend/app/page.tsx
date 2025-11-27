@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useState, useRef, Ref, useEffect } from "react";
-import Cart from "./_componnents/Cart/cart";
 
 //async function openCart(cart : HTMLDivElement) { //function that open up Cart 
   

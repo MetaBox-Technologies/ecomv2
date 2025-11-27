@@ -19,15 +19,6 @@
     >.item-color {
         @apply text-[var(--neutral-4)] text-[12px]
     }
-    >.item-button__quantity {
-        @apply box-border grid grid-cols-3 justify-center items-center border-1 border-[var(--neutral-4)] rounded-[0.25rem] ;
-        >p {
-            @apply text-center;
-        }
-        >button {
-            @apply text-[16px]
-        }
-    }  
     
-    
+
 }
