@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_homepage_blog_previews",
+  "info": {
+    "displayName": "blog-preview"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "posts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog-post.blog-post"
+    },
+    "limit": {
+      "type": "integer"
+    }
+  },
+  "config": {}
+}
