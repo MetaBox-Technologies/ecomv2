@@ -2,27 +2,46 @@
 
 import "./page.css";
 import QuantityButton from "../_componnents/QuantityButton/quantitybutton";
-import { useState, useEffect } from "react";
+import { StepperDesktop } from "../_componnents/Cart/stepperDesktop";
 import Link from "next/link";
-
-
-function handleWidth(){
-    if(window.innerWidth < 768) {
-        console.log('mobilde width');
+import Row from "../_componnents/Cart/row";
+import Cell from "../_componnents/Cart/cell";
+import ResponsiveManager from "../_componnents/global/responsiveManager";
+import { Component } from "react";
+interface ProdDetailProps {
+        image: {
+            src:string,
+            alt?:string
+        },
+        itemName: string,
+        itemColor: string,
+        itemPrice: number,
+        quantity: number
     }
-}
 
+export default function CartPage(){
+    const prodDetails:ProdDetailProps = {
+        image : {
+            src:'/images/products/TABLE.JPG',
+            alt:''
+        },
+        itemColor: 'black',
+        itemName: 'Tray Table',
+        itemPrice: 19.00,
+        quantity:3
+    };
 
-export default function CartPage() {
-    useEffect(()=>{
-        window.addEventListener("resize", handleWidth);
-        return ()=>{
-        window.removeEventListener("resize", handleWidth)
-    }
-    },[]);
+    const cell:React.FC<ProdDetailProps> = (props)=>{
+        return <Cell {...props}/>
+    };
+    
+    const row:React.FC<ProdDetailProps> = (props)=>{
+        return <Row {...props}/>
+    };
+
     
     return (
-        <div className="flex flex-col md:items-center xl:px-[160px] md:py-[80px]">
+        <div className="flex flex-col lg:items-center xl:px-[160px] lg:py-[80px] w-100vw">
             <div id="page-header">
                 <Link className="breadcrumbs" href={"/"}>
                     <span className="material-symbols-outlined">arrow_back_ios</span>
@@ -30,20 +49,7 @@ export default function CartPage() {
                 </Link>
                 <header>
                     <h2>Cart</h2>
-                    <div className="process-steps">
-                        <div className="process">
-                            <div className="process__no">1</div>
-                            <p className="process__name">Shopping Cart</p>
-                        </div>
-                        <div className="process incomplete">
-                            <div className="process__no">2</div>
-                            <p className="process__name">Checkout details</p>
-                        </div>
-                        <div className="process incomplete">
-                            <div className="process__no">3</div>
-                            <p className="process__name">Order complete</p>
-                        </div>
-                    </div>
+                    <StepperDesktop/>
                 </header>
             </div>
             <main>
@@ -57,57 +63,7 @@ export default function CartPage() {
                         </div>
                     </div>
                     <div className="product-table__body">
-                        <div className="product-table__row">
-                            <div className="col__main">
-                                <img src={'/images/products/TABLE.JPG'} width={80} height={96}/>
-                                <div className="product-item__overview">
-                                    <p className="name"> Tray table</p>
-                                    <p className="color">Color: Black</p>
-                                    <button className="btn remove-btn"><span className="material-symbols-outlined">close</span> Remove</button>
-                                </div>
-                            </div>
-                            <div className="col__sg">
-                                <div className="col__qt">
-                                    <QuantityButton quantity={2}/>
-                                </div>
-                                <div className="col__price">$19.00</div>
-                                <div className="col__subtotal">$38.00</div>
-                            </div>
-                        </div>
-                        <div className="product-table__row">
-                            <div className="col__main">
-                                <img src={'/images/products/TABLE.JPG'} width={80} height={96}/>
-                                <div className="product-item__overview">
-                                    <p className="name"> Tray table</p>
-                                    <p className="color">Color: Black</p>
-                                    <button className="btn remove-btn"><span className="material-symbols-outlined">close</span> Remove</button>
-                                </div>
-                            </div>
-                            <div className="col__sg">
-                                <div className="col__qt">
-                                    <QuantityButton quantity={2}/>
-                                </div>
-                                <div className="col__price">$19.00</div>
-                                <div className="col__subtotal">$38.00</div>
-                            </div>
-                        </div>
-                        <div className="product-table__row">
-                            <div className="col__main">
-                                <img src={'/images/products/TABLE.JPG'} width={80} height={96}/>
-                                <div className="product-item__overview">
-                                    <p className="name"> Tray table</p>
-                                    <p className="color">Color: Black</p>
-                                    <button className="btn remove-btn"><span className="material-symbols-outlined">close</span> Remove</button>
-                                </div>
-                            </div>
-                            <div className="col__sg">
-                                <div className="col__qt">
-                                    <QuantityButton quantity={2}/>
-                                </div>
-                                <div className="col__price">$19.00</div>
-                                <div className="col__subtotal">$38.00</div>
-                            </div>
-                        </div>
+                        <ResponsiveManager Mobile={cell} MobileProps={prodDetails} Desktop={row} DesktopProps={prodDetails}/>
                     </div>
                 </div>
                 <form className="product-cart__summary">

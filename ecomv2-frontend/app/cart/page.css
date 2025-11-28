@@ -4,11 +4,11 @@
 
 /*breadcrumbs*/
 #page-header {
-    @apply flex flex-col overflow-hidden pt-4 pb-10 gap-10 md:p-0
+    @apply flex flex-col overflow-hidden pt-4 pb-10 gap-10 lg:p-0
 }
 
 #page-header .breadcrumbs {
-    @apply pl-8 flex flex-row text-[12px] text-[var(--primary)]/60 md:hidden;
+    @apply pl-8 flex flex-row text-[12px] text-[var(--primary)]/60 lg:hidden;
     font-family: var(--font-inter);
     >span {
         @apply text-[12px] flex flex-row items-center justify-center;
@@ -24,37 +24,23 @@
 }
 
 /*process steps styling*/
-#page-header header .process-steps {
-    @apply flex flex-row gap-8 md:justify-center;
-}
 
-#page-header header .process-steps .process {
-    @apply w-[256px] flex-none flex flex-row gap-6 pb-[26px] border-b-[2px];
-    font-family: var(--font-inter);
-
-}
-#page-header header .process-steps .process.incomplete {
-    @apply border-b-0 opacity-[.5];
-}
-#page-header header .process-steps .process .process__name {
-    @apply flex items-center font-semibold ;
-}
-#page-header header .process-steps .process .process__no {
-    @apply w-[42px] h-[42px] px-[17px] py-2 flex items-center bg-[#23262F] text-white rounded-full
-}
 
 
 /*-----main-------*/
 
 main {
-    @apply max-w-[1120px] flex flex-col flex-none px-8 md:py-[80px] md:flex-row md:gap-[64px];
+    @apply max-w-[1200px] flex flex-col flex-none px-8 lg:py-[80px] lg:flex-row md:gap-[64px];
 }
 
 
 /*--product table header*/
-main .product-table{}
+main .product-table{
+    @apply pb-6 md:pb-0 ;
+}
+
 main .product-table .product-table__header{
-    @apply flex pb-6 border-b-1 border-b-[var(--neutral-4)] justify-between font-semibold md:w-[643px];
+    @apply w-full flex pb-6 border-b-1 border-b-[var(--neutral-4)] justify-between font-semibold lg:w-[643px] ;
     font-family: var(--font-inter)
 }
 main .product-table .product-table__header .col__sg {
@@ -64,36 +50,9 @@ main .product-table .product-table__header .col__sg {
     }
 }
 /*--product table body*/
-main .product-table .product-table__body .product-table__row {
-    @apply flex flex-row justify-between py-6 border-b-1 border-b-[var(--neutral-3)];
-}
-.product-table__row .col__main {
-    @apply flex flex-row gap-4 items-center;
-    >img {
-        @apply aspect-[5/6]
-    }
-    >.product-item__overview {
-        @apply space-y-2;
-        font-family: var(--font-inter);
-    }
-    >.product-item__overview .name {
-        @apply text-[14px] font-semibold;
-    }
-    >.product-item__overview .color {
-        @apply text-[12px] text-[var(--neutral-4)];
-    }
-    >.product-item__overview .btn.remove-btn {
-        @apply flex flex-row items-center text-[var(--neutral-4)]
-    }
-}
-.product-table__row .col__sg {
-    @apply w-[322px] flex flex-row flex-none justify-between items-center;
-    >.col__qt {
-        @apply w-[80px] h-[32px];
-    }
-}
+
 form.product-cart__summary {
-    @apply w-[312px] h-[fit-content] p-4 flex flex-col flex-none gap-4 border-1 border-[var(--neutral-4)] rounded-[6px] md:w-[413px] lg:p-6
+    @apply  min-w-[312px] h-[fit-content] p-4 flex flex-col flex-none gap-4 border-1 border-[var(--neutral-4)] rounded-[6px] lg:w-[312px]  lg:p-6 xl:w-[413px];
 }
 form.product-cart__summary h2 {
     @apply text-[20px];
