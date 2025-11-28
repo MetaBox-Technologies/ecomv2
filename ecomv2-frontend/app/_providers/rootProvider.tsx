@@ -17,7 +17,7 @@ export function RootProviders({ children }:{children: ReactNode}) {
 
     return(
         <RootContext.Provider value={{ isCartOpen : isOpenHandler}}>
-            <button className="border-1 border-[white]" onClick={()=>{isOpenHandler(true)}}>Open Cart</button>
+            {/*<button className="border-1 border-[white]" onClick={()=>{isOpenHandler(true)}}>Open Cart</button>*/}
             <Cart isOpen={isOpen} />
             {children}
         </RootContext.Provider>

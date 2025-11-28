@@ -1,4 +1,5 @@
 import "./css/cell.css"
+import QuantityButton from "../QuantityButton/quantitybutton"
 
 interface CellsProps{
     image: {
@@ -27,11 +28,7 @@ export default function Cell({image, itemName, itemColor, itemPrice, quantity}:R
                     </button>
                 </div>
                 <div className="row-3">
-                    <div className="item-button__quantity w-[80px] h-[32px]">
-                        <button className="material-symbols-outlined">remove</button>
-                        <p>{quantity}</p>
-                        <button className="material-symbols-outlined">add</button>
-                    </div>
+                    <QuantityButton quantity={quantity}/>
                 </div>
             </div>
         </div>

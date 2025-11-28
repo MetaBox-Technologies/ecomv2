@@ -1,8 +1,8 @@
 "use client"
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useRef, Ref, useEffect } from "react";
-import Cart from "./_componnents/Cart/cart";
 
 //async function openCart(cart : HTMLDivElement) { //function that open up Cart 
   
@@ -81,6 +81,9 @@ const clickHandler = () => {
 }
 export default function Home() {
   return(
+    <div>
     <h1 className="text-xl" onClick={clickHandler}>Test</h1>
+    <Link href="/shop">Shop page</Link>
+    </div>
   )
 }
