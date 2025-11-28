@@ -34,8 +34,10 @@ export const Cart = React.memo(({isOpen})=> {
     
 
     useEffect(()=>{
-        divRef.current?.classList.toggle("translate-x-100");
-        return ()=>{
+            setTimeout(()=>{
+                divRef.current?.classList.toggle("translate-x-100");
+            }, 200);
+        return async()=>{
             
         }
     }, [isOpen])
