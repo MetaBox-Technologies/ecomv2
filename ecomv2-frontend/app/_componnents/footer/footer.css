@@ -1,0 +1,133 @@
+
+
+footer {
+    width: 100%;
+    background-color: #31393B;
+    height: auto;
+    padding-bottom: 45px;
+    display: block;
+    align-items: center;
+}
+
+div.links_container_1 {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    gap: 43px;
+    color: rgb(123, 123, 123);
+}
+
+
+#line {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    width: 0.2px;
+    height: 25px;
+    margin: 0% 10% 0%;
+}
+
+div.container {
+    height: auto;
+    display: flex;
+    align-items: center;
+    width: 400px;
+    padding-right: 31px;
+}
+
+div.section_one {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 10% 20px;
+    /*height: auto;*/
+    width: 100%;
+}
+
+div.section_two {
+    margin: 0% 10% 0%;
+    padding: 20px 0px 10px;
+    height: 60px;
+    font-size: 14px;
+    border-top: 0.2px solid white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div.copyright {
+    display: flex;
+    gap: 20px;
+    padding-right: 20.5px;
+}
+
+.icons {
+    display: flex;
+    gap: 24px;
+}
+
+img.logo {
+    color: white;
+}
+
+
+/*PHONE SCREEN*/
+@media screen and (max-width: 768px) {
+    div.section_one {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+    }
+
+    div.container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-content: space-around;
+        padding-right: 0;
+    }
+
+    #line {
+        display: none;
+    }
+
+    .links_container_1 {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+    }
+
+    div.copyright {
+        display: flex;
+        flex-direction: column-reverse;
+        padding-right: 0;
+    }
+
+    div.section_two {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        height: auto;
+        margin-top: 24px;
+    }
+
+    div.icons {
+        margin-bottom: 30px;
+    }
+}
+
+/*TABLET SCREEN*/
+@media screen and (max-width: 912px) {
+
+    .container p {
+        text-align: center;
+    }
+
+    .copyright p, a {
+        text-align: center;
+    }
+
+    .links_container_1 a {
+        text-align: center;
+    }
+}
