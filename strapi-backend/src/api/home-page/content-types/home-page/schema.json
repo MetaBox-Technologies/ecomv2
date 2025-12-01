@@ -10,5 +10,22 @@
     "draftAndPublish": true
   },
   "pluginOptions": {},
-  "attributes": {}
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "sections": {
+      "type": "dynamiczone",
+      "components": [
+        "homepage.hero",
+        "homepage.featured-products",
+        "homepage.promo-banner",
+        "homepage.category-grid",
+        "shared.image-carousel",
+        "homepage.feature-cards",
+        "homepage.testimonials",
+        "homepage.stats"
+      ]
+    }
+  }
 }

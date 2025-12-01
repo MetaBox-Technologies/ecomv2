@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_shop_layouts",
+  "info": {
+    "displayName": "layout"
+  },
+  "options": {},
+  "attributes": {
+    "displayMode": {
+      "type": "enumeration",
+      "enum": [
+        "grid",
+        "list"
+      ]
+    },
+    "columns": {
+      "type": "enumeration",
+      "enum": [
+        "item2",
+        "item3",
+        "item4"
+      ]
+    },
+    "showSidebar": {
+      "type": "boolean",
+      "default": true
+    },
+    "productPerPage": {
+      "type": "integer"
+    }
+  },
+  "config": {}
+}
