@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 
-
 :root {
   /*colors*/
   --background: #ffffff;
@@ -28,6 +27,8 @@
   --fs-h5: 34px;
   --fs-h6: 28px;
   --fs-h7: 20px;
+
+
 }
 
 @theme inline {
@@ -45,13 +46,48 @@
     --foreground: #ededed;
   }
 }*/
+html::-webkit-scrollbar {
+  width: 12px;
+}
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-poppins);
 }
+/*
+body::-webkit-scrollbar {
+  z-index: 8;
+  width: 10px;;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: var(--foreground);
+  border-radius: 10px;
+}
+body::-webkit-scrollbar-button {
+  background-color: var(--background);
+  color: var(--foreground)
+}*/
 
+
+
+/* Chrome, Edge, Safari */
+html::-webkit-scrollbar {
+  width: 0px;
+}
+
+html::-webkit-scrollbar-track {
+  background: #d85050;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #df8c8c;
+  border-radius: 9999px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: #ea0c0c;
+}
 
 /*globals button size*/
 .btn-xlarge { @apply w-[178px] h-[38px] text-[26px]} 
@@ -59,3 +95,10 @@ body {
 .btn-medium { @apply w-[127px] h-[32px] text-[18px]}
 .btn-small { @apply w-[98px] h-[28px] text-[16px]}
 .btn-xsmall { @apply w-[94px] h-[24px] text-[14px]}
+
+
+@media (max-width: 768px) {
+  html::-webkit-scrollbar {
+  width: 0px;
+}
+}

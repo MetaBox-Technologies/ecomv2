@@ -1,7 +1,13 @@
+"use client";
+import { useContext } from 'react';
 import './header.css';
 import Image from "next/image";
+import { RootContext } from '@/app/_providers/RootContext';
 
 export function Header(){
+    const {isCartOpen} = useContext(RootContext);
+
+    
     const links = [
         {
             name:"Home",
@@ -38,7 +44,9 @@ export function Header(){
           <div id="icon_container">
           <a href=""><Image className="icon1" src="/images/search 02.svg" alt="" width={25} height={18}/></a>
           <a href=""><Image className="icon2" src="/images/user-circle.svg" alt="" width={25} height={18}/></a>
-          <a href=""><Image className="icon3" src="/images/shopping bag.svg" alt="" width={25} height={18}/></a>
+          <div onClick={()=>{
+            isCartOpen(true)
+          }}><Image className="icon3" src="/images/shopping bag.svg" alt="" width={25} height={18}/></div>
           </div>
           </nav>
         </header>

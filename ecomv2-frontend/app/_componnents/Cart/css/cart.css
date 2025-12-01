@@ -2,79 +2,17 @@
 
 
 /*--------cart globals--------*/
+.cart::-webkit-scrollbar {
+    display: none;
+}
 .cart {
-    @apply absolute w-screen h-screen bg-[green] top-0 z-10;
+    @apply fixed w-screen bg-[transparent] top-0 bottom-0 z-10 overflow-auto;
+}
+.cart::before {
+    @apply block content-[""] w-full h-full opacity-[0.25] bg-black;
 }
 .cart .cart-content {
-    @apply absolute top-0 right-0 w-[343px] h-screen p-6 box-border flex flex-col justify-between bg-[var(--neutral-1)] transition-all duration-300;
+    @apply absolute top-0 bottom-0 right-0 transition-all duration-300 overflow-auto  justify-between;
     
 }
 
-/*----------cart summary-----------*/
-
-/*cart summary headline*/
-.summary__items-headline {
-    @apply flex justify-between items-center h-[34px]
-}
-.summary__items-headline > h5 {
-    font-size: var(--fs-h5);
-    @apply text-[var(--primary)]/90
-}
-.summary__items-headline > button >span{
-    @apply w-[24px] h-[24px] text-[24px] text-black;
-}
-
-
-/*summary item list*/
-.items-list {
-    @apply w-full h-[464px] overflow-auto flex flex-col gap-4;
-}
-
-/*summary counts*/
-.summary__counts {
-    @apply h-[218px] flex flex-col text-black;
-    font-family: var(--font-inter);
-}
-.summary__counts .fields{
-    @apply flex-1 flex flex-col
-}
-.summary__counts .buttons {
-    @apply flex flex-col flex-1 
-}
-.summary__counts .fields .fields__subtotal, .summary__counts .fields .fields__total {
-    @apply flex flex-row justify-between flex-1 items-center
-}
-
-.fields__subtotal {
-    @apply border-b border-b-[2px] border-b-[var(--neutral-3)];
-    >.number {
-        @apply text-[1rem] font-semibold
-
-    }
-}
-.fields__total {
-    @apply text-[20px];
-    font-family: var(--font-poppins);
-}
-
-.summary__counts .buttons >* {
-   @apply flex-1
-}
-
-.buttons .buttons__checkout {
-    @apply rounded-[6px] flex justify-center items-center  bg-[var(--neutral-7)] text-[18px] text-white;
-}
-
-.buttons *:not(.buttons__checkout) {
-    @apply flex justify-center items-end; 
-    >p {
-        @apply border-b-[2px] border-b-black;
-    }
-}
-
-
-@media screen and (min-width:768px) {
-    .cart .cart-content {
-        @apply w-[413px];
-    }
-}

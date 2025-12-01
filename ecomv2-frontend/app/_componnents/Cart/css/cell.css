@@ -4,6 +4,10 @@
 .item-cell {
     @apply w-full h-[144px] py-6 box-border flex flex-row gap-4 border-b-[2px] border-b-[var(--neutral-3)];
 }
+/*
+.product-table .item-cell {
+    @apply w-[312px] sm:w-full
+}*/
 .item-cell > img {
     @apply aspect-[5/6]
 }

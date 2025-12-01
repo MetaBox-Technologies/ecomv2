@@ -1,6 +1,5 @@
 "use client"
 
-import { Component, ReactNode } from "react";
 import { useMediaQuery } from "react-responsive";
 import { Fragment } from "react";
 
@@ -17,7 +16,7 @@ export default function ResponsiveManager<MobileProps, DesktopProps>(props:Respo
   
     const {Mobile, Desktop, MobileProps, DesktopProps} = props;
 
-    const isDeviceMobile = useMediaQuery({ query :"(max-width: 600px)"})
+    const isDeviceMobile = useMediaQuery({ query :"(max-width: 767px)"})
 
     
 

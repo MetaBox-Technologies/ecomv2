@@ -1,13 +1,12 @@
 "use client"
 
 import "./page.css";
-import QuantityButton from "../_componnents/QuantityButton/quantitybutton";
 import { StepperDesktop } from "../_componnents/Cart/stepperDesktop";
 import Link from "next/link";
 import Row from "../_componnents/Cart/row";
 import Cell from "../_componnents/Cart/cell";
-import ResponsiveManager from "../_componnents/global/responsiveManager";
-import { Component } from "react";
+import dynamic from "next/dynamic";
+
 interface ProdDetailProps {
         image: {
             src:string,
@@ -39,9 +38,11 @@ export default function CartPage(){
         return <Row {...props}/>
     };
 
+    const ResponsiveManager = dynamic(() => import("../_componnents/global/responsiveManager"), {ssr: false});
+
     
     return (
-        <div className="flex flex-col lg:items-center xl:px-[160px] lg:py-[80px] w-100vw">
+        <div className="flex flex-col pb-[80px] lg:items-center xl:px-[160px] lg:pt-[80px] w-100vw">
             <div id="page-header">
                 <Link className="breadcrumbs" href={"/"}>
                     <span className="material-symbols-outlined">arrow_back_ios</span>
@@ -62,7 +63,7 @@ export default function CartPage(){
                             <div className="col__subtotal">Subtotal</div>
                         </div>
                     </div>
-                    <div className="product-table__body">
+                    <div className="product-table__body flex flex-col items-center sm:block">
                         <ResponsiveManager Mobile={cell} MobileProps={prodDetails} Desktop={row} DesktopProps={prodDetails}/>
                     </div>
                 </div>
