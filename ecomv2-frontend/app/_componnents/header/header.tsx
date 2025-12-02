@@ -1,11 +1,11 @@
+"use client"
 import './header.css';
-import '../../_data/fetchAPI';
 import Image from "next/image";
 import {useContext} from 'react';
 import { RootContext } from "../../_providers/RootContext"
 
 
-export async function Header(){
+export function Header(){
 
     const { isCartOpen } = useContext(RootContext);
     const links = [
