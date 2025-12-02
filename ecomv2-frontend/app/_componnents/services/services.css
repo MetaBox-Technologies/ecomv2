@@ -1,0 +1,61 @@
+.service_section {
+    display: flex;
+    height: auto;
+    padding: 0% 12%;
+}
+
+.cards-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: white;
+    color: black;
+    gap: 24px;
+}
+
+.container1, .container2 {
+    display: flex;
+}
+
+.card {
+    display: block;
+    align-self: center;
+    background-color: #F3F5F7;
+    /*height: 220px;*/
+    width: 262px;
+    border-radius: 20px;
+    align-content: center;
+    text-align: start;
+    /*padding-left: 32px;*/
+    padding: 48px 32px;
+
+}
+
+div.Image {
+    color: #31393B;
+}
+
+h3 {
+    padding-top: 16px;
+    font-size: 25px;
+    color: #31393B;
+}
+
+.desc {
+    padding-top: 10px;
+    color: #6C7275;
+}
+
+@media screen and (max-width: 768px) {
+    .cards-container {
+        display: grid;
+        place-items: center;
+        justify-content: center;
+        /*grid-template-columns: repeat(auto-fit, minmax(262px, 2fr));*/
+        grid-template-columns: repeat(auto-fit, minmax(250px, 2fr));
+        width: 100%;
+        background-color: white;
+        color: black;
+        gap: 24px;
+    }
+}

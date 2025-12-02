@@ -73,10 +73,6 @@ nav {
     display: none;
 }
 
-.icon3 {
-    @apply cursor-pointer;
-}
-
 @media screen and (max-width: 768px) {
     .icon2 {
         display: none;
