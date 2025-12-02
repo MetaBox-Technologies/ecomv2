@@ -41,6 +41,11 @@
         "homepage.featured-products",
         "homepage.promo-banner"
       ]
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
     }
   }
 }

@@ -341,6 +341,24 @@ export interface ShopPromoBlock extends Struct.ComponentSchema {
   };
 }
 
+export interface UserAddress extends Struct.ComponentSchema {
+  collectionName: 'components_user_addresses';
+  info: {
+    displayName: 'address';
+  };
+  attributes: {
+    city: Schema.Attribute.String;
+    country: Schema.Attribute.String;
+    fullname: Schema.Attribute.String;
+    isDefault: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    label: Schema.Attribute.String;
+    phone: Schema.Attribute.String;
+    postalCode: Schema.Attribute.String;
+    state: Schema.Attribute.String;
+    street: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -370,6 +388,7 @@ declare module '@strapi/strapi' {
       'shop.hero': ShopHero;
       'shop.layout': ShopLayout;
       'shop.promo-block': ShopPromoBlock;
+      'user.address': UserAddress;
     }
   }
 }

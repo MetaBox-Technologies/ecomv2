@@ -31,6 +31,11 @@
         "shop.promo-block",
         "shared.image-carousel"
       ]
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
     }
   }
 }
