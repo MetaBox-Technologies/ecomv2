@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useRef, Ref, useEffect } from "react";
+import { Service } from "./_componnents/services/services";
 
 //async function openCart(cart : HTMLDivElement) { //function that open up Cart 
   
@@ -76,14 +77,12 @@ export default function Home() {
     </main>
   );
 }*/
-const clickHandler = () => {
-  console.log('clicked')
-}
+
 export default function Home() {
   return(
-    <div>
-    <h1 className="text-xl" onClick={clickHandler}>Test</h1>
+    <>
+    <Service/>
     <Link href="/shop">Shop page</Link>
-    </div>
+    </>
   )
 }
