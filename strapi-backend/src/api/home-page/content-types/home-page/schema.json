@@ -26,6 +26,11 @@
         "homepage.testimonials",
         "homepage.stats"
       ]
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
     }
   }
 }
