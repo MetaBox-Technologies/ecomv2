@@ -5,9 +5,8 @@
 }
 
 .cards-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Desktop: 4 per row */
     width: 100%;
     background-color: white;
     color: black;
@@ -16,9 +15,8 @@
 
 .card {
     display: block;
-    align-self: center;
     background-color: #F3F5F7;
-    width: 272px;
+    max-width: 272px;
     border-radius: 20px;
     align-content: center;
     text-align: start;
@@ -42,15 +40,28 @@ h3 {
 }
 
 @media screen and (max-width: 768px) {
-    .cards-container {
+    /*.cards-container {
         display: grid;
         place-items: center;
         justify-content: center;
-        /*grid-template-columns: repeat(auto-fit, minmax(262px, 2fr));*/
         grid-template-columns: repeat(auto-fit, minmax(250px, 2fr));
         width: 100%;
         background-color: white;
         color: black;
         gap: 24px;
-    }
+    }*/
+
 }
+
+@media (max-width: 1023px) {
+    .cards-container {
+      grid-template-columns: repeat(2, auto);
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .cards-container {
+      grid-template-columns: repeat(2, auto);
+    }
+  }
