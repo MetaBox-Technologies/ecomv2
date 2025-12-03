@@ -1,0 +1,291 @@
+@reference "../../globals.css";
+
+.product-page {
+  @apply px-[200px] py-[50px];
+}
+
+.product-card {
+  @apply flex justify-center items-start gap-[70px] mx-auto;
+  /*  display: flex;
+  justify-content: center;   
+  align-items: flex-start;                          
+  gap:70px;  
+  margin: 0 auto; */
+}
+
+.carousel {
+  @apply relative w-[548px] h-[729px] overflow-hidden rounded-[10px];
+}
+
+.carousel-image {
+  @apply w-full h-full object-cover object-center rounded-[10px];
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.nav-button.left {
+  left: 10px;
+}
+
+.nav-button.right {
+  right: 10px;
+}
+
+.product-left {
+  flex:1;
+}
+
+.product-right {
+  display: flex;
+  flex-direction: column;
+  padding-right:50px;
+  gap:30px;
+  flex:1;
+}
+
+.product-name {
+  font-family: "Urbanist", sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.product-description {
+  @apply text-[16px] text-[grey] mt-[10px] mb-[20px] pr-[30px] leading-[26px] text-justify;
+
+  /*font-size: 19px;
+  color: grey;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-right:30px;
+  text-align: justify;*/
+}
+
+.price {
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.sub-title{
+ color:dimgray;
+ font-weight:600;
+ margin-bottom:15px;
+ font-size:16px;
+}
+
+.measurement {
+  font-size:20px;
+}
+
+.btn-container{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.cart-btn{
+  background-color: black;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  width:100%;
+  height:55px;
+  transition: all 0.25s ease;
+}
+
+.cart-btn:hover{
+  background-color: #484848;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+  border: none;
+}
+
+.upper-right{
+  display:flex;
+  flex-direction: column;
+}
+
+.lower-right{
+  display:flex;
+  flex-direction: column;
+  gap:40px;
+}
+
+.color-container {
+  margin-top: 20px;
+}
+
+.colors {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* hide the default radio button */
+.color-option input[type="radio"] {
+  display: none;
+}
+
+.color-option {
+  cursor: pointer;
+}
+
+/* circles */
+.circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  display: inline-block;
+  transition: 0.2s ease;
+  border: 1px solid black;
+}
+
+/* selected state */
+.circle.selected {
+  border: 3px solid rgb(192, 192, 192);
+  transform: scale(1.1);
+}
+
+.color-container .choosen-color{
+  font-size:20px;
+  text-transform: capitalize;
+  margin-bottom: 30px;
+}
+
+.thumbnail-container {
+  display: flex;
+  justify-content: space-between; /* equal space, aligned with edges */
+  width: 550px; /* exact width of your carousel */
+  margin-top: 30px;
+}
+
+.thumbnail-container .thumbnail {
+  width: 170px;      /* 3 images + spacing fits inside 550px */
+  height: 170px;     /* square */
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.thumbnail:hover {
+  transform: scale(1.05);
+}
+
+.product-page .reviews{
+  font-size:12px;
+  margin-bottom:20px;
+  display:flex;
+  gap:10px;
+}
+
+/*Large laptops */
+@media (max-width: 1368px) {
+  .product-page {
+    padding: 40px 50px;
+  }
+
+  .thumbnails {
+    width: 500px;
+  }
+
+  .thumbnail {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+/*Laptop*/
+@media (max-width: 992px) {
+  .product-page {
+    padding: 35px 40px;
+  }
+
+  .product-card {
+    flex-direction: column; 
+    gap: 40px;
+  }
+
+  .product-right {
+    padding-right: 0;
+    width: 100%;
+  }
+
+  .product-left {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .thumbnail-container {
+    display:none;
+  }
+
+  .carousel {
+    width: 100%;
+    max-width: 548px;
+    aspect-ratio: 548 / 729; /* 🔥 keeps the portrait ratio */
+    height: auto;
+  }
+
+  .carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/*Tablet*/
+@media (max-width: 768px) {
+  .product-page {
+    padding: 30px 40px;
+  }
+}
+
+/*Phones*/
+@media (max-width: 375px) {
+  .product-page {
+    padding: 20px 20px;
+  }
+
+  .thumbnails {
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap; /* Small screens need wrap */
+  }
+
+  .thumbnail {
+    width: 100px;
+    height: 100px;
+  }
+
+  .product-description {
+    padding-right: 0;
+  }
+
+  .cart-btn {
+    height: 48px;
+  }
+}
+
+
