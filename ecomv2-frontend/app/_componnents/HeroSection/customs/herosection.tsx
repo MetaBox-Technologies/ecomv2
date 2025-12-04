@@ -1,18 +1,15 @@
-import React, { useRef, useState } from 'react';
-// Import Swiper React components
+"use client";
+import React, { useRef, useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
+import html2canvas from 'html2canvas';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import "swiper/css/navigation";
-
 import './styles.css';
 
-// import required modules
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 
-export default function App() {
+export default function HeroSection() {
   const pagination = {
     clickable: true,
   };
@@ -22,7 +19,7 @@ export default function App() {
   const prevRef:any = useRef(null);
 
   return (
-    <div className="px-8 lg:px-[128px] py-6 lg:w-screen">
+    <div className="px-8 lg:px-[128px] pb-6 lg:w-screen">
 
 
       <Swiper
@@ -60,6 +57,8 @@ export default function App() {
             <p className='hero-desc'>VisioCreate is a gift & decorations store based in HCMC, Vietnam. Est since 2019. </p>
         </SwiperSlide>
       </Swiper>
+
+      <div id='canvas'></div>
     </div>
   );
 }

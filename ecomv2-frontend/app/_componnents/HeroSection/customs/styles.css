@@ -3,7 +3,7 @@
 
 
 .swiper {
-    @apply w-[311px] h-[388px] rounded-[20px] md:w-[736px] md:h-[490px] lg:w-full lg:h-[737px];
+    @apply w-[311px] h-[388px] rounded-[20px] md:w-[736px] md:h-[490px] lg:w-full lg:h-[856px];
 }
 div[class^="swiper-button"] {
     @apply hidden md:flex;
