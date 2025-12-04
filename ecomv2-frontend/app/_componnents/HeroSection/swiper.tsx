@@ -20,7 +20,6 @@ export default function MySwiper() {
         <div className="herosection">
       <SwiperSlide>
         <div className="h-[400px] bg-blue-500 flex items-center justify-center text-white text-2xl">
-          Slide 1
         </div>
       </SwiperSlide>
 
@@ -31,7 +30,7 @@ export default function MySwiper() {
       </SwiperSlide>
 
       <SwiperSlide>
-        <div className="h-[400px] bg-green-500 flex items-center justify-center text-white text-2xl">
+        <div className="h-[737px] bg-green-500 flex">
           Slide 3
         </div>
       </SwiperSlide>

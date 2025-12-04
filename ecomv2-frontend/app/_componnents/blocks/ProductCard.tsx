@@ -1,7 +1,9 @@
 "use client";
 import '../../globals.css';
 import "./ProductCard.css";
+import "../QuantityButton/quantitybutton";
 import { useState } from "react";
+import QuantityButton from '../QuantityButton/quantitybutton';
 
 type Product = {
   image: { url: string };
@@ -20,7 +22,6 @@ export default function ProductCard({ product }: ProductCardProps) {
   const images = [
     "/images/prodImg1.jpg",
     "/images/prodImg2.jpg",
-    "/images/prodImg3.jpg",
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -118,6 +119,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                     </div>
 
                     <div className="btn-container">
+                        <QuantityButton  width={127} height={56} quantity={2}/>
                         <button className="cart-btn">Add to Cart</button>
                     </div>
                 </div>

@@ -14,21 +14,21 @@
 }
 
 .carousel {
-  @apply relative w-[548px] h-[729px] overflow-hidden rounded-[10px];
+  @apply relative w-[548px] h-[729px] overflow-hidden rounded-[20px];
 }
 
 .carousel-image {
-  @apply w-full h-full object-cover object-center rounded-[10px];
+  @apply w-full h-full object-cover object-center rounded-[20px];
 }
 
 .nav-button {
+  @apply rounded-full aspect-square w-[44px];
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   background: white;
   border: none;
   padding: 10px 12px;
-  border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0,0,0,0.25);
 }
@@ -87,9 +87,10 @@
 }
 
 .btn-container{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  @apply flex flex-row gap-[27px] md:gap-[16px] items-center
+}
+.btn-container:first-child {
+  @apply flex-1
 }
 
 .cart-btn{
@@ -98,12 +99,12 @@
   padding: 12px 20px;
   border: none;
   border-radius: 6px;
-  margin-top: 10px;
+  /*margin-top: 10px;*/
   cursor: pointer;
   font-size: 18px;
   font-weight: 500;
   width:100%;
-  height:55px;
+  height:56px;
   transition: all 0.25s ease;
 }
 
@@ -182,7 +183,7 @@
   width: 170px;      /* 3 images + spacing fits inside 550px */
   height: 170px;     /* square */
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 20px;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
