@@ -30,8 +30,8 @@ export default function ProductDisplay(){
     },
   ];
 
-  const ProductCard = dynamic(()=>import('../_components/blocks/ProductCard'), {ssr: false});
-  const Reviews = dynamic(()=>import('../_components/blocks/Reviews'), {ssr: false});
+  const ProductCard = dynamic(()=>import('../_componnents/blocks/ProductCard'), {ssr: false});
+  const Reviews = dynamic(()=>import('../_componnents/blocks/Reviews'), {ssr: false});
 
   return (
     <main>

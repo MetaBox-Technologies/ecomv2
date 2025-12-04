@@ -34,7 +34,7 @@ export default function Reviews({ reviews }: ReviewsProps) {
             <form className="input-wrapper">
                 <input type="text" placeholder="Share your thoughts" />
                 <button type="submit" className="review-btn">
-                    <span className="text">Write Review</span>
+                    <p className="text">Write Review</p>
                     <i className="fas fa-arrow-right icon"></i>
                 </button>
             </form>
