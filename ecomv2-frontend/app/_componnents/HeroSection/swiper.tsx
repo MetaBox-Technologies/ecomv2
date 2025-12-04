@@ -17,14 +17,14 @@ export default function MySwiper() {
       spaceBetween={20}
       slidesPerView={1}
     >
-      <SwiperSlide className="slider">
-        <div className="h-[737px] bg-blue-500 flex pb-[100px]">
-          Slide 1
+        <div className="herosection">
+      <SwiperSlide>
+        <div className="h-[400px] bg-blue-500 flex items-center justify-center text-white text-2xl">
         </div>
       </SwiperSlide>
 
       <SwiperSlide>
-        <div className="h-[737px] bg-red-500 flex">
+        <div className="h-[400px] bg-red-500 flex items-center justify-center text-white text-2xl">
           Slide 2
         </div>
       </SwiperSlide>
@@ -34,6 +34,7 @@ export default function MySwiper() {
           Slide 3
         </div>
       </SwiperSlide>
+      </div>
     </Swiper>
     
   );
