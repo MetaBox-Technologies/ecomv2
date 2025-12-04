@@ -16,7 +16,7 @@
 .card {
     display: block;
     background-color: #F3F5F7;
-    max-width: 272px;
+    max-width: 262px;
     border-radius: 20px;
     align-content: center;
     text-align: start;
@@ -31,7 +31,15 @@ div.Image {
 h3 {
     padding-top: 16px;
     font-size: 20px;
+    font-weight: 500;
+    font-family: var(--font-poppins);
     color: #31393B;
+}
+
+p {
+    font-size: 14px;
+    font-family: var(--font-poppins);
+    font-weight: 400;
 }
 
 .desc {
@@ -60,8 +68,26 @@ h3 {
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 660px) {
+
     .cards-container {
       grid-template-columns: repeat(2, auto);
+    }
+
+    .card {
+        padding: 32px 16px 32px 16px;
+        max-width: 152px;
+    }
+
+    h3 {
+        font-family: var(--font-inter);
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    p {
+        font-family: var(--font-inter);
+        font-size: 14px;
+        font-weight: 400;
     }
   }
