@@ -30,6 +30,9 @@ export  function ProductListClient({
   const showMore =() => {
     setVisibleCount(prev => prev+3);
   };
+  const showLess =() => {
+    setVisibleCount(3);
+  }
   const Component = component;
 
   const filteredArticles = useMemo(()=>{
@@ -40,7 +43,7 @@ export  function ProductListClient({
   },[articles,PriceFilters]);
 
   return (
-    <section className="w-full flex flex-col md:flex-row">
+    <section className="w-full flex flex-col md:flex-row mb-[10%]">
   <div className="hidden md:block lg:w-[15%] md:w-[20%] ml-[8%] mr-[4%]">
     {/* Full filtering div */} {/* Hidden on smaller devices */}
 
@@ -105,8 +108,11 @@ export  function ProductListClient({
       ))}
     </div>
 
-    {visibleCount < articles.length && (
-      <button onClick={showMore}>Show more</button>
+    {visibleCount < filteredArticles.length && (
+      <button className="block mx-auto mt-[3%] sm:text-base  sm:px-10 sm:py-[6px] text-sm px-7 py-[4px] border border-[#141718] rounded-full text-[#141718] cursor-pointer transition-colors duration-300 hover:bg-[#141718] hover:text-white" onClick={showMore}>Show more</button>
+    )}
+    {visibleCount >= filteredArticles.length && filteredArticles.length>3 && (
+      <button className="block mx-auto mt-[3%] sm:text-base  sm:px-10 sm:py-[6px] text-sm px-7 py-[4px] border border-[#141718] rounded-full text-[#141718] cursor-pointer transition-colors duration-300 hover:bg-[#141718] hover:text-white" onClick={showLess}>Show less</button>
     )}
   </div>
 </section>)

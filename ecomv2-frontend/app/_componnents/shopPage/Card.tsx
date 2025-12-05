@@ -37,6 +37,7 @@ export function Card({
          onMouseEnter={()=>{
           setShowActions(true);
           setTimeout(()=>{
+            console.log(divRef.current)
             divRef.current?.classList.add("bottom-[5%]");
             divRef.current?.classList.add("opacity-[100%]");
           }, 150);
@@ -61,7 +62,7 @@ export function Card({
           width={400}
           height={400}
         />
-        {showActions && <div ref={divRef} className="w-[90%] left-1/2 -translate-x-1/2 md:px-[24px] md:py-[8px] px-[16px] py-[4px] absolute bottom bottom-[0%] bg-black rounded-lg transition-[all] duration-300 ease-in-out opacity-0"><h4 className="md:text-xl text-[15px] text-white text-center">Add to Cart</h4></div>}
+        {showActions && <div ref={divRef} className="w-[90%] left-1/2 -translate-x-1/2 md:px-[24px] md:py-[8px] px-[16px] py-[4px] absolute bottom bottom-[0%] opacity-0 bg-black rounded-lg cursor-pointer transition-[all] duration-300 ease-in-out"><h4 className="md:text-xl text-[15px] text-white text-center">Add to Cart</h4></div>}
       </div>
       <div>
         <StarRating rating={3.7}/>
