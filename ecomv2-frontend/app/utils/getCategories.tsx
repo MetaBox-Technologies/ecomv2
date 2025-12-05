@@ -4,6 +4,7 @@ import { unique } from "next/dist/build/utils";
 
 export async function articles() {
   const { data } = await getArticles("/api/products");
+  console.log(data)
   return data as ArticleProps[];
 }
 

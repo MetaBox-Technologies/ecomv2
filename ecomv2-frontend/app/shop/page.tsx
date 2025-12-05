@@ -21,7 +21,6 @@ export default async function ShopPage({searchParams}:PageProps) {
   const {query} = await searchParams;
   const uniquecategories = await getCategories();
   const {hero} = await loader();
-  console.log(hero)
   return <div>
               <div className=" w-full  flex justify-center mt-[2%] mb-[2%]">
                     <div className="relative w-17/20 h-[300px] rounded-[20px] overflow-hidden   xl:h-[400px]">

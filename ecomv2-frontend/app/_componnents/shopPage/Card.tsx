@@ -31,11 +31,11 @@ export function Card({
 }: Readonly<CardProps>) {
   const [showActions, setShowActions] = useState(false);
   return (
-    <div onMouseEnter={()=>setShowActions(true)}
+    <div>
+      <div className="relative inline-block"
+         onMouseEnter={()=>setShowActions(true)}
          onMouseLeave={()=>setShowActions(false)}
-         onClick={()=>setShowActions(!showActions)}
-         >
-      <div className="relative w-[100%]">
+         onClick={()=>setShowActions(!showActions)}>
         {Is_new && <div className="lg:w-[60px] lg:h-[30px] md:w-[52px] md:h-[25px] w-[45px] h-[20px] absolute top-[5%] left-[5%] bg-white rounded"><h1 className="font-semibold md:text-base lg:text-lg test-sm text-center">NEW</h1></div>}
         {percentagediscount>0 && (<div className={`lg:w-[60px] lg:h-[30px] md:w-[52px] md:h-[25px] w-[45px] h-[20px]  absolute ${Is_new? "top-[2.4rem] sm:top-[16%] md:top-[16%] lg:top-[17%] xl:top-[15%]" : "top-[5%]"} left-[5%] bg-[#38CB89] rounded`}><h1 className="font-semibold text-white md:text-base lg:text-lg text-sm text-center">-{percentagediscount}%</h1></div>)}
        
