@@ -6,6 +6,7 @@ import { useState, useMemo } from "react";
 import Image from "next/image";
 import { FilterCat } from "./FilterCategory";
 import PriceFilter, {PriceRange} from "./PriceFilterRange";
+import SortBy, { SortOption } from "./SortBy";
 
 interface ProductListProps {
   headline: string;
@@ -34,13 +35,40 @@ export  function ProductListClient({
     setVisibleCount(3);
   }
   const Component = component;
+  const [sortOption, setSortOption] = useState<SortOption>("none");
 
-  const filteredArticles = useMemo(()=>{
-    if (PriceFilters.length === 0) return articles;
-    return articles.filter((a)=> PriceFilters.some( //some checks if there is atleast 1 element matching
-        (range) => (a.price*((100-a.percentagediscount)/100)) >= range.min && (a.price*((100-a.percentagediscount)/100)) <= range.max
-    ))                //price after discount
-  },[articles,PriceFilters]);
+const filteredArticles = useMemo(() => {
+  let result = [...articles];
+
+  // Apply price filter
+  if (PriceFilters.length > 0) {
+    result = result.filter((a) =>
+      PriceFilters.some((range) => {
+        const finalPrice = a.price * ((100 - a.percentagediscount) / 100);
+        return finalPrice >= range.min && finalPrice <= range.max;
+      })
+    );
+  }
+
+  // Apply sorting
+  if (sortOption === "lowest") {
+    result.sort((a, b) => 
+      (a.price * ((100 - a.percentagediscount) / 100)) -
+      (b.price * ((100 - b.percentagediscount) / 100))
+    );
+  } else if (sortOption === "highest") {
+    result.sort((a, b) => 
+      (b.price * ((100 - b.percentagediscount) / 100)) -
+      (a.price * ((100 - a.percentagediscount) / 100))
+    );
+  } else if (sortOption === "az") {
+    result.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sortOption === "za"){
+    result.sort((a, b)=> b.name.localeCompare(a.name));
+  }
+
+  return result;
+}, [articles, PriceFilters, sortOption]);
 
   return (
     <section className="w-full flex flex-col md:flex-row mb-[10%]">
@@ -100,8 +128,12 @@ export  function ProductListClient({
   )}
 
   <div className="lg:w-[66%] md:w-[61%] mx-[8%] md:mx-0 ">
-    <h2 className="xl:text-[150%]  md:text-[140%] sm:text-[130%] text-[1.1rem] font-semibold  font-sans md:mb-[4%] my-[2%] md:my-0">{selectedCategory}</h2>
-
+    <div className="flex justify-between">
+        <h2 className="xl:text-[150%]  md:text-[140%] sm:text-[130%] text-[1.1rem] font-semibold  font-sans md:mb-[4%] my-[2%] md:my-0">{selectedCategory}</h2>
+        <div className="flex justify-end mr-[8%] md:mr-0 my-[2%] md:my-0">
+        <SortBy onChange={setSortOption} />
+        </div>
+    </div>
     <div className="products_grid">
       {filteredArticles.slice(0, visibleCount).map((article) => (
         <Component key={article.documentId} {...article} />
@@ -114,6 +146,8 @@ export  function ProductListClient({
     {visibleCount >= filteredArticles.length && filteredArticles.length>3 && (
       <button className="block mx-auto mt-[3%] sm:text-base  sm:px-10 sm:py-[6px] text-sm px-7 py-[4px] border border-[#141718] rounded-full text-[#141718] cursor-pointer transition-colors duration-300 hover:bg-[#141718] hover:text-white" onClick={showLess}>Show less</button>
     )}
+
+    {filteredArticles.length == 0 && ( <h5 className="text-gray-600">No available products at the moment.</h5>)}
   </div>
 </section>)
 }
