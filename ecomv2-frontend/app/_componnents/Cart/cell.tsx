@@ -1,4 +1,5 @@
 import "./css/cell.css"
+import React from "react"
 import QuantityButton from "../QuantityButton/quantitybutton"
 
 interface CellsProps{
@@ -12,7 +13,8 @@ interface CellsProps{
     quantity: number,
 }
 
-export default function Cell({image, itemName, itemColor, itemPrice, quantity}:Readonly<CellsProps>) {
+export const  Cell =  React.memo(({image, itemName, itemColor, itemPrice, quantity}:Readonly<CellsProps>) => {
+    
     return (
         <div className="item-cell">
             <img src={image.src} width={80} height={96} alt={image.alt||""}/>
@@ -33,4 +35,4 @@ export default function Cell({image, itemName, itemColor, itemPrice, quantity}:R
             </div>
         </div>
     )
-}
+})

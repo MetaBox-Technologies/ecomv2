@@ -1,3 +1,3 @@
 export function GetStrapiURL(){
-    return "https://strapi.ecomv2.online";
+    return "https://strapi.ecomv2.online/";
 }

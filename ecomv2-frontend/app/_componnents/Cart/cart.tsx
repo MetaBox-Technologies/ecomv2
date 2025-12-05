@@ -7,7 +7,7 @@ import { RootContext } from "@/app/_providers/RootContext";
 import { CartContent } from "./cartContent";
 
 
-export const Cart = React.memo(({isOpen})=> {
+export function Cart ({isOpen}) {
     
     const divRef = createRef();
     const { isCartOpen } = useContext(RootContext);
@@ -53,4 +53,4 @@ export const Cart = React.memo(({isOpen})=> {
             )}
         </>
       )
-});
+};

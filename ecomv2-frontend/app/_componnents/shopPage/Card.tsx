@@ -1,5 +1,5 @@
 "use client";
-import{useState} from "react";
+import{useRef, useState} from "react";
 import { ImageProps} from "../../data/types"
 import Link from "next/link";
 import { StrapiImage } from "../strapiImage";
@@ -30,11 +30,26 @@ export function Card({
   category,
 }: Readonly<CardProps>) {
   const [showActions, setShowActions] = useState(false);
+  const divRef = useRef(null);
   return (
     <div>
-      <div className="relative inline-block"
-         onMouseEnter={()=>setShowActions(true)}
-         onMouseLeave={()=>setShowActions(false)}
+      <div className="relative inline-block hover:cursor-pointer"
+         onMouseEnter={()=>{
+          setShowActions(true);
+          setTimeout(()=>{
+            divRef.current?.classList.add("bottom-[5%]");
+            divRef.current?.classList.add("opacity-[100%]");
+          }, 150);
+
+        }}
+         onMouseLeave={()=>{
+          
+          divRef.current?.classList.remove("bottom-[5%]");
+          divRef.current?.classList.remove("opacity-[100%]");
+          setTimeout(()=>{
+            setShowActions(false)
+          }, 150)
+        }}
          onClick={()=>setShowActions(!showActions)}>
         {Is_new && <div className="lg:w-[60px] lg:h-[30px] md:w-[52px] md:h-[25px] w-[45px] h-[20px] absolute top-[5%] left-[5%] bg-white rounded"><h1 className="font-semibold md:text-base lg:text-lg test-sm text-center">NEW</h1></div>}
         {percentagediscount>0 && (<div className={`lg:w-[60px] lg:h-[30px] md:w-[52px] md:h-[25px] w-[45px] h-[20px]  absolute ${Is_new? "top-[2.4rem] sm:top-[16%] md:top-[16%] lg:top-[17%] xl:top-[15%]" : "top-[5%]"} left-[5%] bg-[#38CB89] rounded`}><h1 className="font-semibold text-white md:text-base lg:text-lg text-sm text-center">-{percentagediscount}%</h1></div>)}
@@ -46,7 +61,7 @@ export function Card({
           width={400}
           height={400}
         />
-        {showActions && <div className="w-[90%] left-1/2 -translate-x-1/2 md:px-[24px] md:py-[8px] px-[16px] py-[4px] absolute bottom bottom-[5%] bg-black rounded-lg "><h4 className="md:text-xl text-[15px] text-white text-center">Add to Cart</h4></div>}
+        {showActions && <div ref={divRef} className="w-[90%] left-1/2 -translate-x-1/2 md:px-[24px] md:py-[8px] px-[16px] py-[4px] absolute bottom bottom-[0%] bg-black rounded-lg transition-[all] duration-300 ease-in-out opacity-0"><h4 className="md:text-xl text-[15px] text-white text-center">Add to Cart</h4></div>}
       </div>
       <div>
         <StarRating rating={3.7}/>

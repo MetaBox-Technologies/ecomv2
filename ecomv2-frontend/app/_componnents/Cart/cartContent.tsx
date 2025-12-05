@@ -1,13 +1,18 @@
 import "./css/cartContent.css"
 import { ForwardedRef, forwardRef } from "react";
 import Link from "next/link";
-import Cell  from "./cell";
-
+import { Cell }  from "./cell";
+import { cartloader } from "./cartContentLoader";
+import { useEffect } from "react";
 interface CartContentProps{
     cStatic:boolean,
 }
 
 export const CartContent = forwardRef(({cStatic = false}:Readonly<CartContentProps>, innerref) => {
+
+    useEffect(()=>{
+        console.log("rendered");
+    });
     return (
         <div className={`cart-content ${cStatic ? "translate-x-100 w-[343px]": "w-[312px] rounded-[4px] border-1 border-[var(--neutral-4)] h-[fit-content]"}`} ref={innerref} >
             <div className="summary__items">
@@ -37,7 +42,7 @@ export const CartContent = forwardRef(({cStatic = false}:Readonly<CartContentPro
                 </div>
                 
             </div>
-            <div className={`summary__counts ${cStatic ? "h-[218px]" : ""}`}>
+            {/*<div className={`summary__counts ${cStatic ? "h-[218px]" : ""}`}>
                 <div className="fields">
                     {!cStatic && (
                         <div className="fields__subtotal shipping py-[13px]">
@@ -64,7 +69,7 @@ export const CartContent = forwardRef(({cStatic = false}:Readonly<CartContentPro
                     </Link>
                 </div>
                 )}
-            </div>
+            </div>*/}
         </div>
     )
 })
