@@ -41,3 +41,19 @@ export async function getArticles(path:string) {
   const url = new URL(path, BASE_URL);
   return fetchAPI(url.href, {method: "GET"});
 }
+
+export async function getNewArticles() {
+  const url = new URL("/api/products/", BASE_URL);
+  url.search=  qs.stringify({
+    filters: {
+      "Is_new": {$eq: true}
+    },
+    populate: {
+      images: {
+        fields: ["url", "alternativeText"]
+      },
+    },
+  })
+
+  return fetchAPI(url.href, {method : "GET"})
+}

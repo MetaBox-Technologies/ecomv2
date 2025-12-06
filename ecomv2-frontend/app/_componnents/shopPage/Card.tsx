@@ -16,6 +16,7 @@ export interface CardProps {
   percentagediscount: number;
   Is_new:boolean;
   category: string;
+  isOnHome?: boolean;
 }
 
 export function Card({
@@ -28,11 +29,12 @@ export function Card({
   percentagediscount,
   Is_new,
   category,
+  isOnHome = false
 }: Readonly<CardProps>) {
   const [showActions, setShowActions] = useState(false);
   const divRef = useRef(null);
   return (
-    <div>
+    <div className={isOnHome ? "w-[300px] flex-shrink-0 md:w-[unset] flex flex-col gap-3" : ""}>
       <div className="relative inline-block hover:cursor-pointer"
          onMouseEnter={()=>{
           setShowActions(true);
@@ -62,17 +64,20 @@ export function Card({
           width={400}
           height={400}
         />
+<<<<<<< Updated upstream
         {showActions && <div ref={divRef} className="w-[90%] left-1/2 -translate-x-1/2 md:px-[24px] md:py-[8px] px-[16px] py-[4px] absolute bottom bottom-[0%] opacity-0 bg-black rounded-lg cursor-pointer transition-[all] duration-300 ease-in-out"><h4 className="md:text-xl text-[15px] text-white text-center">Add to Cart</h4></div>}
+=======
+        {showActions && <div ref={divRef} className={`w-[90%] left-1/2 -translate-x-1/2 md:px-[24px] md:py-[8px] px-[16px] py-[4px] absolute bottom bottom-[0%] bg-black rounded-lg transition-[all] duration-300 ease-in-out opacity-0 ${isOnHome? "!bg-[var(--blue-btn)]": ""}`}><h4 className="md:text-xl text-[15px] text-white text-center" style={{fontFamily:"var(--font-inter)"}}>Add to Cart</h4></div>}
+>>>>>>> Stashed changes
       </div>
-      <div>
-        <StarRating rating={3.7}/>
-        <h5 className="font-semibold mt-[2%] sm:text-base text-sm">{name}</h5>
-        <h5>{percentagediscount>0 && <div className="flex gap-2">
+      <div className="flex flex-col gap-3 h-fit" style={{fontFamily:"var(--font-inter)"}}>
+        <StarRating rating={3.7} color={isOnHome ? "#ffc554" : "black"}/>
+        <h5 className="font-semibold sm:text-base text-sm">{name}</h5>
+        {percentagediscount>0 && <div className="flex gap-2">
                                         <p className="font-semibold sm:text-base text-sm">${ (price * ((100 - percentagediscount) / 100)).toFixed(2) }</p>
                                         <p className="line-through text-gray-600 sm:text-base text-sm"> ${price}</p>
-                                     </div>}
-        </h5> 
-        <h5>{percentagediscount==0 && <p className="font-semibold sm:text-base text-sm">${price}</p>}</h5>
+                                     </div>} 
+        {percentagediscount==0 && <p className="font-semibold sm:text-base text-sm">${price}</p>}
       </div>
     </div>
   );

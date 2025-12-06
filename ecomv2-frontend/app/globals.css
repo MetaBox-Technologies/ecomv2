@@ -9,6 +9,8 @@
   --secondary-blue: #377DFF;
   --secondary-green: #38CB89;
   --secondary-orange: #FFAB00;
+  --star: #ffc554;
+  --blue-btn: #2F7694;
   --secondary-red: #FF5630;
   --neutral-1:#FEFEFE;
   --neutral-2:#F3F5F7;
@@ -46,14 +48,12 @@
     --foreground: #ededed;
   }
 }*/
-html::-webkit-scrollbar {
-  width: 12px;
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-poppins);
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 /*
 body::-webkit-scrollbar {
@@ -72,22 +72,9 @@ body::-webkit-scrollbar-button {
 
 
 /* Chrome, Edge, Safari */
-html::-webkit-scrollbar {
-  width: 0px;
-}
 
-html::-webkit-scrollbar-track {
-  background: #d85050;
-}
 
-html::-webkit-scrollbar-thumb {
-  background: #df8c8c;
-  border-radius: 9999px;
-}
 
-html::-webkit-scrollbar-thumb:hover {
-  background: #ea0c0c;
-}
 
 /*globals button size*/
 .btn-xlarge { @apply w-[178px] h-[38px] text-[26px]} 

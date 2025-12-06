@@ -12,7 +12,7 @@ interface PageProps {
 }
 
 async function loader() {
-  const {data} = await getShopPage();
+  const { data } = await getShopPage();
   if(!data) throw new Error("Failed to fetch global settings");
   return {hero: data?.heroBanner};
 }

@@ -11,10 +11,9 @@ interface StrapiImageProps{
 
 export function StrapiImage({src,alt,...rest}:Readonly<StrapiImageProps>){
     const imageUrl= getStrapiMedia(src);
-    console.log("ImageURL: ",imageUrl)
     if(!imageUrl) return null;
 
-    return <Image src={imageUrl} alt={alt} {...rest}/>
+    return <div className="rounded-[20px] overflow-hidden"><Image src={imageUrl} alt={alt} {...rest}/></div>
 }
 export function getStrapiMedia(url:string | null){
     if(url == null) return null;

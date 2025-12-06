@@ -42,7 +42,7 @@ export const CartContent = forwardRef(({cStatic = false}:Readonly<CartContentPro
                 </div>
                 
             </div>
-            {/*<div className={`summary__counts ${cStatic ? "h-[218px]" : ""}`}>
+            <div className={`summary__counts ${cStatic ? "h-[218px]" : ""}`}>
                 <div className="fields">
                     {!cStatic && (
                         <div className="fields__subtotal shipping py-[13px]">
@@ -69,7 +69,7 @@ export const CartContent = forwardRef(({cStatic = false}:Readonly<CartContentPro
                     </Link>
                 </div>
                 )}
-            </div>*/}
+            </div>
         </div>
     )
 })
