@@ -1,6 +1,6 @@
 import { ReferrerEnum } from "next/dist/lib/metadata/types/metadata-types";
 
-interface Product{
+export interface Product{
     id: number,
     prodName: string,
     prodPrice: number,
@@ -53,10 +53,13 @@ export function updateCart(id: number,op:Operation = Operation.increase, color?:
             if(product.id === id)
                 product.quantity += op
         }
-    })
+        return product;
+    });
+
 
     localStorage.setItem("cart", JSON.stringify(newCartState));
     console.log(localStorage.getItem("cart"));
+    return newCartState;
 }
 
 export function popProductFromCart(id: number, color?: string) {
@@ -66,7 +69,7 @@ export function popProductFromCart(id: number, color?: string) {
         if(color){
             let isTheSameId = product.id === id;
             let isTheSameColor = product.color === color;
-            if((isTheSameId && !isTheSameColor) || !isTheSameColor) {
+            if((isTheSameId && !isTheSameColor) || !isTheSameId) {
                 return product;
             }
         } else {
@@ -79,10 +82,11 @@ export function popProductFromCart(id: number, color?: string) {
 
     if(newCartState.length === 0) {
         localStorage.removeItem("cart");
-        return;
+        return[];
     }
 
     localStorage.setItem("cart", JSON.stringify(newCartState));
     console.log(localStorage.getItem("cart"));
+    return newCartState;
 }
 

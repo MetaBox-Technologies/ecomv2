@@ -47,7 +47,7 @@ export function Header(){
           <a href=""><Image className="icon1" src="/images/search 02.svg" alt="" width={25} height={18}/></a>
           <div onClick={()=>{
             isCartOpen(true)
-          }}><Image className="icon3" src="/images/shopping bag.svg" alt="" width={25} height={18}/></div>
+          }} className='cart-icon'><Image className="icon3" src="/images/shopping bag.svg" alt="" width={25} height={18}/></div>
           </div>
           </nav>
         </header>

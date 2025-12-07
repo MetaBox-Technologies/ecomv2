@@ -22,13 +22,19 @@
 
 /*summary item list*/
 .items-list {
-    @apply w-full  overflow-auto flex flex-col gap-4 h-[464px];
+    @apply w-full  overflow-auto flex flex-col gap-4 h-[386px];
 }
-@media screen and (min-height: 980px) {
+@media screen and (min-height: 668px) {
+    .items-list {
+        @apply h-[528px]
+    }
+}
+@media screen and (min-height: 920px) {
     .items-list {
         @apply h-[658px]
     }
 }
+
 
 .items-list::-webkit-scrollbar {
     @apply w-[4px];

@@ -72,6 +72,9 @@ nav {
 #menu_icon {
     display: none;
 }
+.cart-icon {
+    @apply hover:cursor-pointer;
+}
 
 @media screen and (max-width: 768px) {
     .icon2 {

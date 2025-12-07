@@ -18,6 +18,12 @@ export default function HeroSection() {
   const nextRef:any = useRef(null);
   const prevRef:any = useRef(null);
 
+  useEffect(()=>{
+    return ()=>{
+      swipperRef.current.destroy(true, true)
+    }
+  })
+
   return (
     <div className="px-8 lg:px-[128px] pb-6 lg:w-screen">
 

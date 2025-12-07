@@ -1,4 +1,6 @@
+
 import Image from "next/image";
+import "./StrapiImage.css";
 import { GetStrapiURL } from "../utils/get-strapi-url";
 
 interface StrapiImageProps{
@@ -10,10 +12,13 @@ interface StrapiImageProps{
 }
 
 export function StrapiImage({src,alt,...rest}:Readonly<StrapiImageProps>){
+
     const imageUrl= getStrapiMedia(src);
     if(!imageUrl) return null;
 
-    return <div className="rounded-[20px] overflow-hidden"><Image src={imageUrl} alt={alt} {...rest}/></div>
+    return <div className="rounded-[20px] overflow-hidden w-full h-full">
+            <Image src={imageUrl} alt={alt} {...rest} />
+            </div>
 }
 export function getStrapiMedia(url:string | null){
     if(url == null) return null;

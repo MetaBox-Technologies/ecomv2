@@ -1,9 +1,14 @@
 @reference "../../../globals.css";
 
 
-
 .swiper {
-    @apply w-[311px] h-[388px] rounded-[20px] md:w-[704px] md:h-[490px] lg:w-full lg:h-[856px];
+    @apply w-[311px] h-[388px] rounded-[20px] md:h-[490px] md:w-full;
+}
+
+@media screen and (min-width:1280px){
+    .swiper {
+        @apply h-[856px]
+    }
 }
 div[class^="swiper-button"] {
     @apply hidden md:flex;
@@ -14,7 +19,6 @@ div[class^="swiper-button"] {
   font-size: 18px;
   background: #444;
 
-  /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,6 +53,7 @@ div[id^="slide"] {
     background-position: center center;
     background-size: cover;
 }
+
 #slide1 {
     background-image: url('/images/slider1.jpg') ;
 }

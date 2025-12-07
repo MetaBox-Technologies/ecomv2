@@ -22,17 +22,17 @@ export  function ProductListClient({
   articles,
   uniquecategories
 }: Readonly<ProductListProps>) {
-  const [visibleCount,setVisibleCount] = useState(3)
+  const [visibleCount,setVisibleCount] = useState(4)
 
   const [PriceFilters, setPriceFilters] = useState<PriceRange[]>([]);
   const [open, setOpen]=useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All products");
   //After passing through child function, pricefilters now stores all selected price ranges objects
   const showMore =() => {
-    setVisibleCount(prev => prev+3);
+    setVisibleCount(prev => prev+4);
   };
   const showLess =() => {
-    setVisibleCount(3);
+    setVisibleCount(4);
   }
   const Component = component;
   const [sortOption, setSortOption] = useState<SortOption>("none");
