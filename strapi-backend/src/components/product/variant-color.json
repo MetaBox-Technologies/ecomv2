@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_product_variant_colors",
+  "info": {
+    "displayName": "VariantColor"
+  },
+  "options": {},
+  "attributes": {
+    "color_name": {
+      "type": "string"
+    },
+    "swatch": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "available": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "config": {}
+}

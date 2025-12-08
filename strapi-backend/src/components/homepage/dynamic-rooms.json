@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_homepage_dynamic_rooms",
+  "info": {
+    "displayName": "DynamicRooms"
+  },
+  "options": {},
+  "attributes": {
+    "Card": {
+      "type": "component",
+      "component": "card.rooms",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

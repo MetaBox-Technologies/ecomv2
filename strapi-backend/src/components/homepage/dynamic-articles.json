@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_homepage_dynamic_articles",
+  "info": {
+    "displayName": "DynamicArticles"
+  },
+  "options": {},
+  "attributes": {
+    "Heading": {
+      "type": "component",
+      "component": "articles.heading",
+      "repeatable": false
+    },
+    "Card": {
+      "type": "component",
+      "component": "articles.card",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

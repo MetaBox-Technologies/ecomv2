@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_product_tabs_descriptions",
+  "info": {
+    "displayName": "TabsDescription"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

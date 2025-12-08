@@ -1,15 +1,23 @@
 {
-  "collectionName": "components_homepage_heroes",
+  "collectionName": "components_featured_sliders",
   "info": {
-    "displayName": "hero"
+    "displayName": "slider"
   },
   "options": {},
   "attributes": {
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product"
+    },
     "image": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
-        "images"
+        "images",
+        "files",
+        "videos",
+        "audios"
       ]
     },
     "text": {
@@ -19,6 +27,9 @@
       "type": "component",
       "component": "link.button",
       "repeatable": false
+    },
+    "numbers": {
+      "type": "decimal"
     }
   },
   "config": {}

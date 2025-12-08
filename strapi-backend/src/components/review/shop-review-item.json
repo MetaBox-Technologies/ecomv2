@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_review_shop_review_items",
+  "info": {
+    "displayName": "shopReviewItem"
+  },
+  "options": {},
+  "attributes": {
+    "author": {
+      "type": "string"
+    },
+    "rating": {
+      "type": "integer"
+    },
+    "comment": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_shop_product_cards",
+  "info": {
+    "displayName": "product-card"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "text_short": {
+      "type": "string"
+    },
+    "badge": {
+      "type": "enumeration",
+      "enum": [
+        "new",
+        "sale"
+      ]
+    },
+    "button": {
+      "type": "component",
+      "component": "link.button",
+      "repeatable": false
+    },
+    "price": {
+      "type": "decimal"
+    }
+  },
+  "config": {}
+}

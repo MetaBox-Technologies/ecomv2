@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_homepage_dynamic_sliders",
+  "info": {
+    "displayName": "DynamicSlider"
+  },
+  "options": {},
+  "attributes": {
+    "Slider": {
+      "type": "component",
+      "component": "slide.slider",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

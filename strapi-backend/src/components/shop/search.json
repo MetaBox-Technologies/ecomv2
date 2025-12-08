@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_shop_searches",
+  "info": {
+    "displayName": "search"
+  },
+  "options": {},
+  "attributes": {
+    "placeholder": {
+      "type": "string"
+    },
+    "buttonText": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_review_items",
+  "info": {
+    "displayName": "item"
+  },
+  "options": {},
+  "attributes": {
+    "author": {
+      "type": "string"
+    },
+    "rating": {
+      "type": "integer"
+    },
+    "date": {
+      "type": "date"
+    },
+    "comment": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_homepage_heroes",
+  "collectionName": "components_homepage_promotions",
   "info": {
-    "displayName": "hero"
+    "displayName": "promotion"
   },
   "options": {},
   "attributes": {
@@ -15,10 +15,10 @@
     "text": {
       "type": "string"
     },
-    "button": {
+    "Link": {
       "type": "component",
-      "component": "link.button",
-      "repeatable": false
+      "component": "link.link",
+      "repeatable": true
     }
   },
   "config": {}

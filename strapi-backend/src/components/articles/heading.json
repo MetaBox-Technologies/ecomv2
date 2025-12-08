@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_articles_headings",
+  "info": {
+    "displayName": "Heading"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "link": {
+      "type": "component",
+      "component": "link.link",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

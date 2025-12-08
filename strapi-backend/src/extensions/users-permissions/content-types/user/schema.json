@@ -66,42 +66,11 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "orders": {
+    "article": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::order.order",
-      "mappedBy": "users_permissions_user"
-    },
-    "firstName": {
-      "type": "string"
-    },
-    "lastName": {
-      "type": "string"
-    },
-    "phone": {
-      "type": "string"
-    },
-    "dateOfBirth": {
-      "type": "date"
-    },
-    "profilePicture": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "bio": {
-      "type": "string"
-    },
-    "isProfileComplete": {
-      "type": "boolean",
-      "default": false
-    },
-    "addresses": {
-      "type": "component",
-      "component": "user.address",
-      "repeatable": true
+      "relation": "oneToOne",
+      "target": "api::article.article",
+      "inversedBy": "users_permissions_user"
     }
   }
 }

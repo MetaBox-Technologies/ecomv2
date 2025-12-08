@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_slide_sliders",
+  "info": {
+    "displayName": "Slider"
+  },
+  "options": {},
+  "attributes": {
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product"
+    },
+    "enum": {
+      "type": "enumeration",
+      "enum": [
+        "new",
+        "sale",
+        "featured",
+        "hot"
+      ]
+    },
+    "text_short": {
+      "type": "string"
+    },
+    "numbers": {
+      "type": "decimal"
+    },
+    "button": {
+      "type": "component",
+      "component": "link.button",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_shop_filter_options",
+  "info": {
+    "displayName": "filter-option"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "min": {
+      "type": "decimal"
+    },
+    "max": {
+      "type": "decimal"
+    }
+  },
+  "config": {}
+}

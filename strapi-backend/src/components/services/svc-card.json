@@ -1,7 +1,7 @@
 {
-  "collectionName": "components_homepage_heroes",
+  "collectionName": "components_services_svc_cards",
   "info": {
-    "displayName": "hero"
+    "displayName": "SvcCard"
   },
   "options": {},
   "attributes": {
@@ -14,11 +14,6 @@
     },
     "text": {
       "type": "string"
-    },
-    "button": {
-      "type": "component",
-      "component": "link.button",
-      "repeatable": false
     }
   },
   "config": {}

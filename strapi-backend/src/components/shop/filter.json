@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_shop_filters",
+  "info": {
+    "displayName": "filter"
+  },
+  "options": {},
+  "attributes": {
+    "option": {
+      "type": "component",
+      "component": "shop.filter-option",
+      "repeatable": true
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category"
+    },
+    "price_options": {
+      "type": "component",
+      "component": "shop.filter-option",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

@@ -1,117 +1,142 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
-export interface BlocksFooter extends Struct.ComponentSchema {
-  collectionName: 'components_blocks_footers';
+export interface ArticlesCard extends Struct.ComponentSchema {
+  collectionName: 'components_articles_cards';
+  info: {
+    displayName: 'Card';
+  };
+  attributes: {
+    article: Schema.Attribute.Relation<'oneToOne', 'api::article.article'>;
+    image: Schema.Attribute.Media<'images'>;
+    link: Schema.Attribute.Component<'link.link', true>;
+    text: Schema.Attribute.String;
+  };
+}
+
+export interface ArticlesHeading extends Struct.ComponentSchema {
+  collectionName: 'components_articles_headings';
+  info: {
+    displayName: 'Heading';
+  };
+  attributes: {
+    link: Schema.Attribute.Component<'link.link', false>;
+    text: Schema.Attribute.String;
+  };
+}
+
+export interface CardRooms extends Struct.ComponentSchema {
+  collectionName: 'components_card_rooms';
+  info: {
+    displayName: 'Rooms';
+  };
+  attributes: {
+    category: Schema.Attribute.Relation<'oneToOne', 'api::category.category'>;
+    image: Schema.Attribute.Media<'images'>;
+    link: Schema.Attribute.Component<'link.link', true>;
+    text: Schema.Attribute.String;
+  };
+}
+
+export interface FeaturedHeading extends Struct.ComponentSchema {
+  collectionName: 'components_featured_headings';
+  info: {
+    displayName: 'Heading';
+  };
+  attributes: {
+    link: Schema.Attribute.Component<'link.link', false>;
+    text: Schema.Attribute.String;
+  };
+}
+
+export interface FeaturedSlider extends Struct.ComponentSchema {
+  collectionName: 'components_featured_sliders';
+  info: {
+    displayName: 'slider';
+  };
+  attributes: {
+    button: Schema.Attribute.Component<'link.button', false>;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    numbers: Schema.Attribute.Decimal;
+    product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
+    text: Schema.Attribute.String;
+  };
+}
+
+export interface HomepageAbout extends Struct.ComponentSchema {
+  collectionName: 'components_homepage_abouts';
+  info: {
+    displayName: 'About';
+  };
+  attributes: {
+    button: Schema.Attribute.Component<'link.button', false>;
+    text_long: Schema.Attribute.Text;
+    text_short: Schema.Attribute.String;
+  };
+}
+
+export interface HomepageDynamicArticles extends Struct.ComponentSchema {
+  collectionName: 'components_homepage_dynamic_articles';
+  info: {
+    displayName: 'DynamicArticles';
+  };
+  attributes: {
+    Card: Schema.Attribute.Component<'articles.card', false>;
+    Heading: Schema.Attribute.Component<'articles.heading', false>;
+  };
+}
+
+export interface HomepageDynamicRooms extends Struct.ComponentSchema {
+  collectionName: 'components_homepage_dynamic_rooms';
+  info: {
+    displayName: 'DynamicRooms';
+  };
+  attributes: {
+    Card: Schema.Attribute.Component<'card.rooms', false>;
+  };
+}
+
+export interface HomepageDynamicServices extends Struct.ComponentSchema {
+  collectionName: 'components_homepage_dynamic_services';
+  info: {
+    displayName: 'DynamicServices';
+  };
+  attributes: {
+    Services: Schema.Attribute.Component<'services.svc-card', true>;
+  };
+}
+
+export interface HomepageDynamicSlider extends Struct.ComponentSchema {
+  collectionName: 'components_homepage_dynamic_sliders';
+  info: {
+    displayName: 'DynamicSlider';
+  };
+  attributes: {
+    Slider: Schema.Attribute.Component<'slide.slider', true>;
+  };
+}
+
+export interface HomepageFooter extends Struct.ComponentSchema {
+  collectionName: 'components_homepage_footers';
   info: {
     displayName: 'footer';
   };
   attributes: {
-    logo: Schema.Attribute.Media<'images'>;
-    logos: Schema.Attribute.Component<'resuable.logo', true>;
-    text: Schema.Attribute.String;
-    text1: Schema.Attribute.String;
-    text2: Schema.Attribute.String;
-    text3: Schema.Attribute.String;
-    text4: Schema.Attribute.String;
+    link: Schema.Attribute.Component<'link.link', true>;
+    logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    text_long: Schema.Attribute.Text;
+    text_short: Schema.Attribute.String;
   };
 }
 
-export interface BlocksHeader extends Struct.ComponentSchema {
-  collectionName: 'components_blocks_headers';
+export interface HomepageHeader extends Struct.ComponentSchema {
+  collectionName: 'components_homepage_headers';
   info: {
     displayName: 'header';
   };
   attributes: {
-    icons: Schema.Attribute.Media<'images', true>;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    link: Schema.Attribute.Component<'link.link', true>;
     text: Schema.Attribute.String;
-  };
-}
-
-export interface CategoryHero extends Struct.ComponentSchema {
-  collectionName: 'components_category_heroes';
-  info: {
-    displayName: 'hero';
-  };
-  attributes: {
-    backgroundImage: Schema.Attribute.Media<'images'>;
-    subtitle: Schema.Attribute.String;
-    title: Schema.Attribute.String;
-  };
-}
-
-export interface GlobalSocial extends Struct.ComponentSchema {
-  collectionName: 'components_global_socials';
-  info: {
-    displayName: 'social';
-  };
-  attributes: {
-    platform: Schema.Attribute.Enumeration<
-      ['Facebook', 'Instagram', 'Twitter', 'TikTok']
-    >;
-    url: Schema.Attribute.Text;
-  };
-}
-
-export interface HomepageBlogPreview extends Struct.ComponentSchema {
-  collectionName: 'components_homepage_blog_previews';
-  info: {
-    displayName: 'blog-preview';
-  };
-  attributes: {
-    heading: Schema.Attribute.String;
-    limit: Schema.Attribute.Integer;
-    posts: Schema.Attribute.Relation<'oneToMany', 'api::blog-post.blog-post'>;
-  };
-}
-
-export interface HomepageCategoryGrid extends Struct.ComponentSchema {
-  collectionName: 'components_homepage_category_grids';
-  info: {
-    displayName: 'category-grid';
-  };
-  attributes: {
-    categories: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::category.category'
-    >;
-    heading: Schema.Attribute.String;
-    style: Schema.Attribute.Enumeration<['item 1', 'item 2 ', 'item 3']>;
-  };
-}
-
-export interface HomepageFeatureCards extends Struct.ComponentSchema {
-  collectionName: 'components_homepage_feature_cards';
-  info: {
-    displayName: 'feature-cards';
-  };
-  attributes: {
-    heading: Schema.Attribute.String;
-    items: Schema.Attribute.Component<'homepage.feature-item', true>;
-  };
-}
-
-export interface HomepageFeatureItem extends Struct.ComponentSchema {
-  collectionName: 'components_homepage_feature_items';
-  info: {
-    displayName: 'feature-item';
-  };
-  attributes: {
-    description: Schema.Attribute.String;
-    icon: Schema.Attribute.Media<'images'>;
-    title: Schema.Attribute.String;
-  };
-}
-
-export interface HomepageFeaturedProducts extends Struct.ComponentSchema {
-  collectionName: 'components_homepage_featured_products';
-  info: {
-    displayName: 'featured-products';
-  };
-  attributes: {
-    description: Schema.Attribute.String;
-    heading: Schema.Attribute.String;
-    layout: Schema.Attribute.Enumeration<['item1', 'item2', 'item3']>;
-    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
   };
 }
 
@@ -121,274 +146,328 @@ export interface HomepageHero extends Struct.ComponentSchema {
     displayName: 'hero';
   };
   attributes: {
-    backgroundImage: Schema.Attribute.Media<'images'>;
-    buttonLabel: Schema.Attribute.String;
-    buttonLink: Schema.Attribute.String;
+    button: Schema.Attribute.Component<'link.button', false>;
+    image: Schema.Attribute.Media<'images'>;
+    text: Schema.Attribute.String;
+  };
+}
+
+export interface HomepagePromotion extends Struct.ComponentSchema {
+  collectionName: 'components_homepage_promotions';
+  info: {
+    displayName: 'promotion';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images'>;
+    Link: Schema.Attribute.Component<'link.link', true>;
+    text: Schema.Attribute.String;
+  };
+}
+
+export interface LinkButton extends Struct.ComponentSchema {
+  collectionName: 'components_link_buttons';
+  info: {
+    displayName: 'button';
+  };
+  attributes: {
+    isExternal: Schema.Attribute.Boolean;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    url: Schema.Attribute.String;
+  };
+}
+
+export interface LinkLink extends Struct.ComponentSchema {
+  collectionName: 'components_link_links';
+  info: {
+    displayName: 'link';
+  };
+  attributes: {
+    isExternal: Schema.Attribute.Boolean;
+    label: Schema.Attribute.String;
+    url: Schema.Attribute.Text;
+  };
+}
+
+export interface ProductAddToCart extends Struct.ComponentSchema {
+  collectionName: 'components_product_add_to_carts';
+  info: {
+    displayName: 'AddToCart';
+  };
+  attributes: {
+    button: Schema.Attribute.Component<'link.button', false>;
+    quantity: Schema.Attribute.Integer;
+  };
+}
+
+export interface ProductHero extends Struct.ComponentSchema {
+  collectionName: 'components_product_heroes';
+  info: {
+    displayName: 'Hero';
+  };
+  attributes: {
+    badge: Schema.Attribute.Enumeration<
+      ['new', 'sale', 'Item-50% OFF ', 'hot', 'none']
+    >;
+    image_gallery: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+  };
+}
+
+export interface ProductInfo extends Struct.ComponentSchema {
+  collectionName: 'components_product_infos';
+  info: {
+    displayName: 'Info';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    price: Schema.Attribute.Decimal;
     subtitle: Schema.Attribute.String;
     title: Schema.Attribute.String;
   };
 }
 
-export interface HomepagePromoBanner extends Struct.ComponentSchema {
-  collectionName: 'components_homepage_promo_banners';
+export interface ProductMeasurement extends Struct.ComponentSchema {
+  collectionName: 'components_product_measurements';
   info: {
-    displayName: 'promo-banner';
+    displayName: 'Measurement';
   };
   attributes: {
-    backgroundColor: Schema.Attribute.String;
-    ctaLink: Schema.Attribute.String;
-    ctaText: Schema.Attribute.String;
-    image: Schema.Attribute.Media<'images'>;
-    tagline: Schema.Attribute.String;
-    textColor: Schema.Attribute.String;
-    title: Schema.Attribute.String;
+    measurements: Schema.Attribute.String;
   };
 }
 
-export interface HomepageStatItem extends Struct.ComponentSchema {
-  collectionName: 'components_homepage_stat_items';
+export interface ProductRelatedProducts extends Struct.ComponentSchema {
+  collectionName: 'components_product_related_products';
   info: {
-    displayName: 'stat-item';
-  };
-  attributes: {
-    icon: Schema.Attribute.Media<'images'>;
-    label: Schema.Attribute.String;
-    number: Schema.Attribute.Integer;
-  };
-}
-
-export interface HomepageStats extends Struct.ComponentSchema {
-  collectionName: 'components_homepage_stats';
-  info: {
-    displayName: 'stats';
-  };
-  attributes: {
-    items: Schema.Attribute.Component<'homepage.stat-item', true>;
-  };
-}
-
-export interface HomepageTestimonialItem extends Struct.ComponentSchema {
-  collectionName: 'components_homepage_testimonial_items';
-  info: {
-    displayName: 'testimonial-item';
-  };
-  attributes: {
-    avatar: Schema.Attribute.Media<'images'>;
-    message: Schema.Attribute.String;
-    name: Schema.Attribute.String;
-    rating: Schema.Attribute.Integer;
-  };
-}
-
-export interface HomepageTestimonials extends Struct.ComponentSchema {
-  collectionName: 'components_homepage_testimonials';
-  info: {
-    displayName: 'testimonials';
+    displayName: 'relatedProducts';
   };
   attributes: {
     heading: Schema.Attribute.String;
-    testimonials: Schema.Attribute.Component<'homepage.testimonial-item', true>;
+    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
   };
 }
 
-export interface OrderItem extends Struct.ComponentSchema {
-  collectionName: 'components_order_items';
+export interface ProductTabs extends Struct.ComponentSchema {
+  collectionName: 'components_product_tabs';
+  info: {
+    displayName: 'tabs';
+  };
+  attributes: {
+    description: Schema.Attribute.Component<'product.tabs-description', false>;
+    reviews: Schema.Attribute.Component<'product.tabs-reviews', false>;
+    shipping: Schema.Attribute.Component<'product.tabs-shipping', false>;
+  };
+}
+
+export interface ProductTabsDescription extends Struct.ComponentSchema {
+  collectionName: 'components_product_tabs_descriptions';
+  info: {
+    displayName: 'TabsDescription';
+  };
+  attributes: {
+    content: Schema.Attribute.Text;
+  };
+}
+
+export interface ProductTabsReviews extends Struct.ComponentSchema {
+  collectionName: 'components_product_tabs_reviews';
+  info: {
+    displayName: 'TabsReviews';
+  };
+  attributes: {
+    average_rating: Schema.Attribute.Decimal;
+    reviews: Schema.Attribute.Component<'review.item', true>;
+    total_reviews: Schema.Attribute.Integer;
+  };
+}
+
+export interface ProductTabsShipping extends Struct.ComponentSchema {
+  collectionName: 'components_product_tabs_shippings';
+  info: {
+    displayName: 'TabsShipping';
+  };
+  attributes: {
+    content: Schema.Attribute.Text;
+  };
+}
+
+export interface ProductVariantColor extends Struct.ComponentSchema {
+  collectionName: 'components_product_variant_colors';
+  info: {
+    displayName: 'VariantColor';
+  };
+  attributes: {
+    available: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    color_name: Schema.Attribute.String;
+    swatch: Schema.Attribute.Media<'images'>;
+  };
+}
+
+export interface ReviewItem extends Struct.ComponentSchema {
+  collectionName: 'components_review_items';
   info: {
     displayName: 'item';
   };
   attributes: {
-    priceAtPurchase: Schema.Attribute.Decimal;
-    product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
-    quantity: Schema.Attribute.Integer;
-    total: Schema.Attribute.Decimal;
-    variant: Schema.Attribute.String;
+    author: Schema.Attribute.String;
+    comment: Schema.Attribute.Text;
+    date: Schema.Attribute.Date;
+    rating: Schema.Attribute.Integer;
   };
 }
 
-export interface ProductSpecification extends Struct.ComponentSchema {
-  collectionName: 'components_product_specifications';
+export interface ReviewShopReviewItem extends Struct.ComponentSchema {
+  collectionName: 'components_review_shop_review_items';
   info: {
-    displayName: 'specification';
+    displayName: 'shopReviewItem';
   };
   attributes: {
-    label: Schema.Attribute.String;
-    value: Schema.Attribute.String;
+    author: Schema.Attribute.String;
+    comment: Schema.Attribute.Text;
+    rating: Schema.Attribute.Integer;
   };
 }
 
-export interface ProductVariant extends Struct.ComponentSchema {
-  collectionName: 'components_product_variants';
+export interface ServicesSvcCard extends Struct.ComponentSchema {
+  collectionName: 'components_services_svc_cards';
   info: {
-    displayName: 'variant';
+    displayName: 'SvcCard';
   };
   attributes: {
-    color: Schema.Attribute.String;
-    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    name: Schema.Attribute.String;
-    price: Schema.Attribute.Decimal;
-    size: Schema.Attribute.String;
-    sku: Schema.Attribute.String;
-    stock: Schema.Attribute.Integer;
+    image: Schema.Attribute.Media<'images'>;
+    text: Schema.Attribute.String;
   };
 }
 
-export interface ResuableLogo extends Struct.ComponentSchema {
-  collectionName: 'components_resuable_logos';
+export interface ShopAboutUs extends Struct.ComponentSchema {
+  collectionName: 'components_shop_about_uses';
   info: {
-    displayName: 'logo';
+    displayName: 'about-us';
   };
   attributes: {
-    logo: Schema.Attribute.Media<'images'>;
+    button: Schema.Attribute.Component<'link.button', false>;
+    text: Schema.Attribute.String;
   };
 }
 
-export interface SharedAddress extends Struct.ComponentSchema {
-  collectionName: 'components_shared_addresses';
+export interface ShopFilter extends Struct.ComponentSchema {
+  collectionName: 'components_shop_filters';
   info: {
-    displayName: 'address';
-  };
-  attributes: {
-    city: Schema.Attribute.String;
-    country: Schema.Attribute.String;
-    fullName: Schema.Attribute.String;
-    phone: Schema.Attribute.String;
-    postalCode: Schema.Attribute.String;
-    state: Schema.Attribute.String;
-    street: Schema.Attribute.String;
-  };
-}
-
-export interface SharedImageCarousel extends Struct.ComponentSchema {
-  collectionName: 'components_shared_image_carousels';
-  info: {
-    displayName: 'image-carousel';
-  };
-  attributes: {
-    autoplay: Schema.Attribute.Boolean;
-    delay: Schema.Attribute.Integer;
-    height: Schema.Attribute.Enumeration<['small ', 'medium ', 'full']>;
-    images: Schema.Attribute.Media<'images', true>;
-  };
-}
-
-export interface SharedSeo extends Struct.ComponentSchema {
-  collectionName: 'components_shared_seos';
-  info: {
-    displayName: 'seo';
-  };
-  attributes: {
-    keywords: Schema.Attribute.String;
-    metaDescription: Schema.Attribute.String;
-    metaTitle: Schema.Attribute.String;
-    shareImage: Schema.Attribute.Media<'images'>;
-  };
-}
-
-export interface ShopFeaturedCollection extends Struct.ComponentSchema {
-  collectionName: 'components_shop_featured_collections';
-  info: {
-    displayName: 'featured-collection';
+    displayName: 'filter';
   };
   attributes: {
     categories: Schema.Attribute.Relation<
       'oneToMany',
       'api::category.category'
     >;
-    heading: Schema.Attribute.String;
+    option: Schema.Attribute.Component<'shop.filter-option', true>;
+    price_options: Schema.Attribute.Component<'shop.filter-option', true>;
   };
 }
 
-export interface ShopHero extends Struct.ComponentSchema {
-  collectionName: 'components_shop_heroes';
+export interface ShopFilterOption extends Struct.ComponentSchema {
+  collectionName: 'components_shop_filter_options';
   info: {
-    displayName: 'hero';
+    displayName: 'filter-option';
   };
   attributes: {
-    backgroundImage: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    >;
-    buttonLink: Schema.Attribute.String;
-    buttonText: Schema.Attribute.String;
-    subtitle: Schema.Attribute.String;
-    title: Schema.Attribute.String;
-  };
-}
-
-export interface ShopLayout extends Struct.ComponentSchema {
-  collectionName: 'components_shop_layouts';
-  info: {
-    displayName: 'layout';
-  };
-  attributes: {
-    columns: Schema.Attribute.Enumeration<['item2', 'item3', 'item4']>;
-    displayMode: Schema.Attribute.Enumeration<['grid', 'list']>;
-    productPerPage: Schema.Attribute.Integer;
-    showSidebar: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
-  };
-}
-
-export interface ShopPromoBlock extends Struct.ComponentSchema {
-  collectionName: 'components_shop_promo_blocks';
-  info: {
-    displayName: 'promo-block';
-  };
-  attributes: {
-    buttonLink: Schema.Attribute.String;
-    buttonText: Schema.Attribute.String;
-    image: Schema.Attribute.Media<'images'>;
-    subtitle: Schema.Attribute.String;
-    title: Schema.Attribute.String;
-  };
-}
-
-export interface UserAddress extends Struct.ComponentSchema {
-  collectionName: 'components_user_addresses';
-  info: {
-    displayName: 'address';
-  };
-  attributes: {
-    city: Schema.Attribute.String;
-    country: Schema.Attribute.String;
-    fullname: Schema.Attribute.String;
-    isDefault: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     label: Schema.Attribute.String;
-    phone: Schema.Attribute.String;
-    postalCode: Schema.Attribute.String;
-    state: Schema.Attribute.String;
-    street: Schema.Attribute.String;
+    max: Schema.Attribute.Decimal;
+    min: Schema.Attribute.Decimal;
+  };
+}
+
+export interface ShopNewArrivals extends Struct.ComponentSchema {
+  collectionName: 'components_shop_new_arrivals';
+  info: {
+    displayName: 'new-arrivals';
+  };
+  attributes: {
+    heading: Schema.Attribute.String;
+    products: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
+  };
+}
+
+export interface ShopProductCard extends Struct.ComponentSchema {
+  collectionName: 'components_shop_product_cards';
+  info: {
+    displayName: 'product-card';
+  };
+  attributes: {
+    badge: Schema.Attribute.Enumeration<['new', 'sale']>;
+    button: Schema.Attribute.Component<'link.button', false>;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    price: Schema.Attribute.Decimal;
+    text_short: Schema.Attribute.String;
+  };
+}
+
+export interface ShopSearch extends Struct.ComponentSchema {
+  collectionName: 'components_shop_searches';
+  info: {
+    displayName: 'search';
+  };
+  attributes: {
+    buttonText: Schema.Attribute.String;
+    placeholder: Schema.Attribute.String;
+  };
+}
+
+export interface SlideSlider extends Struct.ComponentSchema {
+  collectionName: 'components_slide_sliders';
+  info: {
+    displayName: 'Slider';
+  };
+  attributes: {
+    button: Schema.Attribute.Component<'link.button', false>;
+    enum: Schema.Attribute.Enumeration<['new', 'sale', 'featured', 'hot']>;
+    numbers: Schema.Attribute.Decimal;
+    product: Schema.Attribute.Relation<'oneToOne', 'api::product.product'>;
+    text_short: Schema.Attribute.String;
   };
 }
 
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
-      'blocks.footer': BlocksFooter;
-      'blocks.header': BlocksHeader;
-      'category.hero': CategoryHero;
-      'global.social': GlobalSocial;
-      'homepage.blog-preview': HomepageBlogPreview;
-      'homepage.category-grid': HomepageCategoryGrid;
-      'homepage.feature-cards': HomepageFeatureCards;
-      'homepage.feature-item': HomepageFeatureItem;
-      'homepage.featured-products': HomepageFeaturedProducts;
+      'articles.card': ArticlesCard;
+      'articles.heading': ArticlesHeading;
+      'card.rooms': CardRooms;
+      'featured.heading': FeaturedHeading;
+      'featured.slider': FeaturedSlider;
+      'homepage.about': HomepageAbout;
+      'homepage.dynamic-articles': HomepageDynamicArticles;
+      'homepage.dynamic-rooms': HomepageDynamicRooms;
+      'homepage.dynamic-services': HomepageDynamicServices;
+      'homepage.dynamic-slider': HomepageDynamicSlider;
+      'homepage.footer': HomepageFooter;
+      'homepage.header': HomepageHeader;
       'homepage.hero': HomepageHero;
-      'homepage.promo-banner': HomepagePromoBanner;
-      'homepage.stat-item': HomepageStatItem;
-      'homepage.stats': HomepageStats;
-      'homepage.testimonial-item': HomepageTestimonialItem;
-      'homepage.testimonials': HomepageTestimonials;
-      'order.item': OrderItem;
-      'product.specification': ProductSpecification;
-      'product.variant': ProductVariant;
-      'resuable.logo': ResuableLogo;
-      'shared.address': SharedAddress;
-      'shared.image-carousel': SharedImageCarousel;
-      'shared.seo': SharedSeo;
-      'shop.featured-collection': ShopFeaturedCollection;
-      'shop.hero': ShopHero;
-      'shop.layout': ShopLayout;
-      'shop.promo-block': ShopPromoBlock;
-      'user.address': UserAddress;
+      'homepage.promotion': HomepagePromotion;
+      'link.button': LinkButton;
+      'link.link': LinkLink;
+      'product.add-to-cart': ProductAddToCart;
+      'product.hero': ProductHero;
+      'product.info': ProductInfo;
+      'product.measurement': ProductMeasurement;
+      'product.related-products': ProductRelatedProducts;
+      'product.tabs': ProductTabs;
+      'product.tabs-description': ProductTabsDescription;
+      'product.tabs-reviews': ProductTabsReviews;
+      'product.tabs-shipping': ProductTabsShipping;
+      'product.variant-color': ProductVariantColor;
+      'review.item': ReviewItem;
+      'review.shop-review-item': ReviewShopReviewItem;
+      'services.svc-card': ServicesSvcCard;
+      'shop.about-us': ShopAboutUs;
+      'shop.filter': ShopFilter;
+      'shop.filter-option': ShopFilterOption;
+      'shop.new-arrivals': ShopNewArrivals;
+      'shop.product-card': ShopProductCard;
+      'shop.search': ShopSearch;
+      'slide.slider': SlideSlider;
     }
   }
 }

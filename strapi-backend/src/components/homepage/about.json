@@ -1,19 +1,15 @@
 {
-  "collectionName": "components_homepage_heroes",
+  "collectionName": "components_homepage_abouts",
   "info": {
-    "displayName": "hero"
+    "displayName": "About"
   },
   "options": {},
   "attributes": {
-    "image": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "text": {
+    "text_short": {
       "type": "string"
+    },
+    "text_long": {
+      "type": "text"
     },
     "button": {
       "type": "component",

@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_product_tabs",
+  "info": {
+    "displayName": "tabs"
+  },
+  "options": {},
+  "attributes": {
+    "description": {
+      "type": "component",
+      "component": "product.tabs-description",
+      "repeatable": false
+    },
+    "shipping": {
+      "type": "component",
+      "component": "product.tabs-shipping",
+      "repeatable": false
+    },
+    "reviews": {
+      "type": "component",
+      "component": "product.tabs-reviews",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

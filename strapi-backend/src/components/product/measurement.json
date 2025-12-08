@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_product_measurements",
+  "info": {
+    "displayName": "Measurement"
+  },
+  "options": {},
+  "attributes": {
+    "measurements": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

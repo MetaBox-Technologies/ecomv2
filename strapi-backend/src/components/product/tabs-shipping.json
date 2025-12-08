@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_product_tabs_shippings",
+  "info": {
+    "displayName": "TabsShipping"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

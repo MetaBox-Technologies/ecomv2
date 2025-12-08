@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_product_tabs_reviews",
+  "info": {
+    "displayName": "TabsReviews"
+  },
+  "options": {},
+  "attributes": {
+    "average_rating": {
+      "type": "decimal"
+    },
+    "total_reviews": {
+      "type": "integer"
+    },
+    "reviews": {
+      "type": "component",
+      "component": "review.item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

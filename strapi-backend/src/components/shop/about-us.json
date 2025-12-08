@@ -1,17 +1,10 @@
 {
-  "collectionName": "components_homepage_heroes",
+  "collectionName": "components_shop_about_uses",
   "info": {
-    "displayName": "hero"
+    "displayName": "about-us"
   },
   "options": {},
   "attributes": {
-    "image": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "text": {
       "type": "string"
     },

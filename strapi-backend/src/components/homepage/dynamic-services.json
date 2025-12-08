@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_homepage_dynamic_services",
+  "info": {
+    "displayName": "DynamicServices"
+  },
+  "options": {},
+  "attributes": {
+    "Services": {
+      "type": "component",
+      "component": "services.svc-card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
