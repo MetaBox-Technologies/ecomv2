@@ -1,7 +1,11 @@
+@reference "../../globals.css";
+
+
+
 .service_section {
+    @apply px-8 pb-8 lg:px-[128px] lg:pb-12;
     display: flex;
     height: auto;
-    padding: 0% 12%;
 }
 
 .cards-container {
@@ -16,7 +20,7 @@
 .card {
     display: block;
     background-color: #F3F5F7;
-    max-width: 262px;
+    /*max-width: 262px;*/
     border-radius: 20px;
     align-content: center;
     text-align: start;

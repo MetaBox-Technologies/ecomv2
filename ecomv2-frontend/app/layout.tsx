@@ -5,6 +5,7 @@ import {Header} from "./_componnents/header/header";
 import { Footer } from "./_componnents/footer/footer";
 import { RootProviders } from "./_providers/rootProvider";
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

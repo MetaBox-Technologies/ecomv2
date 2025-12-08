@@ -1,7 +1,6 @@
 "use client";
 import React, { useRef, useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import html2canvas from 'html2canvas';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import "swiper/css/navigation";
@@ -63,8 +62,6 @@ export default function HeroSection() {
             <p className='hero-desc'>VisioCreate is a gift & decorations store based in HCMC, Vietnam. Est since 2019. </p>
         </SwiperSlide>
       </Swiper>
-
-      <div id='canvas'></div>
     </div>
   );
 }
