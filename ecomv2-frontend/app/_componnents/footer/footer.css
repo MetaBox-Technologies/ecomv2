@@ -1,6 +1,10 @@
+@reference "../../globals.css";
+
+
+
 footer {
+    @apply bg-[var(--neutral-7)] text-[var(--neutral-1)];
     width: 100%;
-    background-color: #31393B;
     height: auto;
     padding-bottom: 45px;
     display: block;
@@ -8,11 +12,9 @@ footer {
 }
 
 div.links_container_1 {
-    display: flex;
-    align-items: center;
-    font-size: 15px;
-    gap: 43px;
-    color: #F3F5F7;
+    @apply text-[14px] font-[400] flex items-center gap-[40px];
+    font-family: var(--font-inter);
+
 }
 
 
@@ -53,9 +55,10 @@ div.section_two {
 }
 
 div.copyright {
-    display: flex;
-    gap: 20px;
-    padding-right: 20.5px;
+    @apply flex gap-[20px] pr-[20.5px];
+    >p {
+        @apply font-[400]
+    }
 }
 
 .icons {
@@ -63,8 +66,9 @@ div.copyright {
     gap: 24px;
 }
 
-img.logo {
+footer img.logo {
     color: white;
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }
 
 .copyright a {

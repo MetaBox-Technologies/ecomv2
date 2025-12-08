@@ -2,16 +2,16 @@
 
 import "./css/cart.css"
 import {useEffect, createRef, useContext } from "react";
-import React from "react";
 import { RootContext } from "@/app/_providers/RootContext";
 import { CartContent } from "./cartContent";
 
 
-export const Cart = React.memo(({isOpen})=> {
+export function Cart ({isOpen}) {
     
     const divRef = createRef();
     const { isCartOpen } = useContext(RootContext);
-    
+
+
     async function closeCart() {
         if(!divRef.current?.classList.contains("translate-x-100")){
             divRef.current?.classList.toggle("translate-x-100");
@@ -31,14 +31,15 @@ export const Cart = React.memo(({isOpen})=> {
         }
     }
 
+
     
 
     useEffect(()=>{
-            setTimeout(()=>{
+        if(isOpen) {
+            const time = setTimeout(()=>{
                 divRef.current?.classList.toggle("translate-x-100");
-            }, 100);
-        return async()=>{
-            
+        }, 100);
+        return()=>clearTimeout(time);
         }
     }, [isOpen])
 
@@ -47,10 +48,10 @@ export const Cart = React.memo(({isOpen})=> {
         <>
             {isOpen &&(
                 <div className="cart" onClick={clickHandler}>
-                <CartContent ref={divRef} cStatic/>
+                <CartContent ref={divRef} cStatic closer={closeCart} />
                 </div>
                     
             )}
         </>
       )
-});
+};

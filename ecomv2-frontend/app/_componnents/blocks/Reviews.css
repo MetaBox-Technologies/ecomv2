@@ -1,0 +1,233 @@
+@reference "../../globals.css";
+
+.reviews-section{
+     @apply px-[200px] py-[50px];
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+  border: none;
+}
+
+.upper-reviews h2{
+  font-size:28px;
+  font-weight: 500;
+  margin:20px 0px;
+}
+
+.prod-name{
+    font-size:16px;
+    font-weight:600;
+    margin-left:15%;
+}
+
+.reviews-section .reviews{
+    font-size:12px;
+    margin-bottom:10px;
+    display:flex;
+    gap:10px;
+}
+
+.reviews-form{
+ padding:25px 0px;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-wrapper button{
+  background-color: black;
+  color: white;
+  width:176px;
+  height:40px;
+  padding: 6px 40px;
+  border: none;
+  border-radius: 80px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  > p {
+    @apply w-full text-nowrap;
+  }
+  > i {
+    @apply md:hidden;
+  }
+}
+
+.review-btn .icon {
+  display: none;
+}
+
+.input-wrapper button:hover{
+    background-color: #484848;
+}
+
+.input-wrapper input {
+  width: 100%;
+  height: 50px;
+  padding:35px;
+  padding-right: 190px; /* space so button doesn't overlap text */
+  border-radius: 16px;
+  border: 2px solid #E8ECEF;
+  font-size: 16px;
+  
+}
+
+.filter-reviews {
+    display:flex;
+    justify-content: space-between;
+}
+
+.total-reviews{
+    font-size:28px;
+    font-weight: 500;
+}
+
+.dropdown{
+    font-size:16px;
+    font-weight:600;
+}
+
+.dropdown select {
+  font-size: 16px;
+  font-weight: 600;
+  width: 256px;
+  height: 48px;
+  padding: 8px 8px 8px 16px;
+  border: 2px solid #E8ECEF;
+  border-radius: 8px;
+  background-color: white;
+  cursor: pointer;
+}
+
+/*Comments */
+.comment-up{
+    display:flex;
+    gap:40px;
+}
+
+.comment-card{
+    margin:24px 0px ;
+}
+
+.comment-info{
+    display:flex;
+    flex-direction: column;
+}
+
+.comment-info .reviewer-name{
+    margin-bottom:10px;
+    font-size:20px;
+    font-weight:600;
+}
+
+.profile-pic img{
+    width:72px;
+    height:72px;
+    border-radius: 48px;
+}
+
+.comment-down{
+    padding-left:115px;
+}
+
+.comment-divider{
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+  border: none;
+}
+
+.comment{
+    text-align: justify;
+    font-size:16px;
+    font-weight:400;
+    color:#353945;
+    line-height: 26px;
+}
+
+.load-btn{
+    width:158px;
+    height:40px;
+    border:1px solid #141718;
+    border-radius:80px;
+    font-size:16px;
+    font-weight:500;
+    background-color: white;
+    color:#141718;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: block;     /* Make it a block element */
+    margin: 24px auto;     /* Auto left/right margins center it */
+}
+
+.load-btn:hover{
+    background-color:#141718;
+    color:white;
+}
+
+/*Large laptops */
+@media (max-width: 1368px) {
+  .reviews-section {
+    padding: 40px 50px;
+  }
+}
+
+/*Laptop*/
+@media (max-width: 992px) {
+  .reviews-section {
+    padding: 35px 40px;
+  }
+}
+
+/*Tablet*/
+@media (max-width: 768px) {
+  .reviews-section {
+    padding: 30px 40px;
+  }
+
+  .filter-reviews{
+    display:block;
+    gap:10px;
+  }
+
+  .dropdown select{
+    margin:20px 0px ;
+    width:100%;
+  }
+
+  .comment-down{
+    padding-left:0px;
+    }
+
+    .input-wrapper button{
+        width:32px;
+        height:32px;
+        border-radius:100px;
+        padding:4px;
+    }
+
+    .review-btn .text {
+        display: none;
+    }
+    .review-btn .icon {
+        display: inline-block;
+    }
+}
+
+/*Phones*/
+@media (max-width: 375px) {
+  .reviews-section {
+    padding: 20px 20px;
+  }
+}
+

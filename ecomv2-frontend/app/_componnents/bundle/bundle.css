@@ -1,0 +1,28 @@
+@reference "../../globals.css";
+
+.bundle_section {
+    @apply px-8 lg:px-[128px];
+    background-color: white;
+    height: 664px;
+
+    display: grid;
+    grid-template-areas: 
+    "livingroom bedroom"
+    "livingroom kitchen";
+    gap: 24px;
+
+}
+
+@media (max-width: 767px) {
+    .bundle_section {
+        justify-content: center;
+        height: auto;
+        grid-template-areas: 
+        "livingroom"
+        "bedroom"
+        "kitchen";
+        grid-template-rows: 377px 180px 180px;
+        grid-template-columns: 311px;
+        margin: 0;
+    }
+}

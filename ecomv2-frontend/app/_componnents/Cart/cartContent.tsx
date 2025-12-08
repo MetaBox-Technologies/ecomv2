@@ -1,57 +1,73 @@
+"use client";
+import { useState } from "react";
 import "./css/cartContent.css"
-import { ForwardedRef, forwardRef } from "react";
+import { forwardRef } from "react";
 import Link from "next/link";
-import Cell  from "./cell";
+import { Cell }  from "./cell";
+import { cartloader } from "./cartContentLoader";
+import { createContext } from "react";
+import  React  from "react";
 
 interface CartContentProps{
     cStatic:boolean,
+    closer?: CallableFunction,
 }
 
-export const CartContent = forwardRef(({cStatic = false}:Readonly<CartContentProps>, innerref) => {
+export const Updater = createContext<any>({
+    cartStateUpdater: ()=>{}
+});
+
+export const CartContent = React.memo(forwardRef(({cStatic = false, closer}:Readonly<CartContentProps>, innerref) => {
+    
+    const [products, setProduct] = useState(cartloader());
+
+
+
+    let total = 0;
+    if(products?.length === 1) 
+        total = products[0].prodPrice * products[0].quantity;
+    else if(products?.length > 1) 
+        total = products?.reduce(( a , b )=>a + (b.prodPrice * b.quantity), 0);
+
     return (
         <div className={`cart-content ${cStatic ? "translate-x-100 w-[343px]": "w-[312px] rounded-[4px] border-1 border-[var(--neutral-4)] h-[fit-content]"}`} ref={innerref} >
             <div className="summary__items">
                 <div className="summary__items-headline">
                     <h5 className={`${!cStatic?"text-[20px]":"text-[34px]"}`}>{cStatic ? "Cart":"Order Summary"}</h5>
                     {cStatic && (
-                        <button>
+                        <button onClick={closer} className="hover:cursor-pointer">
                             <span className="material-symbols-outlined">close</span>
                         </button>
                     )}
                 </div>
-                <div className="items-list">
-                    <Cell 
-                        image={{src:"/images/products/TABLE.jpg"}}
-                        itemName="Tray Table"
-                        itemColor="black"
-                        itemPrice={19.19}
-                        quantity={2}
-                    />
-                    <Cell 
-                        image={{src:"/images/products/TABLE.jpg"}}
-                        itemName="Tray Table"
-                        itemColor="black"
-                        itemPrice={19.19}
-                        quantity={2}
-                    />
+                <div className={"items-list " + (!products || products?.length === 0 ? "justify-center": "")}>
+                    {(!products || products?.length === 0) &&
+                        <>
+                            <p className="material-symbols-outlined text-center" style={{fontSize:"56px"}}>shopping_cart_off</p>
+                            <p className="text-center">Your cart is empty</p>
+                        </>
+                    }
+                    {(products && products.length > 0) &&
+                        <Updater.Provider value={{cartStateUpdater : setProduct}}>{products.map((product)=><Cell key={product.id}{...product}/>)}</Updater.Provider>
+                    }
                 </div>
                 
             </div>
-            <div className={`summary__counts ${cStatic ? "h-[218px]" : ""}`}>
+            {(products?.length > 0) && <div className={`summary__counts ${cStatic ? "h-[218px]" : ""}`}>
                 <div className="fields">
                     {!cStatic && (
                         <div className="fields__subtotal shipping py-[13px]">
                             <p>Shipping</p>
-                            <p className="number">${(19.19*3).toFixed(2)}</p>
+                            <p className="number">${total.toFixed(2)}</p>
                         </div>
                     )}
                     <div className={`fields__subtotal ${cStatic ? "flex-1":"py-[13px]"}`}>
                         <p>Subtotal</p>
-                        <p className="number">${(19.19*3).toFixed(2)}</p>
+                        <p className="number">${total.toFixed(2)}</p>
                     </div>
                     <div className={`fields__total ${cStatic ? "flex-1":"py-[13px]"}`}>
                         <p style={ { fontWeight :"400",} }>Total</p>
-                        <p>${(19.19*3).toFixed(2)}</p>
+                        <p>${total.toFixed(2)}</p>
                     </div>
                 </div>
                 {cStatic &&(
@@ -64,7 +80,7 @@ export const CartContent = forwardRef(({cStatic = false}:Readonly<CartContentPro
                     </Link>
                 </div>
                 )}
-            </div>
+            </div>}
         </div>
     )
-})
+}))

@@ -1,0 +1,22 @@
+.products_grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 262px);
+    gap:1em;
+}
+@media (max-width: 1220px) {
+    .products_grid{
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+}
+
+@media (max-width: 767px) {
+    .products_grid{
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+}
+
+@media (max-width: 390px) {
+    .products_grid{
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+}

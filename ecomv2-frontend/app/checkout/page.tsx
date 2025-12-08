@@ -4,7 +4,7 @@ import "./page.css";
 import { StepperDesktop } from "../_componnents/Cart/stepperDesktop";
 import Link from "next/link";
 import Row from "../_componnents/Cart/row";
-import Cell from "../_componnents/Cart/cell";
+import { Cell } from "../_componnents/Cart/cell";
 import dynamic from "next/dynamic";
 import CountrySelector from "../_componnents/global/countrySelector";
 import { CartContent } from "../_componnents/Cart/cartContent";
