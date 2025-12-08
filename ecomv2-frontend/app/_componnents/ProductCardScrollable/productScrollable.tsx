@@ -7,7 +7,7 @@ import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 import { FreeMode, Scrollbar } from 'swiper/modules';
 import { ArticleProps } from '@/app/data/types';
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import Link from 'next/link';
 
 
@@ -20,6 +20,7 @@ interface ProductCardScrollableType {
 
 export default function ProductCardScrollable({ articles }:Readonly<ProductCardScrollableType>) {
   
+  const timerIdRef = useRef(null)
   const swiperRef = useRef(null); //ref for swipper to cleanup after unmout
   const rootRef = useRef(null); //ref for the documentRoot
   const scrollbarRef = useRef(null); //ref for scrollBar used in scrollbar mutator observer
@@ -39,7 +40,7 @@ export default function ProductCardScrollable({ articles }:Readonly<ProductCardS
 
   
   
-  const scrollHandler = (swiperInstance)=>{  //scroll handler Function
+  const scrollHandler = useCallback((swiperInstance)=>{  //scroll handler Function
 
     if(swiperInstance.isEnd) { // push the list to the left if it reach end
       rootRef.current?.classList.remove("__left"); 
@@ -50,21 +51,26 @@ export default function ProductCardScrollable({ articles }:Readonly<ProductCardS
       rootRef.current?.classList.remove("__rigth");
       rootRef.current?.classList.add("__left");
     }
-  };
+  },[]);
 /* resize hanlder funntion to put the content list in its inital state when the screen has enough space to display it
     it will observe the sate of the scrollbar in order to know if the viewport has enough space to display all content without scroll
     since swiper.js will hide the scrollbar when there is enough space the scrollbar state is used to determine wheter we have to put the element in it's initial state or not  
  */
-  const resizeHandler = (swiperInstance) => { 
+  const resizeHandler = useCallback((swiperInstance) => { 
     const mutationObserverConfig = {
       attributes: true,
       attributeFilter: ["class"],
       attributeOldValues: true
     }
 
-    setTimeout(()=> { //asynchronous execution to capture the element after being rendered
-      const scrollbar = scrollbarRef.current;
+    timerIdRef.current =  setTimeout(()=> { //asynchronous execution to capture the element after being rendered
 
+    if(!swiperInstance || swiperInstance.destroyed)
+      return
+
+      const scrollbar = scrollbarRef.current;
+      if(!scrollbar)
+        return
       swiperInstance.params.scrollbar.el = scrollbar,
       swiperInstance.scrollbar.init(); //initialise the custom scrollbar
       swiperInstance.scrollbar.updateSize();
@@ -87,7 +93,7 @@ export default function ProductCardScrollable({ articles }:Readonly<ProductCardS
       mutationObserverRef.current = scrollbarMutationObserver;
       scrollbarMutationObserver.observe(scrollbar, mutationObserverConfig);
     }, 150)
-  }
+  },[])
 
   const swiperConfig = { //swiper overall config
     slidesPerView: "auto",
@@ -101,12 +107,16 @@ export default function ProductCardScrollable({ articles }:Readonly<ProductCardS
 
   useEffect(()=>{
     const swiperInstance = swiperRef.current;
-    return ()=>{
-
-      mutationObserverRef.current?.disconnect();
-      swiperInstance?.destroy(true, true); //cleanup
+    if(swiperInstance) {
+      const timerId = setTimeout(resizeHandler(swiperInstance), 150);
+      return ()=>{
+        swiperInstance?.destroy(true, true); //cleanup
+        clearTimeout(timerId);
+        clearTimeout(timerIdRef.current);
+      }
     }
-  });
+    
+  }, []);
 
   return (
     <>
@@ -120,9 +130,15 @@ export default function ProductCardScrollable({ articles }:Readonly<ProductCardS
     <div id='prodscroll' className="__left" ref={rootRef}>
       <Swiper
         {...swiperConfig}
-        onInit={(swiper)=>resizeHandler(swiper)}
         onTransitionEnd={(swiper)=>scrollHandler(swiper)}
-        onSwiper={(swiper)=>{swiperRef.current = swiper;}}
+        onSwiper={(swiper)=>{
+          swiperRef.current = swiper;
+        }}
+        onDestroy={
+          (swiper)=>{
+            mutationObserverRef.current?.disconnect();
+          }
+        }
       >
         {articles.map( (article)=><SwiperSlide key={article.id}><Card {...article} isOnHome/></SwiperSlide>)}
       </Swiper>
