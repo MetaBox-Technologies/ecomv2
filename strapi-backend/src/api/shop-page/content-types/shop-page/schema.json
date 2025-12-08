@@ -1,0 +1,14 @@
+{
+  "kind": "singleType",
+  "collectionName": "shop_pages",
+  "info": {
+    "singularName": "shop-page",
+    "pluralName": "shop-pages",
+    "displayName": "ShopPage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}

@@ -1,0 +1,14 @@
+{
+  "kind": "singleType",
+  "collectionName": "order_complete_pages",
+  "info": {
+    "singularName": "order-complete-page",
+    "pluralName": "order-complete-pages",
+    "displayName": "OrderCompletePage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}

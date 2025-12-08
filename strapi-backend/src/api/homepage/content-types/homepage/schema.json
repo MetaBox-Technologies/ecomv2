@@ -1,0 +1,29 @@
+{
+  "kind": "singleType",
+  "collectionName": "homepages",
+  "info": {
+    "singularName": "homepage",
+    "pluralName": "homepages",
+    "displayName": "Homepage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "promotion": {
+      "type": "dynamiczone",
+      "components": [
+        "homepage.promotion",
+        "homepage.header",
+        "featured.slider",
+        "featured.heading",
+        "services.svc-card",
+        "homepage.about",
+        "homepage.footer",
+        "articles.heading",
+        "articles.card"
+      ]
+    }
+  }
+}

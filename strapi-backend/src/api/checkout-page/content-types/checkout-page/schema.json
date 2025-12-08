@@ -1,0 +1,14 @@
+{
+  "kind": "singleType",
+  "collectionName": "checkout_pages",
+  "info": {
+    "singularName": "checkout-page",
+    "pluralName": "checkout-pages",
+    "displayName": "CheckoutPage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}

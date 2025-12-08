@@ -1,0 +1,62 @@
+{
+  "kind": "singleType",
+  "collectionName": "product_pages",
+  "info": {
+    "singularName": "product-page",
+    "pluralName": "product-pages",
+    "displayName": "ProductPage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product"
+    },
+    "hero": {
+      "type": "component",
+      "component": "product.hero",
+      "repeatable": false,
+      "required": true
+    },
+    "info": {
+      "type": "component",
+      "component": "product.info",
+      "repeatable": false,
+      "required": true
+    },
+    "variant": {
+      "type": "component",
+      "component": "product.variant-color",
+      "repeatable": false
+    },
+    "measurements": {
+      "type": "component",
+      "component": "product.measurement",
+      "repeatable": false,
+      "required": true
+    },
+    "AddToCard": {
+      "type": "component",
+      "component": "product.add-to-cart",
+      "repeatable": false,
+      "required": true
+    },
+    "Tabs": {
+      "type": "dynamiczone",
+      "components": [
+        "product.tabs"
+      ],
+      "required": true
+    },
+    "related_products": {
+      "type": "component",
+      "component": "product.related-products",
+      "repeatable": false,
+      "required": true
+    }
+  }
+}
