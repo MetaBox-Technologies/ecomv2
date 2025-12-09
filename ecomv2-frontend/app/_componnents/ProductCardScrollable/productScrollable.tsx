@@ -101,7 +101,11 @@ export default function ProductCardScrollable({ articles }:Readonly<ProductCardS
     modules: modulesConfig,
     freeMode: true,
     scrollbar:{...scrollbarconfig},
-    breakpoint:{...breakpointsConfig},
+    breakpoints:{
+      768: {
+        spaceBetween: 24,
+      }
+    },
     className: "mySwiper"
   } 
 

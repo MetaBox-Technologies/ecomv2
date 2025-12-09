@@ -1,13 +1,26 @@
 "use client"
 import "../../globals.css";
 import './ProductListGrid.css';
-import { ArticleProps } from "@/app/data/types";
 import { useState, useMemo } from "react";
 import Image from "next/image";
 import { FilterCat } from "./FilterCategory";
 import PriceFilter, {PriceRange} from "./PriceFilterRange";
 import SortBy, { SortOption } from "./SortBy";
-
+interface ArticleProps {
+  id: number;
+  documentId: string;
+  name: string;
+  shortDescription: string;
+  images: {
+    url:string,
+    alternativeText:string,
+  },
+  price: number;
+  rating: number;
+  publishedAt: string;
+  createdAt: string;
+  updatedAt: string;
+}
 interface ProductListProps {
   headline: string;
   component: React.ComponentType<ArticleProps>;

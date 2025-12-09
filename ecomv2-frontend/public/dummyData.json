@@ -1,0 +1,262 @@
+[
+    {
+      "id": 16,
+      "documentId": "t6gr10hnre14ltmqfrano8pe",
+      "name": "Table Lamp",
+      "slug": "table-lamp",
+      "shortDescription": "White short Table Lamp",
+      "description": "Illuminate your space with our Elegant Table Lamp, a piece designed to marry sophisticated lighting with decorative artistry. Featuring a beautifully contoured [Mention base material, e.g., ceramic, brushed brass, or marble] base that tapers gracefully, this lamp adds instant character to any bedside table, desk, or sideboard. It is topped with a perfectly proportioned [Mention shade material, e.g., linen or silk] drum shade that diffuses the light to create a warm, inviting glow, ideal for reading or setting a relaxed ambiance. Its timeless design ensures it acts as both a functional light source and a stylish, refined accent piece.",
+      "price": 19,
+      "images":{
+        "url":"/images/products/table lamp.jpg",
+        "alternativeText":null
+      },
+      "sku": null,
+      "stock": 50,
+      "featured": false,
+      "rating": 3.5,
+      "createdAt": "2025-12-08T10:29:31.775Z",
+      "updatedAt": "2025-12-08T10:31:48.137Z",
+      "publishedAt": "2025-12-08T10:31:48.268Z"
+    },
+    {
+      "id": 22,
+      "documentId": "rz4qxqssnlqngz5p5cb36tne",
+      "name": "Table Lamp",
+      "slug": "table-lamp-1",
+      "shortDescription": "long table lamp",
+      "description": "Introduce striking vertical interest and focused illumination with our Architect's Long Table Lamp. Designed with an emphasis on height and modern structure, this lamp features a slender, elongated stem crafted from sleek brushed steel or matte black metal, offering a contemporary silhouette. The design is perfected with a compact, adjustable head, allowing you to direct a concentrated beam of light exactly where needed—ideal for reading, precision tasks, or highlighting specific decor elements. Standing tall on a solid, weighted circular base, this long table lamp is a sophisticated statement piece perfect for large desks, executive offices, or modern living area consoles that require powerful illumination without sacrificing floor space.",
+      "price": 19,
+      "images":{
+        "url":"/images/products/table lamp (2).jpg",
+        "alternativeText":null
+      },
+      "sku": null,
+      "stock": 50,
+      "featured": true,
+      "rating": 3.5,
+      "createdAt": "2025-12-08T10:35:45.863Z",
+      "updatedAt": "2025-12-08T10:35:45.863Z",
+      "publishedAt": "2025-12-08T10:35:45.967Z"
+    },
+    {
+      "id": 24,
+      "documentId": "rjqa5hvcds7yq8ohq2laqf3m",
+      "name": "Black Bow Side Table",
+      "slug": "black-bow-side-table",
+      "shortDescription": "Black Bow Side Table",
+      "description": "Add a touch of playful elegance and modern artistry to your home with our Sculptural Black Bow Side Table. This eye-catching piece features a striking design where the base is shaped like a delicate, stylized bow or ribbon, crafted from smooth, high-gloss black metal or durable molded resin. The dark finish provides a sophisticated contrast to the light it reflects, turning the table into a functional piece of sculpture. The circular top offers a practical surface for holding drinks, books, or a small lamp. Perfect for placing beside a sofa or armchair, this side table instantly elevates the chic factor of any contemporary living space.",
+      "price": 16.99,
+      "images":{
+        "url":"/images/products/black brow side table.jpg",
+        "alternativeText":null
+      },
+      "sku": null,
+      "stock": 50,
+      "featured": true,
+      "rating": 2.5,
+      "createdAt": "2025-12-08T10:37:08.252Z",
+      "updatedAt": "2025-12-08T10:37:08.252Z",
+      "publishedAt": "2025-12-08T10:37:08.410Z"
+    },
+    {
+      "id": 26,
+      "documentId": "f077sfjm175jn9ypzq2jnuyr",
+      "name": "Bambo Basket",
+      "slug": "bambo-basket",
+      "shortDescription": "Bambo Basket",
+      "description": "Embrace natural organization with our Handwoven Bamboo Storage Basket. Crafted from sustainably sourced bamboo, this basket features a tightly woven construction that offers both durability and natural beauty. The light, neutral tones and distinct texture of the bamboo introduce an organic, calming element to any room. Equipped with sturdy, integrated handles for easy transport, this versatile basket is perfect for a wide range of uses—from holding laundry and storing blankets in the living room to organizing toys or magazines. Its timeless design ensures it complements rustic, bohemian, and modern minimalist decor styles alike.",
+      "price": 9.99,
+      "images":{
+        "url":"/images/products/bamboo basket.jpg",
+        "alternativeText":null
+      },
+      "sku": null,
+      "stock": 50,
+      "featured": true,
+      "rating": 2.5,
+      "createdAt": "2025-12-08T10:39:05.451Z",
+      "updatedAt": "2025-12-08T10:39:05.451Z",
+      "publishedAt": "2025-12-08T10:39:05.525Z"
+    },
+    {
+      "id": 4,
+      "documentId": "bu0gt6uus2fybm4liu6pi0iq",
+      "name": "Tray table",
+      "slug": "tray-table",
+      "shortDescription": "Tray tables with multicolors",
+      "description": "Experience the perfect blend of functionality and flair with our Multicolored Tray Tables. These versatile tables are designed to inject a vibrant splash of color into any room while providing an instant, sturdy surface for dining, working, or leisure activities. Crafted for convenience, each table features a reliable folding mechanism, making them the ultimate space-saving solution for small apartments, dorms, or dynamic living areas—they can be effortlessly tucked away when not in use. Built from durable materials with an easy-to-clean finish, these lightweight tables are highly portable and stand up well to everyday spills and use, ensuring they are as practical as they are decorative. Choose from a selection of eye-catching hues to create a playful, personalized look or to simply add a bright, functional accent wherever you need it most.",
+      "price": 19.99,
+      "sku": null,
+      "images":{
+        "url":"/images/prodImg1.jpg",
+        "alternativeText":null
+      },
+      "stock": 50,
+      "featured": false,
+      "rating": 3.5,
+      "createdAt": "2025-12-08T10:21:52.700Z",
+      "updatedAt": "2025-12-08T10:22:44.974Z",
+      "publishedAt": "2025-12-08T10:22:45.121Z"
+    },
+    {
+      "id": 15,
+      "documentId": "m97u3a4jjkmc75qe2fj7hxnn",
+      "name": "Luxury Sofa",
+      "slug": "luxury-sofa",
+      "shortDescription": "white luxury sofa",
+      "description": "ntroducing the epitome of refined comfort and stately design: our Opulent Luxury Sofa. This masterpiece of seating is crafted for the discerning homeowner, combining breathtaking aesthetics with unparalleled comfort. Upholstered in sumptuously soft, high-grade [Mention fabric, e.g., velvet, Italian leather, or bespoke chenille], the sofa features deep, hand-tufted cushions and elegantly rolled or streamlined arms, providing a look that is both timeless and grand. The structure rests on finely detailed, solid [Mention material, e.g., mahogany or polished brass] legs, adding a layer of subtle glamour. Designed to be the undisputed focal point of any high-end living space, this sofa delivers a seating experience that defines true luxury and enduring style.",
+      "price": 299,
+      "sku": null,
+      "images":{
+        "url":"/images/products/luxury sofa.jpg",
+        "alternativeText":null
+      },
+      "stock": 50,
+      "featured": true,
+      "rating": 5,
+      "createdAt": "2025-12-08T10:27:01.877Z",
+      "updatedAt": "2025-12-08T10:31:35.204Z",
+      "publishedAt": "2025-12-08T10:31:35.286Z"
+    },
+    {
+      "id": 17,
+      "documentId": "ywh0ltjziaoe0bv7k0mn95iq",
+      "name": "White Drawer Unit",
+      "slug": "white-drawer-unit",
+      "shortDescription": "White Drawer Unit",
+      "description": "Organize your space with effortless style using our Streamlined White Drawer Unit. This practical and aesthetically pleasing storage solution features a crisp, matte white finish that brightens any room while offering versatile storage for clothing, office supplies, or household clutter. Built with a sturdy frame and smooth, gliding drawers, this unit is designed for daily durability and ease of use. Its clean lines and minimalist design allow it to fit seamlessly beneath a desk or stand alone as a simple, modern chest, making it an essential piece for maximizing organization in bedrooms, offices, or craft rooms.",
+      "price": 89.99,
+      "sku": null,
+      "images":{
+        "url":"/images/products/white drawer unit.jpg",
+        "alternativeText":null
+      },
+      "stock": 50,
+      "featured": true,
+      "rating": 4,
+      "createdAt": "2025-12-08T10:31:08.093Z",
+      "updatedAt": "2025-12-08T10:32:13.446Z",
+      "publishedAt": "2025-12-08T10:32:13.532Z"
+    },
+    {
+      "id": 18,
+      "documentId": "hjfctj57z6aqq1vn0yhhrgyh",
+      "name": "Loveseat Sofa",
+      "slug": "loveseat-sofa",
+      "shortDescription": "grey love seat sofa",
+      "description": "Meet the perfect marriage of comfort and compact style with our Grey Loveseat Sofa. Upholstered in a soft, durable fabric in a sophisticated shade of grey, this piece is designed to seamlessly blend into any contemporary or traditional decor scheme, from minimalist apartments to cozy dens. Ideal for smaller living spaces, the loveseat comfortably seats two people without sacrificing luxurious feel. Featuring plush, generously padded cushions and supportive armrests, it offers a welcoming spot for relaxing, reading, or enjoying a quiet evening. The neutral grey hue ensures versatility, easily complementing bold accent colors or",
+      "price": 199,
+      "sku": null,
+      "images":{
+        "url":"/images/products/loveseat sofa.jpg",
+        "alternativeText":null
+      },
+      "stock": 50,
+      "featured": true,
+      "rating": 4,
+      "createdAt": "2025-12-08T10:24:56.541Z",
+      "updatedAt": "2025-12-08T10:32:29.939Z",
+      "publishedAt": "2025-12-08T10:32:30.052Z"
+    },
+    {
+      "id": 20,
+      "documentId": "kmzxo7a3y0asx6gxfhdkf38b",
+      "name": "Cozy Sofa",
+      "slug": null,
+      "shortDescription": "cozy sofa",
+      "description": "Sink into pure relaxation with our Ultimate Cozy Sofa, specifically designed for unparalleled comfort. Upholstered in an incredibly soft, textured [Mention fabric, e.g., chenille, brushed microfibre, or lambswool-like] fabric, this sofa is built to be your personal haven. It features deeply-filled, overstuffed cushions and a generous, low profile that invites lounging, napping, and movie marathons. The casual, welcoming design prioritizes softness and sink-in comfort, making it the perfect centerpiece for a relaxed living room or family space where maximum comfort is key.",
+      "price": 299,
+      "sku": null,
+      "images":{
+        "url":"/images/products/cozy sofa.jpg",
+        "alternativeText":null
+      },
+      "stock": 50,
+      "featured": true,
+      "rating": 3.5,
+      "createdAt": "2025-12-08T10:34:09.164Z",
+      "updatedAt": "2025-12-08T10:34:09.164Z",
+      "publishedAt": "2025-12-08T10:34:09.303Z"
+    },
+    {
+      "id": 28,
+      "documentId": "wxkbnyau0v65guy32r7inhmk",
+      "name": "Table Lamp",
+      "slug": "table-lamp-2",
+      "shortDescription": "little table lamp",
+      "description": "Illuminate small spaces with the compact charm of our Little Table Lamp. Designed to provide a focused yet warm accent light, this diminutive lamp is perfect for areas where space is limited but style is essential, such as narrow shelves, bedside tables, or small nooks. Featuring a rounded or geometric base and a perfectly scaled shade, this lamp adds a soft, comforting glow without overpowering the décor. Its small footprint and sweet design make it an ideal choice for creating cozy ambiance in any room.",
+      "price": 39.99,
+      "sku": null,
+      "images":{
+        "url":"/images/products/table lamp (3).jpg",
+        "alternativeText":null
+      },
+      "stock": 50,
+      "featured": true,
+      "rating": 4,
+      "createdAt": "2025-12-08T10:40:21.909Z",
+      "updatedAt": "2025-12-08T10:40:21.909Z",
+      "publishedAt": "2025-12-08T10:40:22.061Z"
+    },
+    {
+      "id": 30,
+      "documentId": "n321li2g6p1w383ig3zb4p0z",
+      "name": "off white pillow",
+      "slug": "off-white-pillow",
+      "shortDescription": "off white pillow",
+      "description": "Elevate your seating with the simple elegance of our Luxurious Off-White Accent Pillow. This piece is designed to provide both supreme comfort and refined style, featuring a soft, textured fabric—like bouclé or fine linen—in a versatile, warm off-white shade. The neutral tone is perfect for layering with bolder colors or maintaining a chic, serene aesthetic. Finished with a hidden zipper and plump, supportive insert, this pillow adds an essential layer of softness and sophistication to any sofa, armchair, or bed, making your space instantly more inviting.",
+      "price": 7.99,
+      "sku": null,
+      "images":{
+        "url":"/images/products/off white pillow",
+        "alternativeText":null
+      },
+      "stock": 50,
+      "featured": false,
+      "rating": 4,
+      "createdAt": "2025-12-08T10:41:50.404Z",
+      "updatedAt": "2025-12-08T10:41:50.404Z",
+      "publishedAt": "2025-12-08T10:41:50.490Z"
+    },
+    {
+      "id": 32,
+      "documentId": "pecsh74mxp2bdtpqvxhz5rwa",
+      "name": "Toaster",
+      "slug": "toaster",
+      "shortDescription": null,
+      "description": "Start your mornings right with our Sleek Modern Toaster. Combining rapid performance with contemporary design, this appliance features a durable stainless steel housing and extra-wide slots, perfectly accommodating everything from thin slices of bread to thick bagels and pastries. It offers multiple browning settings, allowing precise control over your toast shade, along with dedicated buttons for defrosting and reheating. Its compact footprint ensures it won't clutter your countertop, and the integrated slide-out crumb tray makes cleanup quick and effortless. This toaster is the essential, stylish upgrade for any modern kitchen.",
+      "price": 224.99,
+      "sku": null,
+      "images":{
+        "url":"/images/products/toaster.jpg",
+        "alternativeText":null
+      },
+      "stock": 50,
+      "featured": true,
+      "rating": 5,
+      "createdAt": "2025-12-08T10:43:21.112Z",
+      "updatedAt": "2025-12-08T10:43:21.112Z",
+      "publishedAt": "2025-12-08T10:43:21.202Z"
+    },
+    {
+      "id": 34,
+      "documentId": "m8887ao5o3ubz1wibtwlf4gm",
+      "name": "White Pillow",
+      "slug": "white-pillow",
+      "shortDescription": "White Pillow",
+      "description": "ntroduce timeless purity and comfort to your bedding or seating with our Crisp White Essential Pillow. Upholstered in a smooth, high-thread-count cotton cover, this pillow provides a clean, bright accent that never goes out of style. The pure white shade serves as a versatile foundation, whether you are creating a minimalist aesthetic or complementing vibrant patterns. Filled with hypoallergenic fibers, it provides soft, supportive comfort, making it perfect for both decorative layering and daily rest. This essential pillow is the ultimate piece for a fresh, clean, and inviting look.",
+      "price": 3.99,
+      "sku": null,
+      "images":{
+        "url":"/images/products/ligh beige pillow.jpg",
+        "alternativeText":null
+      },
+      "stock": 50,
+      "featured": true,
+      "rating": 3.5,
+      "createdAt": "2025-12-08T10:45:07.388Z",
+      "updatedAt": "2025-12-08T10:45:07.388Z",
+      "publishedAt": "2025-12-08T10:45:07.516Z"
+    }
+  ]

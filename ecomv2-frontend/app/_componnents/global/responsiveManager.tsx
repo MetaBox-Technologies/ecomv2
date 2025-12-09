@@ -16,7 +16,7 @@ export default function ResponsiveManager<MobileProps, DesktopProps>(props:Respo
   
     const {Mobile, Desktop, MobileProps, DesktopProps} = props;
 
-    const isDeviceMobile = useMediaQuery({ query :"(max-width: 767px)"})
+    const isDeviceMobile = useMediaQuery({ query :"(max-width: 1024px)"})
 
     
 

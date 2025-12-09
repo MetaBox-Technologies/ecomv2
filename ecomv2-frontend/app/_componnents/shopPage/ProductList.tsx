@@ -1,6 +1,7 @@
 import { ArticleProps } from "@/app/data/types";
 import { getContent } from "@/app/data/loaders";
 import { ProductListClient } from "./ProductListClient";
+import { fetchAPI } from "@/app/utils/fetch-api";
 
 interface ContentListProps {
   headline: string;
@@ -23,7 +24,7 @@ export async function ProductList({
   query,
   uniquecategories,
 }: Readonly<ContentListProps>) {
-  const { articles } = await loader(query);
+  const  articles  = await fetchAPI("http://localhost:3000/dummyData.json", {method:"GET"});
  return (
     <ProductListClient
       headline={headline}

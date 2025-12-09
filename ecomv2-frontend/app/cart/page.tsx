@@ -6,6 +6,8 @@ import Link from "next/link";
 import Row from "../_componnents/Cart/row";
 import { Cell } from "../_componnents/Cart/cell";
 import dynamic from "next/dynamic";
+import { cartloader } from "../_componnents/Cart/cartContentLoader";
+import type { ProductCellProps } from "../_componnents/Cart/cell";
 
 interface ProdDetailProps {
         image: {
@@ -19,22 +21,16 @@ interface ProdDetailProps {
     }
 
 export default function CartPage(){
-    const prodDetails:ProdDetailProps = {
-        image : {
-            src:'/images/products/TABLE.JPG',
-            alt:''
-        },
-        itemColor: 'black',
-        itemName: 'Tray Table',
-        itemPrice: 19.00,
-        quantity:3
-    };
+    
 
-    const cell:React.FC<ProdDetailProps> = (props)=>{
+    const products = cartloader();
+
+
+    const cell:React.FC<ProductCellProps> = (props)=>{
         return <Cell {...props}/>
     };
     
-    const row:React.FC<ProdDetailProps> = (props)=>{
+    const row:React.FC<ProductCellProps> = (props)=>{
         return <Row {...props}/>
     };
 
@@ -64,7 +60,7 @@ export default function CartPage(){
                         </div>
                     </div>
                     <div className="product-table__body flex flex-col items-center sm:block">
-                        <ResponsiveManager Mobile={cell} MobileProps={prodDetails} Desktop={row} DesktopProps={prodDetails}/>
+                        {products.map((product)=><ResponsiveManager key={product.id} Mobile={cell} MobileProps={{...product}} Desktop={row} DesktopProps={{...product}}/>)}
                     </div>
                 </div>
                 <form className="product-cart__summary">
