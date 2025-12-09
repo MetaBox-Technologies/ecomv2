@@ -4,175 +4,81 @@
      @apply px-[200px] py-[50px];
 }
 
-.divider {
-  width: 100%;
-  height: 1px;
-  background-color: #ddd;
-  border: none;
+.divider,
+.comment-divider {
+  @apply w-full h-px bg-[#ddd] border-0;
 }
 
-.upper-reviews h2{
-  font-size:28px;
-  font-weight: 500;
-  margin:20px 0px;
+.upper-reviews h2 {
+  @apply text-[28px] font-medium my-[20px];
 }
 
-.prod-name{
-    font-size:16px;
-    font-weight:600;
-    margin-left:15%;
+.prod-name {
+  @apply text-[16px] font-semibold ml-[15%];
 }
 
-.reviews-section .reviews{
-    font-size:12px;
-    margin-bottom:10px;
-    display:flex;
-    gap:10px;
+.reviews-section .reviews {
+  @apply text-[12px] mb-[10px] flex gap-[10px];
 }
 
-.reviews-form{
- padding:25px 0px;
-}
-
-.input-wrapper {
-  position: relative;
-  width: 100%;
-}
-
-.input-wrapper button{
-  background-color: black;
-  color: white;
-  width:176px;
-  height:40px;
-  padding: 6px 40px;
-  border: none;
-  border-radius: 80px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 500;
-  transition: all 0.25s ease;
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  > p {
-    @apply w-full text-nowrap;
-  }
-  > i {
-    @apply md:hidden;
-  }
-}
-
-.review-btn .icon {
-  display: none;
-}
-
-.input-wrapper button:hover{
-    background-color: #484848;
-}
-
-.input-wrapper input {
-  width: 100%;
-  height: 50px;
-  padding:35px;
-  padding-right: 190px; /* space so button doesn't overlap text */
-  border-radius: 16px;
-  border: 2px solid #E8ECEF;
-  font-size: 16px;
-  
+.reviews-form {
+  @apply py-[25px];
 }
 
 .filter-reviews {
-    display:flex;
-    justify-content: space-between;
+  @apply flex justify-between;
 }
 
-.total-reviews{
-    font-size:28px;
-    font-weight: 500;
+.total-reviews {
+  @apply text-[28px] font-medium;
 }
 
-.dropdown{
-    font-size:16px;
-    font-weight:600;
+.dropdown {
+  @apply text-[16px] font-semibold;
 }
 
 .dropdown select {
-  font-size: 16px;
-  font-weight: 600;
-  width: 256px;
-  height: 48px;
-  padding: 8px 8px 8px 16px;
-  border: 2px solid #E8ECEF;
-  border-radius: 8px;
-  background-color: white;
-  cursor: pointer;
+  @apply text-[16px] font-semibold w-[256px] h-[48px]
+         px-4 py-2 border-2 border-[#E8ECEF] rounded-lg
+         bg-white cursor-pointer;
 }
 
-/*Comments */
-.comment-up{
-    display:flex;
-    gap:40px;
+.comment-up {
+  @apply flex gap-[40px];
 }
 
-.comment-card{
-    margin:24px 0px ;
+.comment-card {
+  @apply my-[24px];
 }
 
-.comment-info{
-    display:flex;
-    flex-direction: column;
+.comment-info {
+  @apply flex flex-col;
 }
 
-.comment-info .reviewer-name{
-    margin-bottom:10px;
-    font-size:20px;
-    font-weight:600;
+.comment-info .reviewer-name {
+  @apply mb-[10px] text-[20px] font-semibold;
 }
 
-.profile-pic img{
-    width:72px;
-    height:72px;
-    border-radius: 48px;
+.profile-pic img {
+  @apply w-[72px] h-[72px] rounded-full;
 }
 
-.comment-down{
-    padding-left:115px;
+.comment-down {
+  @apply pl-[115px];
 }
 
-.comment-divider{
-  width: 100%;
-  height: 1px;
-  background-color: #ddd;
-  border: none;
+.comment {
+  @apply text-justify text-[16px] font-normal text-[#353945] leading-[26px];
 }
 
-.comment{
-    text-align: justify;
-    font-size:16px;
-    font-weight:400;
-    color:#353945;
-    line-height: 26px;
+.load-btn {
+  @apply w-[158px] h-[40px] border border-[#141718] rounded-full
+         text-[16px] font-medium bg-white text-[#141718]
+         cursor-pointer transition-all duration-200 block mx-auto my-[24px];
 }
 
-.load-btn{
-    width:158px;
-    height:40px;
-    border:1px solid #141718;
-    border-radius:80px;
-    font-size:16px;
-    font-weight:500;
-    background-color: white;
-    color:#141718;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    display: block;     /* Make it a block element */
-    margin: 24px auto;     /* Auto left/right margins center it */
-}
-
-.load-btn:hover{
-    background-color:#141718;
-    color:white;
+.load-btn:hover {
+  @apply bg-[#141718] text-white;
 }
 
 /*Large laptops */
@@ -207,6 +113,7 @@
 
   .comment-down{
     padding-left:0px;
+    margin-top:15px;
     }
 
     .input-wrapper button{
@@ -214,13 +121,6 @@
         height:32px;
         border-radius:100px;
         padding:4px;
-    }
-
-    .review-btn .text {
-        display: none;
-    }
-    .review-btn .icon {
-        display: inline-block;
     }
 }
 

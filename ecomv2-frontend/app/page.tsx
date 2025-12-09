@@ -8,7 +8,7 @@ import { Bundle } from "./_componnents/bundle/bundle";
 
 export default async function Home() {
  
-  const newArrivals =  await getNewArticles().then(response => response.data);
+  /*const newArrivals =  await getNewArticles().then(response => response.data);*/
   
   return(
     <>

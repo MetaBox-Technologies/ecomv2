@@ -12,6 +12,7 @@ type Product = {
   price: number;
   measurements: string;
   colour: string[];
+  reviewsCount: number;
 };
 
 interface ProductCardProps {
@@ -22,8 +23,9 @@ export default function ProductCard({ product }: ProductCardProps) {
   const images = [
     "/images/prodImg1.jpg",
     "/images/prodImg2.jpg",
+    "/images/prodImg3.jpg",
   ];
-
+ 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedColor, setSelectedColor] = useState(product.colour[0]);
 
@@ -77,7 +79,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                                     <i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i>
                                 </div>
                                 <div className="num-reviews">
-                                    11 Reviews
+                                    {product.reviewsCount || 0} Reviews
                                 </div>
                             </div>
                             <h2 className="product-name">{product.productName}</h2>
