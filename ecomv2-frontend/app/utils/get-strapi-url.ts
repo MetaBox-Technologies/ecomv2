@@ -1,3 +1,3 @@
 export function GetStrapiURL(){
-    return "https://strapi.ecomv2.online/";
+    return "http://192.168.68.63:1337/";
 }

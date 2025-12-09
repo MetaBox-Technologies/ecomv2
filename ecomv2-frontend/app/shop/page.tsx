@@ -15,7 +15,7 @@ interface PageProps {
 async function loader() {
   const { data } = await getShopPage();
   if(!data) throw new Error("Failed to fetch global settings");
-  return {hero: data?.heroBanner};
+  return {hero: data?.hero};
 }
 
 const Breadcrumbs = dynamic(()=>import("../_componnents/global/BreadCrumbs"), { ssr: true});
@@ -33,8 +33,8 @@ export default async function ShopPage({searchParams}:PageProps) {
                             <h4 className="text-[18px] text-gray-600    xl:text-[22px] md:text-[20px]">{hero.subtitle}</h4>
                         </div>
                         <StrapiImage
-                            src={hero.backgroundImage.url}
-                            alt={hero.backgroundImage.alternativeText || "No alternative text provided"}
+                            src={hero.image.url}
+                            alt={hero.image.alternativeText || "No alternative text provided"}
                             fill
                             className="object-cover"
                         />

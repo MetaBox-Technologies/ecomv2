@@ -6,12 +6,17 @@ import { fetchAPI } from "../utils/fetch-api";
 const BASE_URL = GetStrapiURL()
 
 const globalSettingsQuery= qs.stringify({
-  populate: {
-    heroBanner: {
-      populate: ["backgroundImage"]
+populate:{
+  hero:{
+    populate:{
+      image:{
+        fields:["url","alternativeText"]
+        }
+      }
     }
   }
-},{ encodeValuesOnly: true }
+}
+,{ encodeValuesOnly: true }
 )
 
 export async function getShopPage() {
@@ -42,17 +47,23 @@ export async function getArticles(path:string) {
   return fetchAPI(url.href, {method: "GET"});
 }
 
-export async function getNewArticles() {
+export async function getNewArticles(plimit?: number) {
   const url = new URL("/api/products/", BASE_URL);
   url.search=  qs.stringify({
     filters: {
-      "Is_new": {$eq: true}
+      "createdAt": {$gt: "2025-10-01"}
     },
     populate: {
       images: {
         fields: ["url", "alternativeText"]
       },
     },
+    ...(plimit && {
+      pagination: {
+        pageSize: plimit,
+        page: 1
+      }
+    })
   })
 
   return fetchAPI(url.href, {method : "GET"})

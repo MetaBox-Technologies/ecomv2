@@ -1,35 +1,26 @@
 import "./css/row.css";
 import QuantityButton from "../QuantityButton/quantitybutton";
+import { ProductCellProps } from "./cell";
+import Image from "next/image";
 
 
-interface RowProps {
-    image:{
-        src: string,
-        alt?: string,
-    }
-    itemName: string,
-    itemColor: string,
-    itemPrice: number,
-    quantity: number
-}
-
-export default function Row({image, itemName, itemColor, itemPrice, quantity}:Readonly<RowProps>) {
+export default function Row({id, image, prodName, color, prodPrice, quantity}:Readonly<ProductCellProps>) {
     return (
         <div className="product-table__row">
             <div className="col__main">
-                <img src={image.src} width={80} height={96} alt={image.alt || ""}/>
+                <div className="w-[80px] h-[96px] rounded-md border-1 border-[var(--neutral-4)]" style={{backgroundImage:'url("http://localhost:3000'+image.url+'")', backgroundSize:"contain", backgroundPosition:"center", backgroundRepeat:"no-repeat"}}/>
                 <div className="product-item__overview">
-                    <p className="name">{itemName}</p>
-                    <p className="color">Color: {itemColor}</p>
+                    <p className="name">{prodName}</p>
+                    <p className="color">Color: {color}</p>
                     <button className="btn remove-btn"><span className="material-symbols-outlined">close</span> Remove</button>
                 </div>
             </div>
             <div className="col__sg">
                 <div className="col__qt">
-                    <QuantityButton quantity={quantity}/>
+                    <QuantityButton quantity={quantity} productInfo={{id: id, color: color}}/>
                 </div>
-                <div className="col__price">${itemPrice}</div>
-                <div className="col__subtotal">${(itemPrice * quantity).toFixed(2)}</div>
+                <div className="col__price">${prodPrice}</div>
+                <div className="col__subtotal">${(prodPrice * quantity).toFixed(2)}</div>
             </div>
         </div>
     )

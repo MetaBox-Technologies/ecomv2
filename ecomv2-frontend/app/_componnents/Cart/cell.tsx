@@ -4,8 +4,9 @@ import QuantityButton from "../QuantityButton/quantitybutton"
 import { popProductFromCart } from "./cartContentLoader"
 import { getStrapiMedia } from "../strapiImage"
 import { Updater } from "./cartContent"
+import Image from "next/image"
 
-interface ProductCellProps {
+export interface ProductCellProps {
     id:number, 
     image:{
         url:string,
@@ -18,7 +19,6 @@ interface ProductCellProps {
 }
 
 export const  Cell =  React.memo(({id, image, prodName, color, prodPrice, quantity}:Readonly<ProductCellProps>) => {
-    const url = getStrapiMedia(image.url);
 
     const { cartStateUpdater } = useContext( Updater );
 
@@ -30,7 +30,7 @@ export const  Cell =  React.memo(({id, image, prodName, color, prodPrice, quanti
 
     return (
         <div className="item-cell">
-            <img src={url} width={80} height={96} alt={image.alt||""}/>
+            <div className="w-[80px] h-[96px] rounded-md border-1 border-[var(--neutral-4)]" style={{backgroundImage:'url("http://localhost:3000'+image.url+'")', backgroundSize:"contain", backgroundPosition:"center", backgroundRepeat:"no-repeat"}}/>
             <div className="item-cell__info">
                 <div className="row-1">
                     <p className="item-name">{prodName}</p>
