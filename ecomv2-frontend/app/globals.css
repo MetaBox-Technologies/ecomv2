@@ -94,16 +94,19 @@ body::-webkit-scrollbar-button {
   grid-area: livingroom;
   background-color: #F3F5F7;
   border-radius: 20px;
+  min-width: 548px;
 }
 
 .bedroom { 
   grid-area: bedroom; 
   background-color: #F3F5F7;
   border-radius: 20px;
+  min-width: 548px;
 }
 .kitchen { 
   grid-area: kitchen;
   background-color: #F3F5F7;
   border-radius: 20px;
+  min-width: 548px;
 }
 

@@ -14,7 +14,6 @@ export default async function Home() {
     <>
     <HeroSection/>
     <Bundle/>
-    <ProductScrollable articles={newArrivals}/>
     <Service/>
     </>
   )
