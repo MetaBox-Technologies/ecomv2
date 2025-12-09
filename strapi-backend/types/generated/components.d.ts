@@ -1,5 +1,22 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface AccountForm extends Struct.ComponentSchema {
+  collectionName: 'components_account_forms';
+  info: {
+    displayName: 'form';
+  };
+  attributes: {
+    display_name: Schema.Attribute.String;
+    email: Schema.Attribute.Email;
+    first_name: Schema.Attribute.String;
+    last_name: Schema.Attribute.String;
+    new_password: Schema.Attribute.String;
+    old_password: Schema.Attribute.String;
+    repeat_password: Schema.Attribute.String;
+    save_button: Schema.Attribute.Component<'link.button', false>;
+  };
+}
+
 export interface ArticlesCard extends Struct.ComponentSchema {
   collectionName: 'components_articles_cards';
   info: {
@@ -34,6 +51,36 @@ export interface CardRooms extends Struct.ComponentSchema {
     image: Schema.Attribute.Media<'images'>;
     link: Schema.Attribute.Component<'link.link', true>;
     text: Schema.Attribute.String;
+  };
+}
+
+export interface CartFlyout extends Struct.ComponentSchema {
+  collectionName: 'components_cart_flyouts';
+  info: {
+    displayName: 'flyout';
+  };
+  attributes: {
+    checkout: Schema.Attribute.Component<'link.button', false>;
+    items: Schema.Attribute.Component<'cart.item-row', true>;
+    subtotal: Schema.Attribute.Decimal;
+    title: Schema.Attribute.String;
+    total: Schema.Attribute.Decimal;
+    view_cart: Schema.Attribute.Component<'link.link', false>;
+  };
+}
+
+export interface CartItemRow extends Struct.ComponentSchema {
+  collectionName: 'components_cart_item_rows';
+  info: {
+    displayName: 'item-row';
+  };
+  attributes: {
+    color: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'>;
+    name: Schema.Attribute.String;
+    price: Schema.Attribute.Decimal;
+    quantity: Schema.Attribute.Integer;
+    remove: Schema.Attribute.Component<'link.link', false>;
   };
 }
 
@@ -170,6 +217,7 @@ export interface LinkButton extends Struct.ComponentSchema {
     displayName: 'button';
   };
   attributes: {
+    icon: Schema.Attribute.Media<'images'>;
     isExternal: Schema.Attribute.Boolean;
     label: Schema.Attribute.String & Schema.Attribute.Required;
     url: Schema.Attribute.String;
@@ -429,12 +477,41 @@ export interface SlideSlider extends Struct.ComponentSchema {
   };
 }
 
+export interface UserAddressCard extends Struct.ComponentSchema {
+  collectionName: 'components_user_address_cards';
+  info: {
+    displayName: 'address-card';
+  };
+  attributes: {
+    address_line: Schema.Attribute.Text;
+    edit: Schema.Attribute.Component<'link.link', false>;
+    name: Schema.Attribute.String;
+    phone: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<['billing', 'shipping']>;
+  };
+}
+
+export interface UserProfilePic extends Struct.ComponentSchema {
+  collectionName: 'components_user_profile_pics';
+  info: {
+    displayName: 'profile-pic';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    name: Schema.Attribute.String;
+    upload_icon: Schema.Attribute.Enumeration<['camera', 'gallery']>;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'account.form': AccountForm;
       'articles.card': ArticlesCard;
       'articles.heading': ArticlesHeading;
       'card.rooms': CardRooms;
+      'cart.flyout': CartFlyout;
+      'cart.item-row': CartItemRow;
       'featured.heading': FeaturedHeading;
       'featured.slider': FeaturedSlider;
       'homepage.about': HomepageAbout;
@@ -468,6 +545,8 @@ declare module '@strapi/strapi' {
       'shop.product-card': ShopProductCard;
       'shop.search': ShopSearch;
       'slide.slider': SlideSlider;
+      'user.address-card': UserAddressCard;
+      'user.profile-pic': UserProfilePic;
     }
   }
 }

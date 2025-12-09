@@ -1,0 +1,14 @@
+{
+  "kind": "singleType",
+  "collectionName": "sig_in_pages",
+  "info": {
+    "singularName": "sig-in-page",
+    "pluralName": "sig-in-pages",
+    "displayName": "SigInPage"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}

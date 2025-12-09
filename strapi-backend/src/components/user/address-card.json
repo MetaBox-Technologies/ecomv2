@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_user_address_cards",
+  "info": {
+    "displayName": "address-card"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "billing",
+        "shipping"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "address_line": {
+      "type": "text"
+    },
+    "edit": {
+      "type": "component",
+      "component": "link.link",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

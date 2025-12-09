@@ -548,6 +548,34 @@ export interface ApiCheckoutPageCheckoutPage extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiCompleteProfilePageCompleteProfilePage
+  extends Struct.SingleTypeSchema {
+  collectionName: 'complete_profile_pages';
+  info: {
+    displayName: 'CompleteProfilePage';
+    pluralName: 'complete-profile-pages';
+    singularName: 'complete-profile-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::complete-profile-page.complete-profile-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiContactPageContactPage extends Struct.SingleTypeSchema {
   collectionName: 'contact_pages';
   info: {
@@ -566,6 +594,33 @@ export interface ApiContactPageContactPage extends Struct.SingleTypeSchema {
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::contact-page.contact-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiFlyoutCartFlyoutCart extends Struct.SingleTypeSchema {
+  collectionName: 'flyout_carts';
+  info: {
+    displayName: 'FlyoutCart';
+    pluralName: 'flyout-carts';
+    singularName: 'flyout-cart';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::flyout-cart.flyout-cart'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
@@ -595,19 +650,33 @@ export interface ApiHomepageHomepage extends Struct.SingleTypeSchema {
       'api::homepage.homepage'
     > &
       Schema.Attribute.Private;
-    promotion: Schema.Attribute.DynamicZone<
-      [
-        'homepage.promotion',
-        'homepage.header',
-        'featured.slider',
-        'featured.heading',
-        'services.svc-card',
-        'homepage.about',
-        'homepage.footer',
-        'articles.heading',
-        'articles.card',
-      ]
-    >;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMyAccountPageMyAccountPage extends Struct.SingleTypeSchema {
+  collectionName: 'my_account_pages';
+  info: {
+    displayName: 'MyAccountPage';
+    pluralName: 'my-account-pages';
+    singularName: 'my-account-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::my-account-page.my-account-page'
+    > &
+      Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -762,6 +831,35 @@ export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiRegistrationPageRegistrationPage
+  extends Struct.SingleTypeSchema {
+  collectionName: 'registration_pages';
+  info: {
+    displayName: 'RegistrationPage';
+    pluralName: 'registration-pages';
+    singularName: 'registration-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::registration-page.registration-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    sdg: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiReviewReview extends Struct.CollectionTypeSchema {
   collectionName: 'reviews';
   info: {
@@ -834,6 +932,60 @@ export interface ApiShopPageShopPage extends Struct.SingleTypeSchema {
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::shop-page.shop-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSigInPageSigInPage extends Struct.SingleTypeSchema {
+  collectionName: 'sig_in_pages';
+  info: {
+    displayName: 'SigInPage';
+    pluralName: 'sig-in-pages';
+    singularName: 'sig-in-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::sig-in-page.sig-in-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSplashScreenSplashScreen extends Struct.SingleTypeSchema {
+  collectionName: 'splash_screens';
+  info: {
+    displayName: 'SplashScreen';
+    pluralName: 'splash-screens';
+    singularName: 'splash-screen';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::splash-screen.splash-screen'
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
@@ -1357,16 +1509,22 @@ declare module '@strapi/strapi' {
       'api::cart-page.cart-page': ApiCartPageCartPage;
       'api::category.category': ApiCategoryCategory;
       'api::checkout-page.checkout-page': ApiCheckoutPageCheckoutPage;
+      'api::complete-profile-page.complete-profile-page': ApiCompleteProfilePageCompleteProfilePage;
       'api::contact-page.contact-page': ApiContactPageContactPage;
+      'api::flyout-cart.flyout-cart': ApiFlyoutCartFlyoutCart;
       'api::homepage.homepage': ApiHomepageHomepage;
+      'api::my-account-page.my-account-page': ApiMyAccountPageMyAccountPage;
       'api::order-complete-page.order-complete-page': ApiOrderCompletePageOrderCompletePage;
       'api::order.order': ApiOrderOrder;
       'api::page.page': ApiPagePage;
       'api::product-page.product-page': ApiProductPageProductPage;
       'api::product.product': ApiProductProduct;
+      'api::registration-page.registration-page': ApiRegistrationPageRegistrationPage;
       'api::review.review': ApiReviewReview;
       'api::service.service': ApiServiceService;
       'api::shop-page.shop-page': ApiShopPageShopPage;
+      'api::sig-in-page.sig-in-page': ApiSigInPageSigInPage;
+      'api::splash-screen.splash-screen': ApiSplashScreenSplashScreen;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

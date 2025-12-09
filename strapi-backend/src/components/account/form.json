@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_account_forms",
+  "info": {
+    "displayName": "form"
+  },
+  "options": {},
+  "attributes": {
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "old_password": {
+      "type": "string"
+    },
+    "new_password": {
+      "type": "string"
+    },
+    "repeat_password": {
+      "type": "string"
+    },
+    "save_button": {
+      "type": "component",
+      "component": "link.button",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}
