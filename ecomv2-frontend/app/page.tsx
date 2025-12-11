@@ -9,11 +9,7 @@ import { fetchAPI } from "./utils/fetch-api";
 
 export default async function Home() {
  
-<<<<<<< Updated upstream
-  /*const newArrivals =  await getNewArticles().then(response => response.data);*/
-=======
   const newArrivalsDummy =  await fetchAPI("http://localhost:3000/dummyData.json", {method : "GET"});
->>>>>>> Stashed changes
   
   return(
     <>

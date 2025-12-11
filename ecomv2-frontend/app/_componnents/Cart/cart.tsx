@@ -10,6 +10,7 @@ export function Cart ({isOpen}) {
     
     const divRef = createRef();
     const { isCartOpen } = useContext(RootContext);
+    const products = useContext(RootContext).cartContent;
 
 
     async function closeCart() {
@@ -48,7 +49,7 @@ export function Cart ({isOpen}) {
         <>
             {isOpen &&(
                 <div className="cart" onClick={clickHandler}>
-                <CartContent ref={divRef} cStatic closer={closeCart} />
+                <CartContent ref={divRef} cStatic={true} closer={closeCart} content={products}/>
                 </div>
                     
             )}

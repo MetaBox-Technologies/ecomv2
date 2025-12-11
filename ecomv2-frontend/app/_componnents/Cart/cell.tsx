@@ -1,10 +1,9 @@
-import "./css/cell.css"
-import React, { useContext } from "react"
-import QuantityButton from "../QuantityButton/quantitybutton"
-import { popProductFromCart } from "./cartContentLoader"
-import { getStrapiMedia } from "../strapiImage"
-import { Updater } from "./cartContent"
-import Image from "next/image"
+import "./css/cell.css";
+import React, { useContext } from "react";
+import QuantityButton from "../QuantityButton/quantitybutton";
+import { popProductFromCart } from "./cartContentLoader";
+import { RootContext } from "@/app/_providers/RootContext";
+
 
 export interface ProductCellProps {
     id:number, 
@@ -20,20 +19,22 @@ export interface ProductCellProps {
 
 export const  Cell =  React.memo(({id, image, prodName, color, prodPrice, quantity}:Readonly<ProductCellProps>) => {
 
-    const { cartStateUpdater } = useContext( Updater );
+    const { cartUpdater } = useContext( RootContext );
 
     const removeCell = () => {
         const newCartState = popProductFromCart(id, color);
-        if(cartStateUpdater)
-            cartStateUpdater(newCartState)
+        if( cartUpdater )
+            cartUpdater(newCartState)
     }
+    const nameLength = prodName?.split(" ").length;
+    console.log(nameLength)
 
     return (
         <div className="item-cell">
             <div className="w-[80px] h-[96px] rounded-md border-1 border-[var(--neutral-4)]" style={{backgroundImage:'url("http://localhost:3000'+image.url+'")', backgroundSize:"contain", backgroundPosition:"center", backgroundRepeat:"no-repeat"}}/>
             <div className="item-cell__info">
                 <div className="row-1">
-                    <p className="item-name">{prodName}</p>
+                    <p className="item-name" style={{...(nameLength > 2 && {fontSize: "10px"})}}>{prodName}</p>
                     <p className="item-price">${prodPrice}</p>
                 </div>
                 <div className="row-2">

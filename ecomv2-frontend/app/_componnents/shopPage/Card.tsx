@@ -38,15 +38,14 @@ export function Card({
   const before = new Date("2025-08-01");
   const prodDate = new Date(createdAt);
   const isNew = prodDate > before;
-  console.log("is new:", isNew);
   const [showActions, setShowActions] = useState(false);
   const addToCartBtnRef = useRef(null);
-  const { isCartOpen } = useContext( RootContext );
+  const { isCartOpen, cartUpdater } = useContext( RootContext );
 
   const pushNewPorduct = (productToPush: Product) => {
     if(addToCartBtnRef.current)
       addToCartBtnRef.current.querySelector("h4").innerText = "Added";
-    pushProductToCart(productToPush);
+      cartUpdater(pushProductToCart(productToPush));
     setTimeout(()=>{
       if(addToCartBtnRef.current)
         addToCartBtnRef.current.querySelector("h4").innerText = "Add to Cart";
@@ -74,7 +73,7 @@ export function Card({
       const isArticleInside =  cartContent.filter((article)=> article.id === id).length > 0;
       
       if(isArticleInside) {
-        updateCart(id, 1 , "default");
+        cartUpdater(updateCart(id, 1 , "default"));
         if(addToCartBtnRef.current)
             addToCartBtnRef.current.querySelector("h4").innerText = "+1";
         setTimeout(()=>{

@@ -1,0 +1,85 @@
+import { useState, useEffect, useContext, createRef } from "react";
+import "./css/formCartSummary.css"
+import { RootContext } from "@/app/_providers/RootContext";
+
+export default function FormCartSummary() {
+    
+    const products = useContext(RootContext).cartContent;
+    const subtotal = products.length === 0 ? 0 : products.reduce((a, b)=> { return a + (b.prodPrice * b.quantity)}, 0);
+    
+    const [total, setTotal] = useState(subtotal);
+    const [delivery, setDelivery] = useState("");
+    const [computedTotal, setComputedTotal] = useState(total);
+    const deliveryMethodRef = createRef();
+
+    const chooseDeliveryMethod = (deliveryMethod: string) => {
+        setDelivery(deliveryMethod);
+    }
+
+
+    useEffect(()=>{
+        setTotal(subtotal);
+    }, [subtotal])
+
+    useEffect(()=>{
+        switch(delivery){
+            default:
+                setComputedTotal(total);
+                break
+            case "free":
+                setComputedTotal(total);
+                break;
+            case "express":
+                setComputedTotal(total + 15);
+                break
+            case "pick-up":
+                setComputedTotal((prev)=> prev * 0.79);
+                break
+        }
+    }, [total, delivery])
+
+
+
+
+    return (
+        <>
+        <form className="product-cart__summary">
+            <h2>Summary</h2>
+            <div className="summary-delivery">
+                <div className="summary-delivery__choice">
+                    <div className="inpt-radio__group">
+                        <input name="delivery" id="free-shipping" type="radio" value={"free"} onChange={(e)=>{chooseDeliveryMethod(e.target.value)}}/>
+                        <label htmlFor="free-shipping"> Free Shipping</label>
+                    </div>
+                    <p className="added__price">$0.00</p>
+                </div>
+                <div className="summary-delivery__choice">
+                    <div className="inpt-radio__group">
+                        <input name="delivery" id="express" type="radio" value={"express"} onChange={(e)=>{chooseDeliveryMethod(e.target.value)}}/>
+                        <label htmlFor="express">Express Shipping</label>
+                    </div>
+                    <p className="added__price">+$15.00</p>
+                </div>
+                <div className="summary-delivery__choice">
+                    <div className="inpt-radio__group">
+                        <input name="delivery" id="pick-up" type="radio" value={"pick-up"} onChange={(e)=>{chooseDeliveryMethod(e.target.value)}}/>
+                        <label htmlFor="pick-up">Pick Up</label>
+                    </div>
+                    <p className="added__price">%21.00</p>
+                </div>
+            </div>
+            <div className="fields">
+                <div className="fields__subtotal">
+                    <p>Subtotal</p>
+                    <p>${(subtotal).toFixed(2)}</p>
+                </div>
+                <div className="fields__total">
+                    <p className="font-semibold">Total</p>
+                    <p>${(computedTotal).toFixed(2)}</p>
+                </div>
+            </div>
+            <button type="submit">Checkout</button>
+        </form>
+    </>
+    ) 
+}

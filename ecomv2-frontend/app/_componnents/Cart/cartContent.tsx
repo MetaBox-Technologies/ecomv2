@@ -1,29 +1,27 @@
 "use client";
-import { useState } from "react";
+
 import "./css/cartContent.css"
 import { forwardRef } from "react";
 import Link from "next/link";
 import { Cell }  from "./cell";
-import { cartloader } from "./cartContentLoader";
-import { createContext } from "react";
+import { Product } from "./cartContentLoader";
 import  React  from "react";
 
 interface CartContentProps{
     cStatic:boolean,
     closer?: CallableFunction,
+    content: [Product]
 }
 
-export const Updater = createContext<any>({
-    cartStateUpdater: ()=>{}
-});
 
-export const CartContent = React.memo(forwardRef(({cStatic = false, closer}:Readonly<CartContentProps>, innerref) => {
-    
-    const [products, setProduct] = useState(cartloader());
+export const CartContent = React.memo(forwardRef(({cStatic = false, closer, content}:Readonly<CartContentProps>, innerref) => {
 
-
-
+    const products = content;
     let total = 0;
+
+    console.log('this cart is cStatic:', cStatic);
+
+
     if(products?.length === 1) 
         total = products[0].prodPrice * products[0].quantity;
     else if(products?.length > 1) 
@@ -48,7 +46,7 @@ export const CartContent = React.memo(forwardRef(({cStatic = false, closer}:Read
                         </>
                     }
                     {(products && products.length > 0) &&
-                        <Updater.Provider value={{cartStateUpdater : setProduct}}>{products.map((product)=><Cell key={product.id}{...product}/>)}</Updater.Provider>
+                       products.map((product)=><Cell key={product.id}{...product} onCheckout={cStatic ? false : true} />)
                     }
                 </div>
                 

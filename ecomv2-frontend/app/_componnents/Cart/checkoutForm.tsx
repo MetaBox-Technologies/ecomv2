@@ -1,65 +1,17 @@
-"use client"
-
-import "./page.css";
-import { StepperDesktop } from "../_componnents/Cart/stepperDesktop";
-import Link from "next/link";
-import Row from "../_componnents/Cart/row";
-import { Cell } from "../_componnents/Cart/cell";
+"use client";
+import "./css/checkoutForm.css";
 import dynamic from "next/dynamic";
-import { CartContent } from "../_componnents/Cart/cartContent";
-import CheckoutForm from "../_componnents/Cart/checkoutForm";
+import { forwardRef, useContext } from "react";
+import { RootContext } from "@/app/_providers/RootContext";
 
-interface ProdDetailProps {
-        image: {
-            src:string,
-            alt?:string
-        },
-        itemName: string,
-        itemColor: string,
-        itemPrice: number,
-        quantity: number
-    }
+export default CheckoutForm = forwardRef((props, ref) => {
 
-export default function CartPage(){
-    const prodDetails:ProdDetailProps = {
-        image : {
-            src:'/images/products/TABLE.JPG',
-            alt:''
-        },
-        itemColor: 'black',
-        itemName: 'Tray Table',
-        itemPrice: 19.00,
-        quantity:3
-    };
+    const products = useContext(RootContext).cartContent;
+    const CountrySelector = dynamic(()=>import("../global/countrySelector"), {ssr: false});
 
-    const cell:React.FC<ProdDetailProps> = (props)=>{
-        return <Cell {...props}/>
-    };
-    
-    const row:React.FC<ProdDetailProps> = (props)=>{
-        return <Row {...props}/>
-    };
-    
-    
-
-    
-
-    
     return (
-        <div className="flex flex-col pb-[80px] lg:items-center xl:px-[160px] lg:pt-[80px] w-100vw">
-            <div id="page-header">
-                <Link className="breadcrumbs" href={"/"}>
-                    <span className="material-symbols-outlined">arrow_back_ios</span>
-                    <p>Back</p>
-                </Link>
-                <header>
-                    <h2>Cart</h2>
-                    <StepperDesktop/>
-                </header>
-            </div>
-            <main>
-                <CheckoutForm/>
-                {/*<form name="order_checkout-info" >
+        <>
+        <form name="order_checkout-info"  ref={ref}>
                 <fieldset className="contact-info">
                     <h2>Contact information</h2>
                         <div className="__double">
@@ -106,15 +58,11 @@ export default function CartPage(){
                             </div>
                         </div>
                     </fieldset>
-                    <button type="submit" className="hidden lg:block px-10 py-3 rounded-[8px] bg-[var(--neutral-7)] text-white" style={{fontFamily:"var(--font-inter)"}}>Place Order</button>
+                    <button type="submit" className=" px-10 py-3 rounded-[8px] bg-[var(--neutral-7)] text-white" style={{fontFamily:"var(--font-inter)"}}>Place Order</button>
                 </form>
-                <div className="aside-cart flex flex-col gap-6">
-                    <CartContent />
+                {/*<div className="aside-cart flex flex-col gap-6">
                     <button type="submit" form="order_checkout-info" className="lg:hidden px-10 py-3 rounded-[8px] bg-[var(--neutral-7)] text-white" style={{fontFamily:"var(--font-inter)"}}>Place Order</button>
                 </div>*/}
-            </main>
-        </div>
-    )
-}
-
-
+        </>
+    );
+})

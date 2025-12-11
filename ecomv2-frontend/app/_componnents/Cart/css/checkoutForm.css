@@ -1,56 +1,5 @@
-@reference "../globals.css";
+@reference "../../../globals.css";
 
-/*------header styling-------*/
-
-/*breadcrumbs*/
-#page-header {
-    @apply flex flex-col overflow-hidden pt-4 pb-10 gap-10 lg:p-0
-}
-
-#page-header .breadcrumbs {
-    @apply pl-8 flex flex-row text-[12px] text-[var(--primary)]/60 lg:hidden;
-    font-family: var(--font-inter);
-    >span {
-        @apply text-[12px] flex flex-row items-center justify-center;
-    } 
-}
-/*breadcrumbs*/
-
-#page-header header {
-    @apply flex flex-col gap-6 px-8 ;
-}
-#page-header header h2 {
-    @apply text-[44px] text-center;
-}
-
-/*process steps styling*/
-
-
-
-/*-----main-------*/
-
-main {
-    @apply max-w-[1200px] flex flex-col items-center gap-[24px] flex-none px-8 lg:pt-[80px] lg:flex-row md:gap-[64px] lg:items-stretch;
-}
-
-
-/*--product table header*/
-main .product-table{
-    @apply pb-6 md:pb-0 ;
-}
-
-main .product-table .product-table__header{
-    @apply w-full flex pb-6 border-b-1 border-b-[var(--neutral-4)] justify-between font-semibold lg:w-[643px] ;
-    font-family: var(--font-inter)
-}
-main .product-table .product-table__header .col__sg {
-    @apply w-[322px] flex flex-row justify-between ;
-    >* {
-        @apply hidden md:block
-    }
-}
-/*--product table body*/
-/*
 form.product-cart__summary {
     @apply  min-w-[312px] h-[fit-content] p-4 flex flex-col flex-none gap-4 border-1 border-[var(--neutral-4)] rounded-[6px] lg:w-[312px]  lg:p-6 xl:w-[413px];
 }
@@ -103,9 +52,9 @@ form.product-cart__summary button {
 }
 
 /**checkout form styling**/
-/*
+
 form[name="order_checkout-info"] {
-    @apply flex flex-col gap-6 w-[312px] lg:w-[643px];
+    @apply flex flex-col gap-6 w-[312px] md:w-[643px];
     font-family: var(--font-inter)
 }
 
@@ -118,10 +67,10 @@ form[name="order_checkout-info"] fieldset h2 {
 }
 
 form[name="order_checkout-info"] fieldset .__double {
-    @apply flex flex-row flex-none justify-between w-[280px] lg:w-full ;
+    @apply flex flex-row flex-none justify-between w-[280px] md:w-full ;
 }
 .__double .input-group {
-    @apply w-[136px]  lg:w-[285.5px]
+    @apply w-[136px]  md:w-[285.5px]
 }
 
 .input-group {
@@ -139,4 +88,4 @@ form[name="order_checkout-info"] fieldset .__double {
     & .css-t3ipsp-control:hover {
         @apply rounded-[6px] border-[black] 
     }
-}*/
+}

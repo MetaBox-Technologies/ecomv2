@@ -34,6 +34,7 @@ export function pushProductToCart({id, prodName, prodPrice, quantity, image, col
 
     localStorage.setItem("cart", JSON.stringify(cart))
     console.log(localStorage.getItem("cart"));
+    return cart;
 }
 
 enum Operation {

@@ -1,7 +1,9 @@
+"use client"
+
 import { useContext, useState } from "react";
 import { updateCart, popProductFromCart } from "../Cart/cartContentLoader";
 import "./css/quantitybutton.css";
-import { Updater } from "../Cart/cartContent";
+import { RootContext } from "@/app/_providers/RootContext";
 
 interface QuantityButtonProps {
     quantity: number,
@@ -16,13 +18,15 @@ interface QuantityButtonProps {
 
 export default function QuantityButton({quantity, width=80, height=34, isOnCart=false, productInfo}:Readonly<QuantityButtonProps>) {
     
-    const { cartStateUpdater } = useContext(Updater)
+    const { cartUpdater } = useContext(RootContext)
+
+    console.log("quantityButton is on cart: ",isOnCart);
     
 
     const addHander = ()=>{
         if(productInfo && isOnCart) {
             const newCartState = updateCart(productInfo.id, 1, productInfo.color);
-            cartStateUpdater(newCartState);
+            cartUpdater(newCartState);
         }
     }
 
@@ -30,10 +34,10 @@ export default function QuantityButton({quantity, width=80, height=34, isOnCart=
         if(productInfo && isOnCart) {
             if(quantity - 1 > 0) {
                 const newCartState = updateCart(productInfo.id, (-1) , productInfo.color);
-                cartStateUpdater(newCartState);
+                cartUpdater(newCartState);
             } else {
                 const newCartState = popProductFromCart(productInfo.id, productInfo.color);
-                cartStateUpdater(newCartState);
+                cartUpdater(newCartState);
             }
         }
     }
