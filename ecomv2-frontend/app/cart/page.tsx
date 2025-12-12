@@ -5,10 +5,11 @@ import { StepperDesktop } from "../_componnents/Cart/stepperDesktop";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import React from "react";
-import CheckoutForm from "../_componnents/Cart/checkoutForm";
+import { CheckoutForm } from  "../_componnents/Cart/checkoutForm";
 
 
 
+    
 export default function CartPage(){
     
     const Loader:React.FunctionComponent = ()=>{
@@ -19,8 +20,6 @@ export default function CartPage(){
     }
 
     const CartTable = dynamic(()=> import("../_componnents/Cart/cartTable"), {ssr: false, loading: Loader});
-
-   
 
     
     return (
