@@ -17,7 +17,7 @@ export function Footer(){
         },
         {
             name:"Contact Us",
-            href:"/contactus"
+            href:"/contact"
         },
     ];
      return (

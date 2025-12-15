@@ -29,7 +29,7 @@ const grotesk = Space_Grotesk({
 });
 const inter = Inter({
   variable: "--font-inter",
-  weight: ["500"],
+  weight: ["100","200","300","400","500","600","700"],
   subsets: ["latin"],
 });
 export const metadata: Metadata = {

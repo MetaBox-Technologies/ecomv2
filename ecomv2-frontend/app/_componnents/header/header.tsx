@@ -4,6 +4,7 @@ import './header.css';
 import Image from "next/image";
 import {useContext} from 'react';
 import { RootContext } from "../../_providers/RootContext"
+import ExpandingSearchBar from '../expanding/ExpandingSearchBar';
 
 
 export function Header(){
@@ -24,7 +25,7 @@ export function Header(){
         },
         {
             name:"Contact Us",
-            href:"/contactus"
+            href:"/contact"
         },
     ];
 
@@ -44,12 +45,14 @@ export function Header(){
             {links.map((link, index)=><a key={index} href={link.href}>{link.name}</a>)}
           </div>
           <div id="icon_container">
-          <a href=""><Image className="icon1" src="/images/search 02.svg" alt="" width={25} height={18}/></a>
+          {/*<a href=""><Image className="icon1" src="/images/search 02.svg" alt="" width={25} height={18}/></a>*/}
+          <ExpandingSearchBar/>
           <div onClick={()=>{
             isCartOpen(true)
           }} className='cart-icon'><Image className="icon3" src="/images/shopping bag.svg" alt="" width={25} height={18}/></div>
           </div>
           </nav>
         </header>
+
     );
 }
