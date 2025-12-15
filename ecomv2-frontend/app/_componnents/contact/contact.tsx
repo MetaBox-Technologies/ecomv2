@@ -45,7 +45,7 @@ export function Contitle() {
                         <label className="message">MESSAGE</label>
                         <textarea id="message" placeholder="Your message"></textarea>
                     </div>
-                    <button type="submit">Send Message</button>
+                    <button type="submit" id='button'>Send Message</button>
                 </form>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14981.140237283626!2d57.491012205470625!3d-20.163853242843807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x217c514951e05167%3A0xc1dd16fdabffc236!2sMetaBox%20Technology!5e0!3m2!1sen!2smu!4v1765441647421!5m2!1sen!2smu" width="600" height="450" loading="lazy"></iframe></div>
         </section>
