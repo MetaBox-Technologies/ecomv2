@@ -20,7 +20,6 @@ export default function QuantityButton({quantity, width=80, height=34, isOnCart=
     
     const { cartUpdater } = useContext(RootContext)
 
-    console.log("quantityButton is on cart: ",isOnCart);
     
 
     const addHander = ()=>{

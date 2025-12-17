@@ -13,7 +13,7 @@
     height: 40px;
 }
 
-header {
+header:not(.cart-header) {
     padding: 0;
     width: 100%;
     position: fixed;
@@ -81,7 +81,7 @@ nav {
     display: none;
 }
 .cart-icon {
-    @apply hover:cursor-pointer;
+    @apply hover:cursor-pointer relative;
 }
 
 @media screen and (max-width: 768px) {
@@ -106,4 +106,8 @@ nav {
         color: black;
         font-size: 16px;
     }
+}
+
+.item-icon {
+    @apply absolute bg-[red] w-[10px] h-[10px] rounded-full top-0 right-0;
 }

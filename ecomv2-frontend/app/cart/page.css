@@ -20,7 +20,7 @@
 }
 
 main {
-    @apply max-w-[1200px]  flex flex-col flex-none px-8 md:items-center lg:items-stretch lg:pt-[80px] lg:flex-row md:gap-[64px] relative;
+    @apply max-w-[1200px]  flex flex-col flex-none px-8 md:items-center lg:items-stretch lg:pt-[80px] lg:flex-row md:gap-[64px] relative transition-[all] duration-300 ease-in-out;
 }
 
 
@@ -44,4 +44,8 @@ main {
   100%{
     left: 100%;
   }
+}
+
+.go-next {
+  @apply opacity-0;
 }

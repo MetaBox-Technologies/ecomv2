@@ -12,7 +12,7 @@ function CountrySelector({inputName}) {
     setValue(value)
   }
 
-  return <Select options={options} value={value} onChange={changeHandler} name={inputName}/>
+  return <Select options={options} value={value} onChange={changeHandler} name={inputName} />
 }
 
 export default CountrySelector

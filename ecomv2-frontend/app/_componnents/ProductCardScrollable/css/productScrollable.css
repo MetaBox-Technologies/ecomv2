@@ -41,7 +41,7 @@
 }
 
 .swiper-scrollbar {
-  @apply h-1 bg-[var(--neutral-3)] !relative rounded-[80px] mx-auto md:mb-12;
+  @apply h-1 bg-[var(--neutral-3)] !relative rounded-[80px] mx-auto md:mb-12 hover:cursor-pointer;
   width: calc(100vw - calc(var(--spacing) * 16));
 }
 .swiper-scrollbar-drag {

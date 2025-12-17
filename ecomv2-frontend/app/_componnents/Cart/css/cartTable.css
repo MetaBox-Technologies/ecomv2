@@ -1,7 +1,7 @@
 @reference "../../../globals.css";
 
 .product-table{
-    @apply pb-6 md:pb-0 sm:w-[auto];
+    @apply pb-6 md:pb-0  sm:w-[auto];
 }
 
 .product-table__body{
@@ -27,7 +27,7 @@
     font-family: var(--font-inter)
 }
 .product-table .product-table__header .col__sg {
-    @apply w-[252px] md:w-[322px] md:w-[523px] flex flex-row justify-between ;
+    @apply w-[252px] md:w-[322px] md:w-[523px]  lg:w-[322px] flex flex-row justify-between ;
     >* {
         @apply hidden lg:block
     }

@@ -15,20 +15,33 @@ export function CheckoutForm() {
     const SubmitButton = React.memo(()=>{
         const { pending } = useFormStatus()
         return (
-            <button type="submit" className=" px-10 py-3 rounded-[8px] bg-[var(--neutral-7)] text-white" style={{fontFamily:"var(--font-inter)"}} disabled={pending}> {!pending? "Place Order" : <div className="loader"/>} </button>
+            <button type="submit" className="px-10 py-3 rounded-[8px] bg-[var(--neutral-7)] text-white hover:cursor-pointer" style={{fontFamily:"var(--font-inter)"}} disabled={pending}> {!pending? "Place Order" : <div className="loader"/>} </button>
         )
     })
 
     const placeHolder = React.memo(()=>{
-            <input type="text" disabled/>
+            <input  type="text" disabled/>
     })
 
-
+    const handleError = (inputElement: HTMLElement) =>{
+        const fieldName: string | null = inputElement.getAttribute('name');
+        if(fieldName && (fieldName in formState.errors))
+            inputElement.classList.add("shake");
+            setTimeout(()=>{
+                inputElement.classList.remove("shake")
+            },300)
+    }
 
 
     useEffect(()=>{
-        console.log(formState)
-    },[formState])
+        console.log(formState);
+        const  inputs = document.querySelectorAll("input");
+        if(inputs){
+            for(let input of inputs) {
+                handleError(input)
+            }
+        }
+    }, [formState])
 
     const CountrySelector = dynamic(()=>import("../global/countrySelector"), {ssr: false, loading: placeHolder});
 
@@ -40,27 +53,31 @@ export function CheckoutForm() {
                         <div className="__double">
                             <div className="input-group">
                                 <label htmlFor="fname">FIRST NAME</label>
-                                <input type="text" name="fname" id="fname" placeholder={formState.errors?.fname ? formState.errors?.fname : "First name"} defaultValue={formState.valid?.fname ? formState.valid?.fname : ""} />
+                                <input key={formState.errors.fname ? formState.errors.fname[0] : "fname-default"} className="text-[var(--neutral-4)]" type="text" name="fname" id="fname" placeholder={formState.errors?.fname ? formState.errors?.fname[0] : "First name"} defaultValue={formState.valid?.fname ? formState.valid?.fname : ""} />
                             </div>
                             <div className="input-group">
                                 <label htmlFor="lname">LAST NAME</label>
-                                <input type="text" name="lname" id="lname" placeholder={formState.errors?.lname ? formState.errors?.lname : "Last name"} defaultValue={formState.valid?.lname ? formState.valid?.lname : ""}/>
+                                <input key={formState.errors.lname ? formState.errors.lname[0] : "lname-default"} className="text-[var(--neutral-4)]" type="text" name="lname" id="lname" placeholder={formState.errors?.lname ? formState.errors?.lname[0] : "Last name"} defaultValue={formState.valid?.lname ? formState.valid?.lname : ""}/>
                             </div>
                         </div>
                         <div className="input-group">
+                            <label htmlFor="phone">NATIONAL ID</label>
+                            <input key={formState.errors.street ? formState.errors.nid[0] : "nid-default"} className="text-[var(--neutral-4)]" type="text" name="nid" id="nid" placeholder={formState.errors?.nid ? formState.errors?.nid[0] : "National identification number"} defaultValue={formState.valid?.nid ? formState.valid?.nid : ""}/>
+                        </div>
+                        <div className="input-group">
                             <label htmlFor="phone">PHONE NUMBER</label>
-                            <input type="text" name="phone" id="phone" placeholder={formState.errors?.phone ? formState.errors?.phone : "Phone number"} defaultValue={formState.valid?.phone ? formState.valid?.phone : ""}/>
+                            <input key={formState.errors.phone ? formState.errors.phone[0] : "phone-default"} className="text-[var(--neutral-4)]" type="text" name="phone" id="phone" placeholder={formState.errors?.phone ? formState.errors?.phone[0] : "Phone number"} defaultValue={formState.valid?.phone ? formState.valid?.phone : ""}/>
                         </div>
                         <div className="input-group">
                             <label htmlFor="email">EMAIL ADDRESS</label>
-                            <input type="email" name="email" id="email" placeholder={formState.errors?.email ? formState.errors?.email : "Email address"} defaultValue={formState.valid?.email ? formState.valid?.email : ""}/>
+                            <input key={formState.errors.email ? formState.errors.email[0] : "email-default"} className="text-[var(--neutral-4)]" type="email" name="email" id="email" placeholder={formState.errors?.email ? formState.errors?.email[0] : "Email address"} defaultValue={formState.valid?.email ? formState.valid?.email : ""}/>
                         </div> 
                     </fieldset>
                     <fieldset className="shipping-address">
                         <h2>Shipping Address</h2>
                         <div className="input-group">
                             <label htmlFor="street">STREET ADDRESS*</label>
-                            <input type="text" name="address" id="street" placeholder={formState.errors?.address ? formState.errors?.address : "Street address"} defaultValue={formState.valid?.address ? formState.valid?.address : ""}/>
+                            <input key={formState.errors.street ? formState.errors.street[0] : "street-default"} className="text-[var(--neutral-4)]" type="text" name="address" id="street" placeholder={formState.errors?.address ? formState.errors?.address[0] : "Street address"} defaultValue={formState.valid?.address ? formState.valid?.address : ""}/>
                         </div>
                         <div className="input-group">
                             <label htmlFor="country">COUNTRY*</label>
@@ -68,16 +85,16 @@ export function CheckoutForm() {
                         </div>
                         <div className="input-group">
                             <label htmlFor="city">TOWN/CITY*</label>
-                            <input type="city" name="city" id="city" placeholder={formState.errors?.city ? formState.errors?.city : "Town/City"} defaultValue={formState.valid?.city ? formState.valid?.city : ""}/>
+                            <input key={formState.errors.city ? formState.errors.city[0] : "city-default"} className="text-[var(--neutral-4)]" type="city" name="city" id="city" placeholder={formState.errors?.city ? formState.errors?.city[0] : "Town/City"} defaultValue={formState.valid?.city ? formState.valid?.city : ""}/>
                         </div>
                         <div className="__double">
                             <div className="input-group">
                                 <label htmlFor="state">STATE</label>
-                                <input type="text" name="state" id="state" placeholder={formState.errors?.state ? formState.errors?.state : "State"} defaultValue={formState.valid?.state ? formState.valid?.state : ""}/>
+                                <input key={formState.errors.state ? formState.errors.state[0] : "state-default"} className="text-[var(--neutral-4)]" type="text" name="state" id="state" placeholder={formState.errors?.state ? formState.errors?.state[0] : "State"} defaultValue={formState.valid?.state ? formState.valid?.state : ""}/>
                             </div>
                             <div className="input-group">
                                 <label htmlFor="zip">ZIP CODE</label>
-                                <input type="text" name="zip" id="zip" placeholder={formState.errors?.zip ? formState.errors?.zip : "Zip Code"} defaultValue={formState.valid?.zip ? formState.valid?.zip : ""}/>
+                                <input key={formState.errors.zip ? formState.errors.zip[0] : "zip-default"} className="text-[var(--neutral-4)]" type="text" name="zip" id="zip" placeholder={formState.errors?.zip ? formState.errors?.zip[0] : "Zip Code"} defaultValue={formState.valid?.zip ? formState.valid?.zip : ""}/>
                             </div>
                         </div>
                         <SubmitButton/>

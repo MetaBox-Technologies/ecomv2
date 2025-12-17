@@ -17,17 +17,18 @@ export function Cart ({isOpen}) {
         if(!divRef.current?.classList.contains("translate-x-100")){
             divRef.current?.classList.toggle("translate-x-100");
         }
+        let time = null;
         await new Promise<void>((resolve)=>{
-            setTimeout(()=>{
+            time = setTimeout(()=>{
                 isCartOpen(false);
                 resolve();
             }, 100);
         });
+        clearTimeout(time);
     }
 
     async function clickHandler(event:Event) {
         if(divRef.current &&  !divRef.current.contains(event.target as Node)) {
-            console.log('clicked outside');
             await closeCart();
         }
     }

@@ -27,7 +27,6 @@ export const  Cell =  React.memo(({id, image, prodName, color, prodPrice, quanti
             cartUpdater(newCartState)
     }
     const nameLength = prodName?.split(" ").length;
-    console.log(nameLength)
 
     return (
         <div className="item-cell">
@@ -44,7 +43,7 @@ export const  Cell =  React.memo(({id, image, prodName, color, prodPrice, quanti
                     </button>
                 </div>
                 <div className="row-3">
-                    <QuantityButton quantity={quantity} productInfo={{id: id, color: color}} isOnCart/>
+                    <QuantityButton quantity={quantity} productInfo={{id: id, color: color}} height={28} isOnCart/>
                 </div>
             </div>
         </div>

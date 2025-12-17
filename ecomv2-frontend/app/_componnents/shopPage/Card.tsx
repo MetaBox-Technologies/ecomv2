@@ -56,7 +56,6 @@ export function Card({
   const addToCartHandler = ()=>{
     
     const cartContent = cartloader();
-    console.log(cartContent);
     const productToPush = {
           id: id,
           prodName: name,

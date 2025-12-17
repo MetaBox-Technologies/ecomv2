@@ -76,7 +76,7 @@ form[name="order_checkout-info"] fieldset .__double {
 .input-group {
     @apply font-[700] text-[var(--neutral-4)] flex flex-col gap-3 text-[12px];
     >input {
-        @apply  h-[40px] px-4 border-1 border-[var(--neutral-4)] rounded-[6px] font-[400];
+        @apply  h-[40px] px-4 border-1 border-[var(--neutral-4)] rounded-[6px] font-[400] relative transition-[all] duration-300 ease-in-out;
     }
     & .css-13cymwt-control {
         @apply h-[40px] rounded-[6px] border-[var(--neutral-4)] text-[12px] font-[400] text-[var(--neutral-4)];
@@ -86,13 +86,14 @@ form[name="order_checkout-info"] fieldset .__double {
         @apply rounded-[6px] border-[black] shadow-[unset] h-[40px] text-[12px] text-[var(--neutral-4)] font-[400];
     }
     & .css-t3ipsp-control:hover {
-        @apply rounded-[6px] border-[black] 
+        @apply rounded-[6px] border-[black] cursor-pointer;
     }
 }
 @keyframes l3 {to{transform: rotate(1turn)}}
 .loader {
-  width: 50px;
-  padding: 8px;
+  width: 24px;
+  padding: 6px;
+  margin: 0 auto;
   aspect-ratio: 1;
   border-radius: 50%;
   background: var(--background);
@@ -104,4 +105,29 @@ form[name="order_checkout-info"] fieldset .__double {
   -webkit-mask-composite: source-out;
           mask-composite: subtract;
   animation: l3 1s infinite linear;
+}
+
+
+@keyframes shake {
+    25%{
+        transform: translateX(-5px);
+    }
+    50%{
+        transform: translateX(5px);
+    }
+    75%{
+        transform: translateX(-5px);
+    }
+    100%{
+        transform : translateX(5px);
+    }
+}
+
+.shake {
+    animation: shake .35s ease-in-out infinite;
+    color: red;
+}
+
+.shake-radio {
+    animation: shake .35s ease-in-out infinite;
 }

@@ -4,7 +4,7 @@ const nameRegex = /^[a-zA-Z]+([\s\.\-'][a-zA-Z]+)*$/;
 const phoneRegex = /^(\+\d{2,3}[\s\-]?)?\d+$/;
 const addressRegex = /^[a-zA-Z0-9]+([\s\'\-,\.\/#]+[a-zA-Z0-9]+)*$/;
 const CountryCityStateRegex = /^[a-zA-Z]+([\s\'-]+[a-zA-Z]+)*$/;
-const zipCodeRegex = /^[a-zA-Z0-9]+([\s\-][a-zA-Z0-9]+)*$/;
+const codeRegex = /^[a-zA-Z0-9]+([\s\-][a-zA-Z0-9]+)*$/;
 
 export const nameSchema =  z.string({
     message:"This field is required",
@@ -50,7 +50,7 @@ export const zipCodeSchema = z.string(
     }
 )
 .min(2, {message: "Your zip code is too shory"})
-.regex(zipCodeRegex, {message: "Your zip code format is invalid"})
+.regex(codeRegex, {message: "Your zip code format is invalid"})
 .optional();
 
 export const addresSchema = z.string({
@@ -59,7 +59,11 @@ export const addresSchema = z.string({
 .min(2, {message: "Your address is to short"})
 .regex(addressRegex, {message: "Your address is in invalid format"});
 
-
+export const nidSchema = z.string({
+    message: "This field is required"
+}).trim()
+.max(18, {message: "You have a maximum of 18 characters"})
+.regex(codeRegex, {message: "Your NID format is invalid"})
 
 export const schema  =  z.object({
     fname: nameSchema,

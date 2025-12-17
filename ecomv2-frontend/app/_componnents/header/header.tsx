@@ -2,14 +2,18 @@
 "use client"
 import './header.css';
 import Image from "next/image";
-import {useContext} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import { RootContext } from "../../_providers/RootContext"
 import ExpandingSearchBar from '../expanding/ExpandingSearchBar';
-
+import { usePathname } from 'next/navigation';
+import { cartloader } from '../Cart/cartContentLoader';
 
 export function Header(){
 
+    const path = usePathname();
+    const [hasItems, setHasItems] = useState(false)
     const { isCartOpen } = useContext(RootContext);
+    const isOnCartPage = path.startsWith("/cart");
     const links = [
         {
             name:"Home",
@@ -29,6 +33,12 @@ export function Header(){
         },
     ];
 
+    useEffect(()=>{
+      setHasItems(cartloader().length > 0)
+    })
+
+    
+
     return (
         <header className="w-screen p-4">
           <div className="test">
@@ -47,9 +57,14 @@ export function Header(){
           <div id="icon_container">
           {/*<a href=""><Image className="icon1" src="/images/search 02.svg" alt="" width={25} height={18}/></a>*/}
           <ExpandingSearchBar/>
-          <div onClick={()=>{
+          {
+           !isOnCartPage && <div onClick={()=>{
             isCartOpen(true)
-          }} className='cart-icon'><Image className="icon3" src="/images/shopping bag.svg" alt="" width={25} height={18}/></div>
+            }} className='cart-icon'>
+              {hasItems && <div className='item-icon'></div>}
+              <Image className="icon3" src="/images/shopping bag.svg" alt="" width={25} height={18}/>
+            </div> 
+          }
           </div>
           </nav>
         </header>

@@ -47,6 +47,25 @@ form.product-cart__summary .summary-delivery{
     }
 }
 form.product-cart__summary button {
-    @apply py-[10px] px-[26px] rounded-[8px] bg-[var(--neutral-7)] text-white text-[18px];
+    @apply py-[10px] px-[26px] rounded-[8px] bg-[var(--neutral-7)] text-white text-[18px] hover:cursor-pointer;
     font-family: var(--font-inter);
+}
+
+@keyframes shake {
+    25%{
+        transform: translateX(-5px);
+    }
+    50%{
+        transform: translateX(5px);
+    }
+    75%{
+        transform: translateX(-5px);
+    }
+    100%{
+        transform : translateX(5px);
+    }
+}
+
+.shake-radio {
+    animation: shake .35s ease-in-out infinite;
 }

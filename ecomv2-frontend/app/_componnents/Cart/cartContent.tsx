@@ -19,9 +19,6 @@ export const CartContent = React.memo(forwardRef(({cStatic = false, closer, cont
     const products = content;
     let total = 0;
 
-    console.log('this cart is cStatic:', cStatic);
-
-
     if(products?.length === 1) 
         total = products[0].prodPrice * products[0].quantity;
     else if(products?.length > 1) 

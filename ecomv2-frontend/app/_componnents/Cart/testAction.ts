@@ -1,7 +1,7 @@
 "use server";
 import { z } from "zod";
 import { schema } from "./formAction/checkOutFormValidationSchema/schema";
-import { nameSchema, emailSchema, CountryCitySchema, phoneSchema, zipCodeSchema, addresSchema, stateSchema } from "./formAction/checkOutFormValidationSchema/schema";
+import { nameSchema, emailSchema, CountryCitySchema, phoneSchema, zipCodeSchema, addresSchema, stateSchema, nidSchema} from "./formAction/checkOutFormValidationSchema/schema";
 import { error } from "console";
 
 
@@ -11,6 +11,7 @@ export default async function testAction(prevstate, formData) {
     const fnameR  = z.safeParse(nameSchema, formData.get("fname") ? formData.get("fname") : null);
     const lnameR  = z.safeParse(nameSchema, formData.get("lname") ? formData.get("lname") : null);
     const emailR  = z.safeParse(emailSchema, formData.get("email") ? formData.get("email"): null);
+    const nidR = z.safeParse(nidSchema, formData.get("nid") ? formData.get("nid") : null);
     const phoneR  = z.safeParse(phoneSchema, formData.get("phone") ? formData.get("phone") : null);
     const streetR  = z.safeParse(addresSchema, formData.get("address") ? formData.get("address") : null);
     const countryR  = z.safeParse(CountryCitySchema, formData.get("country") ? formData.get("country") : null);
@@ -24,6 +25,7 @@ export default async function testAction(prevstate, formData) {
         ...(fnameR.success && {fname:  formData.get("fname")}),
         ...(emailR.success && {email:  formData.get("email")}),
         ...(lnameR.success && {lname:  formData.get("lname")}),
+        ...(nidR.success && {nid: formData.get("nid")}),
         ...(phoneR.success && {phone:  formData.get("phone")}),
         ...(streetR.success && {address:  formData.get("address")}),
         ...(countryR.success && {country:  formData.get("country")}),
@@ -33,15 +35,16 @@ export default async function testAction(prevstate, formData) {
     }
     
     const errors = {
-        ...(!fnameR.success && {fname:  fnameR.error.flatten().formErrors[0]}),
-        ...(!lnameR.success && {email:  lnameR.error.flatten().formErrors[0]}),
-        ...(!emailR.success && {lname:  emailR.error.flatten().formErrors[0]}),
-        ...(!phoneR.success && {phone:  phoneR.error.flatten().formErrors[0]}),
-        ...(!streetR.success && {address:  streetR.error.flatten().formErrors[0]}),
-        ...(!countryR.success && {country:  countryR.error.flatten().formErrors[0]}),
-        ...(!cityR.success && {city:  cityR.error.flatten().formErrors[0]}),
-        ...(!stateR.success && {state:  stateR.error.flatten().formErrors[0]}),
-        ...(!zipR.success && {zip:  zipR.error.flatten().formErrors[0]}),
+        ...(!fnameR.success && {fname:  fnameR.error.flatten().formErrors}),
+        ...(!lnameR.success && {lname:  lnameR.error.flatten().formErrors}),
+        ...(!nidR.success && {nid: nidR.error.flatten().formErrors}),
+        ...(!emailR.success && {email:  emailR.error.flatten().formErrors}),
+        ...(!phoneR.success && {phone:  phoneR.error.flatten().formErrors}),
+        ...(!streetR.success && {address:  streetR.error.flatten().formErrors}),
+        ...(!countryR.success && {country:  countryR.error.flatten().formErrors}),
+        ...(!cityR.success && {city:  cityR.error.flatten().formErrors}),
+        ...(!stateR.success && {state:  stateR.error.flatten().formErrors}),
+        ...(!zipR.success && {zip:  zipR.error.flatten().formErrors}),
     }
 
    

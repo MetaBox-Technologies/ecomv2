@@ -1,16 +1,40 @@
-import { useState, useEffect, useContext, createRef } from "react";
+import { useState, useEffect, useContext, } from "react";
 import "./css/formCartSummary.css"
 import { RootContext } from "@/app/_providers/RootContext";
+import { PageNavigationContext } from "@/app/cart/page";
 
 export default function FormCartSummary() {
     
     const products = useContext(RootContext).cartContent;
+    const goNext = useContext(PageNavigationContext).goNextHandler;
     const subtotal = products.length === 0 ? 0 : products.reduce((a, b)=> { return a + (b.prodPrice * b.quantity)}, 0);
     
     const [total, setTotal] = useState(subtotal);
     const [delivery, setDelivery] = useState("");
     const [computedTotal, setComputedTotal] = useState(total);
-    const deliveryMethodRef = createRef();
+
+
+    const handleSubmit = (submitEvent : Event)=>{
+        submitEvent.preventDefault();
+        const formData = new FormData(submitEvent.currentTarget);
+        const delvery = formData.get("delivery");
+        const form =  submitEvent.currentTarget;
+        const radios =  form.querySelectorAll(".summary-delivery__choice");
+        
+        if(!delivery || delivery === null || delivery === undefined) {
+            for(let radio of radios) {
+                radio.classList.add("shake-radio");
+                setTimeout(()=>{
+                    radio.classList.remove("shake-radio");
+                }, 500)                
+            }
+        } else {
+            goNext();
+        }
+
+
+
+    }
 
     const chooseDeliveryMethod = (deliveryMethod: string) => {
         setDelivery(deliveryMethod);
@@ -33,7 +57,7 @@ export default function FormCartSummary() {
                 setComputedTotal(total + 15);
                 break
             case "pick-up":
-                setComputedTotal((prev)=> prev * 0.79);
+                setComputedTotal(total * 0.79);
                 break
         }
     }, [total, delivery])
@@ -43,7 +67,7 @@ export default function FormCartSummary() {
 
     return (
         <>
-        <form className="product-cart__summary">
+        <form className="product-cart__summary" onSubmit={handleSubmit}>
             <h2>Summary</h2>
             <div className="summary-delivery">
                 <div className="summary-delivery__choice">

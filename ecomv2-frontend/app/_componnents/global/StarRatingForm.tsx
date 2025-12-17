@@ -7,7 +7,6 @@ export default function ReviewForm() {
   const [rating, setRating] = useState(0);
 
   const handleSubmit = () => {
-    console.log("Rating selected:", rating);
     // send rating to DB here
   };
 

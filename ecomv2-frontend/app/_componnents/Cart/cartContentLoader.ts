@@ -33,7 +33,6 @@ export function pushProductToCart({id, prodName, prodPrice, quantity, image, col
     cart.push(productToPush);
 
     localStorage.setItem("cart", JSON.stringify(cart))
-    console.log(localStorage.getItem("cart"));
     return cart;
 }
 
@@ -59,7 +58,6 @@ export function updateCart(id: number,op:Operation = Operation.increase, color?:
 
 
     localStorage.setItem("cart", JSON.stringify(newCartState));
-    console.log(localStorage.getItem("cart"));
     return newCartState;
 }
 
@@ -87,7 +85,6 @@ export function popProductFromCart(id: number, color?: string) {
     }
 
     localStorage.setItem("cart", JSON.stringify(newCartState));
-    console.log(localStorage.getItem("cart"));
     return newCartState;
 }
 
