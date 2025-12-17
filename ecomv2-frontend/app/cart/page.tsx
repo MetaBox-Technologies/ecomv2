@@ -1,27 +1,35 @@
 "use client"
 
 import "./page.css";
-import { StepperDesktop } from "../_componnents/Cart/stepperDesktop";
+import { Stepper } from "../_componnents/Cart/stepperDesktop";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import React, { useState, useRef, useEffect, useMemo, useContext} from "react";
+import React, { useState, useRef, useEffect, useContext, createRef, useCallback, useActionState} from "react";
 import { CheckoutForm } from "../_componnents/Cart/checkoutForm";
 import  CartTable from "../_componnents/Cart/cartTable";
 import { createContext } from "react";
 import { RootContext } from "../_providers/RootContext";
+import { useRouter } from "next/navigation";
+import { useFormState } from "react-dom";
+import testAction from "../_componnents/Cart/testAction";
 
 
 export const PageNavigationContext = createContext({})
 
     
 export default function CartPage(){
-    
+
+
+    const {isCartOpen, openCheck} = useContext(RootContext);
     const [delivery, setDelivery] = useState(null);
     const [stage, setStage] =  useState({current: "cart", next: "checkout", stagePrev: null});
     const [firstRender, setFirstRender] = useState(true);
-    const mainRef = useRef();
+    const [checkoutFormState, checkoutFormAction] = useActionState(testAction, {valid:{}, errors:{},  sent: false});
+    const mainRef = useRef(null);
     const RenderCount = useRef(0);
-    const {isCartOpen, openCheck} = useContext(RootContext);
+    const stepperRef = createRef();
+    const router = useRouter();
+
 
 
     const Loader:React.FunctionComponent = ()=>{
@@ -29,12 +37,15 @@ export default function CartPage(){
         <div className="load-wraper">
             <div className="activity"></div>
         </div>)        
-    }
+    };
+    const DynamicCartTable = useCallback(dynamic(()=> import("../_componnents/Cart/cartTable"), {ssr: false, loading: Loader}), []);
 
     const goToCheckout = async()=>{
         if(mainRef.current) {
-            mainRef.current.classList.add("go-next");
+            mainRef.current.classList.add("translate-x-full", "opacity-0");
             await new Promise((resolve)=>{setTimeout(()=>{
+                mainRef.current.classList.remove("translate-x-full");
+                mainRef.current.classList.add("-translate-x-full");
                 window.scrollTo({
                     top: 0,
                     left: 0,
@@ -42,19 +53,25 @@ export default function CartPage(){
                 })
                 setStage({current: "checkout", next: "finished payemnt", stagePrev:"cart"});
                 resolve()
-            },500)});
-            mainRef.current.classList.remove("go-next")
+            },750)});
+            mainRef.current.classList.remove("opacity-0");
+            mainRef.current.classList.remove("-translate-x-full");
+
+
             
         }
     }
 
-    const goTo = async ()=>{
+    const goBack = async ()=>{
         if(mainRef.current){
-            mainRef.current.classList.add("go-next");
+            mainRef.current.classList.add("-translate-x-full");
+            mainRef.current.classList.add("opacity-0");
             const wNext = stage.current;
             const wCurr = stage.stagePrev
             const wPrev = stage.current;
             await new Promise((resolve)=>{setTimeout(()=>{
+                mainRef.current.classList.remove("-translate-x-full");
+                mainRef.current.classList.add("translate-x-full");
                 window.scrollTo({
                     top: 0,
                     left: 0,
@@ -63,34 +80,95 @@ export default function CartPage(){
                 setStage({current: wCurr, next: wNext, stagePrev: wPrev});
                 resolve()
             },750)});
-            mainRef.current.classList.remove("go-next")
+            mainRef.current.classList.remove("opacity-0");
+            mainRef.current.classList.remove("translate-x-full");
             
             
             
         }
     }
 
+    const handleStepClick = async (step: number) => {
+        switch(step){
+            case 1:
+                if(stage.current === "cart") {
+                    console.log("unsatisfied");
+                    return;
+                }
+                await goBack();
+                break;
+            case 2:
+                if(stage.current === "checkout" )
+                    return;
+                if(stage.current === "cart" && delivery === null) {
+                    const radioForm = document.querySelector("form[name=delivery]");
+                    const radios = radioForm.querySelectorAll(".summary-delivery__choice");
+                    if(window.innerWidth < 1024) {
+                        radioForm?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "center"
+                        })
+                    }
+                    radios.forEach((radio)=>{
+                        radio.classList.add("shake-radio");
+                    })
+                    setTimeout(()=>{
+                        radios.forEach((radio)=>{
+                            radio.classList.remove("shake-radio");
+                        })
+                    }, 750)
+                    return;
+                }
+                await goToCheckout();
+                break;
+                    
+        }
+        return;    
+
+    }
+    const handleStep1= async ()=>{
+        await handleStepClick(1)
+    }
+    const handleStep2 = async ()=>{
+        await handleStepClick(2)
+    }
+
+
     useEffect(()=>{
        if(openCheck)
             isCartOpen(false)
+        RenderCount.current += 1;
     },[])
 
     useEffect(()=>{
-        if(stage.stagePrev !== null || stage.stagePrev !== "checkout")
-            history.pushState(stage, "",`/${stage.current}`)
-
+        console.log("delivery selected: ",delivery)
+        const {step1, step2, step3} = stepperRef.current;
+        if(stage.stagePrev !== null)
+            history.replaceState(stage, "",`/${stage.current}`)
+        step1.addEventListener("click", handleStep1);
+        step2.addEventListener("click", handleStep2);
         window.addEventListener("popstate", async ()=>{
-            await goTo();
+            await goBack();
         })
 
-        return ()=>{window.removeEventListener("popstate", async()=>{
-            await goTo();
-        })}
-    }, [stage])
+        if(stage.stagePrev === "checkout") {
+            document.querySelectorAll("input[type=radio]").forEach((radio)=>{
+                radio.checked = (radio.getAttribute("value") === delivery)
+            })
+        }
+
+        return ()=>{
+        window.removeEventListener("popstate", async()=>{
+            await goBack();
+            })
+        step1.removeEventListener("click", handleStep1)
+        step2.removeEventListener("click", handleStep2);
+        }
+    }, [stage, delivery])
     
     
 
-    const DynamicCartTable = dynamic(()=> import("../_componnents/Cart/cartTable"), {ssr: false, loading: Loader});
+
 
     
     return (
@@ -101,14 +179,22 @@ export default function CartPage(){
                     <p>Back</p>
                 </Link>
                 <header className="cart-header">
-                    <h2>Cart</h2>
-                    <StepperDesktop current={stage.current}/>
+                    <h2>{stage.current.charAt(0).toUpperCase()+stage.current.slice(1)}</h2>
+                    <Stepper current={stage.current} ref={stepperRef}/>
                 </header>
             </div>
             <main ref={mainRef} className={stage.current === "checkout" ? "items-center" : ""}>
-                <PageNavigationContext.Provider value={{goNextHandler:goToCheckout, firstRenderHandler: setFirstRender}}>
-                    {stage.current === "cart" &&  <DynamicCartTable/> }
-                    {stage.current === "checkout" && <CheckoutForm/>}
+                <PageNavigationContext.Provider value={
+                    {
+                        goNextHandler:goToCheckout, 
+                        firstRenderHandler: setFirstRender, 
+                        deliveryContext: delivery, 
+                        deliverySetter: setDelivery,
+                        formState: checkoutFormState,
+                        checkoutAction: checkoutFormAction
+                    }}>
+                    {stage.current === "cart" &&  ((RenderCount.current > 0 )? <DynamicCartTable/> : <CartTable/>)}
+                    {stage.current === "checkout" && <CheckoutForm delivery={delivery}/>}
                 </PageNavigationContext.Provider>    
             </main>
         </div>

@@ -3,14 +3,15 @@
 import "./css/checkoutForm.css";
 import dynamic from "next/dynamic";
 import testAction from "./testAction";
-import React, { useActionState, useEffect } from "react";
+import React, {useEffect, useCallback, useContext} from "react";
 import { useFormStatus } from "react-dom";
+import { PageNavigationContext } from "@/app/cart/page";
 
 
 
-export function CheckoutForm() {
-
-    const [formState, action] = useActionState(testAction, {valid:{}, errors:{}});
+export function CheckoutForm({delivery}) {
+    
+    const {formState, checkoutAction} = useContext(PageNavigationContext)
 
     const SubmitButton = React.memo(()=>{
         const { pending } = useFormStatus()
@@ -43,11 +44,11 @@ export function CheckoutForm() {
         }
     }, [formState])
 
-    const CountrySelector = dynamic(()=>import("../global/countrySelector"), {ssr: false, loading: placeHolder});
+    const CountrySelector = useCallback(dynamic(()=>import("../global/countrySelector"), {ssr: false, loading: placeHolder}), []);
 
     return (
         <>
-        <form name="order_checkout-info" action={action}>
+        <form name="order_checkout-info" action={checkoutAction}>
                 <fieldset className="contact-info">
                     <h2>Contact information</h2>
                         <div className="__double">
@@ -97,6 +98,7 @@ export function CheckoutForm() {
                                 <input key={formState.errors.zip ? formState.errors.zip[0] : "zip-default"} className="text-[var(--neutral-4)]" type="text" name="zip" id="zip" placeholder={formState.errors?.zip ? formState.errors?.zip[0] : "Zip Code"} defaultValue={formState.valid?.zip ? formState.valid?.zip : ""}/>
                             </div>
                         </div>
+                        <input type="hidden" name="deliveryMethod" value={delivery}/>
                         <SubmitButton/>
                     </fieldset>
                     

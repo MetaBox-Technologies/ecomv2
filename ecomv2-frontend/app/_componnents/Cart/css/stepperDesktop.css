@@ -19,7 +19,7 @@
     @apply content-[""] w-[0px] absolute bottom-[0] bg-[#23262f] h-[2px] transition-[width] duration-300 ease-in-out;
 }
 .process-steps .process.first::after, .process-steps .process.current::after {
-    @apply w-[256px];
+    @apply w-full;
 }
 .process-steps .process.complete::after {
     @apply bg-[var(--secondary-green)]

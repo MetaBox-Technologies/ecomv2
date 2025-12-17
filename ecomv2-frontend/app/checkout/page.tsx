@@ -1,13 +1,10 @@
 "use client"
 
 import "./page.css";
-import { StepperDesktop } from "../_componnents/Cart/stepperDesktop";
+import { Stepper } from "../_componnents/Cart/stepperDesktop";
 import Link from "next/link";
 import Row from "../_componnents/Cart/row";
 import { Cell } from "../_componnents/Cart/cell";
-import dynamic from "next/dynamic";
-import { CartContent } from "../_componnents/Cart/cartContent";
-import {CheckoutForm} from "../_componnents/Cart/checkoutForm";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -60,7 +57,7 @@ export default function CartPage(){
                 </Link>
                 <header>
                     <h2>Cart</h2>
-                    <StepperDesktop/>
+                    <Stepper/>
                 </header>
             </div>
             <main>

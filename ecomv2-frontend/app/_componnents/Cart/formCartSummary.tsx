@@ -3,21 +3,20 @@ import "./css/formCartSummary.css"
 import { RootContext } from "@/app/_providers/RootContext";
 import { PageNavigationContext } from "@/app/cart/page";
 
-export default function FormCartSummary() {
+export default function FormCartSummary({delivery}) {
     
     const products = useContext(RootContext).cartContent;
     const goNext = useContext(PageNavigationContext).goNextHandler;
     const subtotal = products.length === 0 ? 0 : products.reduce((a, b)=> { return a + (b.prodPrice * b.quantity)}, 0);
-    
+    const { deliverySetter } = useContext(PageNavigationContext);
     const [total, setTotal] = useState(subtotal);
-    const [delivery, setDelivery] = useState("");
     const [computedTotal, setComputedTotal] = useState(total);
 
 
     const handleSubmit = (submitEvent : Event)=>{
         submitEvent.preventDefault();
         const formData = new FormData(submitEvent.currentTarget);
-        const delvery = formData.get("delivery");
+        //const delvery = formData.get("delivery");
         const form =  submitEvent.currentTarget;
         const radios =  form.querySelectorAll(".summary-delivery__choice");
         
@@ -37,7 +36,7 @@ export default function FormCartSummary() {
     }
 
     const chooseDeliveryMethod = (deliveryMethod: string) => {
-        setDelivery(deliveryMethod);
+        deliverySetter(deliveryMethod);
     }
 
 
@@ -67,7 +66,7 @@ export default function FormCartSummary() {
 
     return (
         <>
-        <form className="product-cart__summary" onSubmit={handleSubmit}>
+        <form name="delivery" className="product-cart__summary" onSubmit={handleSubmit}>
             <h2>Summary</h2>
             <div className="summary-delivery">
                 <div className="summary-delivery__choice">

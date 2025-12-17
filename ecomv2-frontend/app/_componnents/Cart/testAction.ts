@@ -2,10 +2,15 @@
 import { z } from "zod";
 import { schema } from "./formAction/checkOutFormValidationSchema/schema";
 import { nameSchema, emailSchema, CountryCitySchema, phoneSchema, zipCodeSchema, addresSchema, stateSchema, nidSchema} from "./formAction/checkOutFormValidationSchema/schema";
-import { error } from "console";
+import { testOrderServices } from "@/app/data/_services/testService";
+import { send } from "process";
 
 
-export default async function testAction(prevstate, formData) {
+export default async function testAction(currentState, formData) {
+
+    if(formData.get("deliveryMethod") === null) {
+        return {...currentState}
+    }
 
     
     const fnameR  = z.safeParse(nameSchema, formData.get("fname") ? formData.get("fname") : null);
@@ -18,6 +23,8 @@ export default async function testAction(prevstate, formData) {
     const cityR = z.safeParse(CountryCitySchema, formData.get("city") ? formData.get("city") : null)
     const stateR  = z.safeParse(stateSchema, formData.get("state") ? formData.get("state") : undefined);
     const zipR  = z.safeParse(zipCodeSchema, formData.get("zip") ? formData.get("zip") : undefined);
+
+
 
 
 
@@ -46,9 +53,27 @@ export default async function testAction(prevstate, formData) {
         ...(!stateR.success && {state:  stateR.error.flatten().formErrors}),
         ...(!zipR.success && {zip:  zipR.error.flatten().formErrors}),
     }
+    
+    if (Object.keys(errors).length === 0) {
+        const request = await testOrderServices({
+            firstName: valid.fname,
+            lastName: valid.lname,
+            email: valid.email,
+            phone: valid.phone,
+            nid: valid.nid,
+            street: valid.address,
+            city: valid.city,
+            country: valid.country,
+            postCode: valid.zip,
+            delivery: formData.get("deliveryMethod")
+        });
+
+
+            return {...currentState, sent: true, result:{...request}}
+    }
 
    
 
     
-    return {...prevstate, valid:{...valid}, errors: {...errors}}
+    return {...currentState, valid:{...valid}, errors: {...errors}}
 }

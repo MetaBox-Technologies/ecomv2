@@ -10,6 +10,7 @@ import FormCartSummary from "./formCartSummary";
 import "./css/cartTable.css";
 import { RootContext } from "@/app/_providers/RootContext";
 import Link from "next/link";
+import { PageNavigationContext } from "@/app/cart/page";
 
 export const TableUpdater = createContext({
     cartTableStateUpdater: ()=>{}
@@ -19,6 +20,7 @@ export default function ProductTable(){
 
 
     const products = useContext(RootContext).cartContent;
+    const { deliveryContext } = useContext(PageNavigationContext);
     const isEmpty = products.length === 0;
 
   
@@ -43,7 +45,7 @@ export default function ProductTable(){
             {products.map((product)=><ResponsiveManager key={product.id} Mobile={cell} MobileProps={{...product}} Desktop={row} DesktopProps={{...product}}/>)}
         </div>
     </div>)}
-    {!isEmpty && (<FormCartSummary/>)}
+    {!isEmpty && (<FormCartSummary delivery={deliveryContext}/>)}
     {isEmpty && 
     <div className="empty-cart">
         <div className="material-symbols-outlined text-center">shopping_cart_off</div>

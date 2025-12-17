@@ -20,7 +20,7 @@
 }
 
 main {
-    @apply max-w-[1200px]  flex flex-col flex-none px-8 md:items-center lg:items-stretch lg:pt-[80px] lg:flex-row md:gap-[64px] relative transition-[all] duration-300 ease-in-out;
+    @apply max-w-[1200px]  flex flex-col flex-none px-8 md:items-center lg:items-stretch lg:pt-[80px] lg:flex-row md:gap-[64px] relative transition-[all] duration-100 ease-in-out;
 }
 
 
@@ -46,6 +46,6 @@ main {
   }
 }
 
-.go-next {
-  @apply opacity-0;
+.go-left {
+  @apply translate-x-[100];
 }
