@@ -111,6 +111,7 @@ export default function ProductCardScrollable({ articles }:Readonly<ProductCardS
 
   useEffect(()=>{
     const swiperInstance = swiperRef.current;
+    console.log(articles)
     if(swiperInstance) {
       const timerId = setTimeout(resizeHandler(swiperInstance), 150);
       return ()=>{
@@ -144,7 +145,7 @@ export default function ProductCardScrollable({ articles }:Readonly<ProductCardS
           }
         }
       >
-        {articles.map( (article)=><SwiperSlide key={article.id}><Card {...article} isOnHome/></SwiperSlide>)}
+        {articles.map( (article)=><SwiperSlide key={article.id}><Card {...article} images={{url: article.images[0].url, alternativeText: article.images[0].alternativeText}} isOnHome/></SwiperSlide>)}
       </Swiper>
     </div>
     <div className='swiper-scrollbar' ref={scrollbarRef}></div>

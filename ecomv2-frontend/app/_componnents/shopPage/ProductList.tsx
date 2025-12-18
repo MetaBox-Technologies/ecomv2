@@ -25,12 +25,12 @@ export async function ProductList({
   query,
   uniquecategories,
 }: Readonly<ContentListProps>) {
-  const  articles  = await fetchAPI("http://localhost:3000/dummyData.json", {method:"GET"});
+  const  {data}  = await getContent('api/products/') 
  return (
     <ProductListClient
       headline={headline}
       component={component}
-      articles={articles}
+      articles={data}
       uniquecategories={uniquecategories}
     />
  )

@@ -114,12 +114,12 @@ export function Card({
         }}
          /*onClick={()=>setShowActions(!showActions)*}*/>
         {isNew && <div className="lg:w-[60px] lg:h-[30px] md:w-[52px] md:h-[25px] w-[45px] h-[20px] absolute top-[5%] left-[5%] bg-white rounded"><h1 className="font-semibold md:text-base lg:text-lg test-sm text-center">NEW</h1></div>}
-        {PercentageDiscount>0 && (<div className={`lg:w-[60px] lg:h-[30px] md:w-[52px] md:h-[25px] w-[45px] h-[20px]  absolute ${Is_new? "top-[2.4rem] sm:top-[16%] md:top-[16%] lg:top-[17%] xl:top-[15%]" : "top-[5%]"} left-[5%] bg-[#38CB89] rounded`}><h1 className="font-semibold text-white md:text-base lg:text-lg text-sm text-center">-{PercentageDiscount}%</h1></div>)}
+        {PercentageDiscount>0 && (<div className={`lg:w-[60px] lg:h-[30px] md:w-[52px] md:h-[25px] w-[45px] h-[20px]  absolute ${isNew? "top-[2.4rem] sm:top-[16%] md:top-[16%] lg:top-[17%] xl:top-[15%]" : "top-[5%]"} left-[5%] bg-[#38CB89] rounded`}><h1 className="font-semibold text-white md:text-base lg:text-lg text-sm text-center">-{PercentageDiscount}%</h1></div>)}
        
 
         <StrapiImage
-          src={images.url}
-          alt={images.alternativeText || "No alternative text provided"}
+          src={images[0].url}
+          alt={images[0].alternativeText || "No alternative text provided"}
           width={400}
           height={400}
         />
