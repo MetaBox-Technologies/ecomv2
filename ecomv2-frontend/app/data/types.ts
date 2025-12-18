@@ -32,6 +32,7 @@ export interface ArticleProps {
   id: number;
   documentId: string;
   title: string;
+  ProductId: string;
   description: string;
   images: ImageProps[];
   price: number;

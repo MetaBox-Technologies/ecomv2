@@ -33,8 +33,8 @@ export default async function ShopPage({searchParams}:PageProps) {
                             <h4 className="text-[18px] text-gray-600    xl:text-[22px] md:text-[20px]">{hero[0]?.subtitle}</h4>
                         </div>
                         <StrapiImage
-                            src={hero[0]?.backgroundImage.url}
-                            alt={hero[0]?.backgroundImage.alternativeText || "No alternative text provided"}
+                            src={hero[0]?.backgroundImage[0].url}
+                            alt={hero[0]?.backgroundImage[0].alternativeText || "No alternative text provided"}
                             fill
                             className="object-cover"
                         />
@@ -42,7 +42,6 @@ export default async function ShopPage({searchParams}:PageProps) {
                 </div>
 
                 <ProductList
-                  headline="Featured Articles"
                   component={Card}
                   query={query}
                   uniquecategories ={uniquecategories}

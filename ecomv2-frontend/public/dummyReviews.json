@@ -61,5 +61,14 @@
     "comment": "Very nice website. I'm interested in the luxury sofa, looks very comfortable.",
     "date": "2025-12-18",
     "productId": 15
+  },
+  {
+    "reviewId": 8,
+    "pfp": "/images/reviewDefault.jpg",
+    "reviewerName": "sam",
+    "rating": 3,
+    "comment": "Great sofa",
+    "date": "2025-12-18",
+    "productId": 47
   }
 ]

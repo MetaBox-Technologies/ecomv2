@@ -84,3 +84,20 @@ export async function getNewArticles(plimit?: number) {
 
   return fetchAPI(url.href, {method : "GET"})
 }
+
+export async function getReviews(){
+  const url = new URL('/api/review-webs', BASE_URL);
+  const query = qs.stringify({
+    populate: {
+      productId:{
+        fields: ['ProductId'],
+      },
+      pfp: {
+        fields: ["url"]
+      },
+    },
+  })
+
+  url.search = query;
+  return fetchAPI(url.href, {method: 'GET'})
+}

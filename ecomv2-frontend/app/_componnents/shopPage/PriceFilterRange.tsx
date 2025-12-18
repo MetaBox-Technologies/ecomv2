@@ -19,9 +19,11 @@ const priceRanges: PriceRange[] = [
 
 interface Props {
   onChange: (ranges: PriceRange[]) => void;
+  selectedPrice: PriceRange[];
+  isOnMobile?: boolean;
 }
 
-export default function PriceFilter({ onChange }: Props) {
+export default function PriceFilter({ onChange,selectedPrice, isOnMobile=false }: Props) {
   const [selected, setSelected] = useState<number[]>([]);
 
   const toggle = (index: number) => {
@@ -38,22 +40,23 @@ export default function PriceFilter({ onChange }: Props) {
  //onChange is a prop from parent, it will send back to productlist the selected price ranges
   return (
     <div>
-      <h4 className="mt-[13%] font-semibold mb-[6%] text-[120%] font-sans">PRICE</h4>
-      <div className="flex flex-col items-start lg:gap-3 md:gap-1 w-full">
+      <h4 className={`font-semibold text-[110%] font-sans  ${isOnMobile? "mt-[5%] mb-[2%] ml-[2%] underline" : "mt-[13%] mb-[6%]" }`}>PRICE</h4>
+      <div className={`flex flex-col items-start lg:gap-3 md:gap-1 w-full ${isOnMobile?"ml-[1%] gap-2":""}`}>
       {priceRanges.map((range, index) => (
         <label
-          key={index} className="text-gray-500 w-full flex items-center justify-between font-sans font-semibold"
+          key={index} className={`text-gray-500 w-full flex font-sans font-semibold  ${isOnMobile? "flex-row-reverse justify-end gap-[2%]" : "items-center justify-between" }`}
         >
           {range.label}
           <input
             type="checkbox"
             checked={selected.includes(index)}
             onChange={() => toggle(index)}
-            className={
-                        selected.includes(index)
-                          ? "w-5 h-5 border border-gray-400 rounded-2xl accent-black text-white transition-all duration-500"
-                          : "w-5 h-5 border border-gray-400 rounded-2xl bg-white transition-all duration-500"
-                      }
+            className={`
+                w-4 h-4 border border-gray-400 transition-all duration-500 cursor-pointer
+               ${isOnMobile ? "rounded-full mt-[5px]" : " rounded-2xl"} 
+               ${selected.includes(index)? "accent-black text-white bg-black" : "bg-white"}
+            `}
+
           />
         </label>
       ))}

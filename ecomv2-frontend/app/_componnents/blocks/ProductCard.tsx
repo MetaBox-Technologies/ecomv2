@@ -6,14 +6,16 @@ import{useContext, useRef, useState} from "react";
 import QuantityButton from '../QuantityButton/quantitybutton';
 import { RootContext } from "@/app/_providers/RootContext";
 import { cartloader, pushProductToCart, updateCart} from "../Cart/cartContentLoader";
+import { StrapiImage } from '../strapiImage';
+import { GetStrapiURL } from '@/app/utils/get-strapi-url';
 
 type Product = {
   id: number;
   documentedId: string;
-  name: string;
+  title: string;
   slug: string;
   shortDescription: string;
-  description: string;
+  description: any;
   price: number;
   sku: string | null;
   measurement: string;
@@ -49,7 +51,7 @@ type CartItem = {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const images = product.images;
- 
+  console.log(images)
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedColor, setSelectedColor] = useState(product.colours[0]);
   const { cartContent, cartUpdater, isCartOpen } = useContext(RootContext);
@@ -92,12 +94,12 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         const productToPush = {
             id: product.id,
-            prodName: product.name,
+            prodName: product.title,
             prodPrice: product.price,
             quantity: 1,
             image: {
             url: product.images[0].url,
-            alt: product.images[0].alternativeText || product.name,
+            alt: product.images[0].alternativeText || product.title,
             },
             color: selectedColor,
         };
@@ -129,16 +131,20 @@ export default function ProductCard({ product }: ProductCardProps) {
         }
     };
 
+    console.log(product.description)
+
   return (
     <section className="product-page">
             <div className="product-card">
                 <div className="product-left">
                     <div className="carousel">
-                        <img 
-                            src={images[currentIndex].url}
-                            alt={images[currentIndex].alternativeText || product.name}
-                            className="carousel-image" 
+                        <div className="carousel-image flex flex-col justify-center items-center">
+                        <img
+                                  src={GetStrapiURL().slice(0, GetStrapiURL().length-1) + images[currentIndex].url}
+                                  alt={images[currentIndex].alternativeText || "No alternative text provided"}
+                            className='caroussel-image'
                         />
+                        </div>
 
                         <button className="nav-button left" onClick={prevImage}>
                             <i className="fas fa-arrow-left"></i>
@@ -151,13 +157,14 @@ export default function ProductCard({ product }: ProductCardProps) {
 
                     <div className="thumbnail-container">
                     {images.map((img, index) => (
-                        <img
-                        key={index}
-                        src={img.url}
-                        alt={img.alternativeText || product.name}
-                        className="thumbnail cursor-pointer"
-                        onClick={() => setCurrentIndex(index)}
+                        <div key={index}
+                             onClick={() => setCurrentIndex(index)}>
+                                <img
+                                  src={GetStrapiURL().slice(0, GetStrapiURL().length-1) + img.url}
+                                  alt={img.alternativeText || "No alternative text provided"}
+                                  className="thumbnail cursor-pointer border-1 border-[black] rounded-lg"
                         />
+                        </div>
                     ))}
                     </div>
                 </div>
@@ -173,8 +180,8 @@ export default function ProductCard({ product }: ProductCardProps) {
                                     {product.reviewsCount || 0} Reviews
                                 </div>
                             </div>
-                            <h2 className="product-name">{product.name}</h2>
-                            <p className="product-description">{product.description}</p>
+                            <h2 className="product-name">{product.title}</h2>
+                            <p className="product-description"></p>
                         </div>
 
                         <p className="price">$ {product.price.toFixed(2)}</p>
@@ -192,7 +199,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                             <p className="choosen-color">{selectedColor}</p>
 
                             <div className="colors">
-                                {product.colours.map((color, index) => (
+                                {Array.isArray(product.colours) && product.colours.map((color, index) => (
                                 <label key={index} className="color-option">
                                     <input
                                     type="radio"
@@ -224,12 +231,12 @@ export default function ProductCard({ product }: ProductCardProps) {
                             onAddNew={() => {
                                 const productToPush = {
                                     id: product.id,
-                                    prodName: product.name,
+                                    prodName: product.title,
                                     prodPrice: product.price,
                                     quantity: 1,
                                     image: {
                                         url: product.images[0].url,
-                                        alt: product.images[0].alternativeText || product.name,
+                                        alt: product.images[0].alternativeText || product.title,
                                     },
                                     color: selectedColor,
                                 };

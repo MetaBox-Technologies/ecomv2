@@ -10,7 +10,8 @@ interface ArticleProps {
   id: number;
   documentId: string;
   name: string;
-  shortDescription: string;
+  ProductId: string;
+  description: string;
   images: {
     url:string,
     alternativeText:string,
@@ -22,7 +23,6 @@ interface ArticleProps {
   updatedAt: string;
 }
 interface ProductListProps {
-  headline: string;
   component: React.ComponentType<ArticleProps>;
   articles: ArticleProps[];
   uniquecategories:string[];
@@ -30,7 +30,6 @@ interface ProductListProps {
 
 
 export  function ProductListClient({
-  headline,
   component,
   articles,
   uniquecategories
@@ -103,11 +102,11 @@ const filteredArticles = useMemo(() => {
       </div>
 
       <h4 className="lg:mb-[6%] font-semibold text-[120%] font-sans      md:mb-[3%]">CATEGORIES</h4>
-      <FilterCat categories={uniquecategories} onSelect={(value) => setSelectedCategory(value)} />
+      <FilterCat categories={uniquecategories} selected={selectedCategory} onSelect={(value) => setSelectedCategory(value)} />
     </div>
 
     {/* a change in price filter will trigger this */}
-    <PriceFilter onChange={setPriceFilters} />
+    <PriceFilter selectedPrice={PriceFilters} onChange={setPriceFilters} />
   </div>
   <div className="md:hidden flex ml-[8%] mr-[8%] border-y border-gray-300 py-2" > {/* Shown in only smaller devices, a dropdown filtering */}
     <div onClick={()=> setOpen(!open)} className="flex">
@@ -122,25 +121,59 @@ const filteredArticles = useMemo(() => {
     <h4 className="text-[20px] font-semibold  font-sans ml-1 "> Filter</h4>
     </div>
   </div>
-  {open &&(
-    <div className="absolute z-10 bg-white/95 shadow-xl border rounded-lg mt-[50px] sm:w-[35%] p-2 w-[48%] ml-[8%] md:hidden">
-    {/* For smaller devices */}
+    {/* BACKDROP */}
+    <div
+  onClick={() => setOpen(false)}
+  className={`
+    fixed inset-0 bg-black/40 z-20
+    transition-opacity duration-500
+    ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
+        `}
+      />
 
-    <div>
-      {/* Filter by category */}
-      <div className="flex items-center justify-between">
-        <h4 className=" font-semibold text-[120%] font-sans">CATEGORIES</h4>
-        <h4 onClick={()=> setOpen(!open)} className="font-medium text-[120%] mt-[5px]">X</h4>
-      </div>
-      <FilterCat categories={uniquecategories} onSelect={(value) => setSelectedCategory(value)}/>
+
+    {/* BOTTOM SHEET */}
+    <div
+  className={`
+    fixed bottom-0 left-0 w-full h-[60%]
+    bg-white rounded-t-2xl overflow-hidden shadow-xl z-30
+    transform transition-transform duration-500 ease-out md:hidden
+    ${open ? "translate-y-0" : "translate-y-full"}
+  `}
+>
+  {/* Drag handle */}
+  <div className="flex justify-center py-2">
+    <div className="flex flex-col items-center gap-[1.5px]">
+      <hr className="w-10 h-[3px] bg-gray-300 border-0 rounded-full" />
+      <hr className="w-10 h-[2px] bg-gray-300 border-0 rounded-full" />
+    </div>
+  </div>
+
+  {/* Content wrapper */}
+  <div className="px-4 pb-10 h-full overflow-y-auto ml-[1%]">
+    <h4 className="font-semibold font-sans text-[25px] ml-[2%]">Filter</h4>
+
+    <div className="mb-4">
+      <h4 className="font-sans font-semibold text-[110%] mb-2 underline ml-[2%]">
+        CATEGORIES
+      </h4>
+      <FilterCat
+        categories={uniquecategories}
+        selected={selectedCategory}
+        onSelect={(value) => setSelectedCategory(value)}
+        isOnMobile
+      />
     </div>
 
-    {/* a change in price filter will trigger this */}
-    <PriceFilter onChange={setPriceFilters} />
+    <PriceFilter
+      selectedPrice={PriceFilters}
+      onChange={setPriceFilters}
+      isOnMobile
+    />
   </div>
-  )}
+</div>
 
-  <div className="lg:w-[66%] md:w-[61%] mx-[8%] md:mx-0 ">
+  <div className="lg:w-[66%] md:w-[61%] mx-[8%] md:mx-0 mb-[25%] ">
     <div className="flex justify-between">
         <h2 className="xl:text-[150%]  md:text-[140%] sm:text-[130%] text-[1.1rem] font-semibold  font-sans md:mb-[4%] my-[2%] md:my-0">{selectedCategory}</h2>
         <div className="flex justify-end mr-[8%] md:mr-0 my-[2%] md:my-0">

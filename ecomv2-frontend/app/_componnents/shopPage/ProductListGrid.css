@@ -35,8 +35,8 @@
 }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 639px) {
     .products_grid{
-    grid-template-columns: repeat(auto-fit, minmax(200px, 220px));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 }

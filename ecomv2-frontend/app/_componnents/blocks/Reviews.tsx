@@ -1,11 +1,12 @@
 "use client";
+import { GetStrapiURL } from '@/app/utils/get-strapi-url';
 import '../../globals.css';
 import "./Reviews.css";
 import React from "react";
+import { Slice } from 'lucide-react';
 
 type Review = {
-  reviewId: number;
-  pfp: string;
+  pfp: {url:string}
   reviewerName: string;
   rating: number;
   comment: string;
@@ -194,11 +195,11 @@ export default function Reviews({ reviews, productId }: ReviewsProps) {
 
                 {sortedReviews.length > 0 ? (
                   sortedReviews.map((r, index) => (
-                    <React.Fragment key={r.reviewId}>
+                    <React.Fragment key={index}>
                     <div className="comment-card">
                         <div className="comment-up">
                             <div className="profile-pic">
-                                <img src={r.pfp} alt={r.reviewerName} />
+                                <img src={GetStrapiURL().slice(0, GetStrapiURL().length - 1)+ r.pfp.url} alt={r.reviewerName} />
                             </div>
 
                             <div className="comment-info">

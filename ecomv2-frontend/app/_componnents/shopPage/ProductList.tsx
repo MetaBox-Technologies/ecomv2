@@ -4,7 +4,6 @@ import { ProductListClient } from "./ProductListClient";
 import { fetchAPI } from "@/app/utils/fetch-api";
 
 interface ContentListProps {
-  headline: string;
   component: React.ComponentType<ArticleProps>;
   query?: string;
   uniquecategories:string[];
@@ -20,17 +19,15 @@ async function loader(query? :string) {
 }
 
 export async function ProductList({
-  headline,
   component,
   query,
   uniquecategories,
 }: Readonly<ContentListProps>) {
-  const  {data}  = await getContent('api/products/') 
+  const { articles } = await loader(query);
  return (
     <ProductListClient
-      headline={headline}
       component={component}
-      articles={data}
+      articles={articles}
       uniquecategories={uniquecategories}
     />
  )
