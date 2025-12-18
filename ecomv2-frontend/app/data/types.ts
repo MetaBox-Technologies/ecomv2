@@ -17,18 +17,39 @@ export interface LogoProps{
     image: ImageProps[];
 }
 
-export interface ArticleProps {
-  id: number;
+export interface ProductCategoryProps{
+    id: number;
   documentId: string;
   name: string;
-  shortDescription: string;
-  images: ImageProps[];
-  price: number;
-  rating: number;
+  image: ImageProps;
+  slug: string;
   publishedAt: string;
   createdAt: string;
   updatedAt: string;
-  percentagediscount: number;
-  Is_new:boolean;
-  category:string;
+}
+
+export interface ArticleProps {
+  id: number;
+  documentId: string;
+  title: string;
+  description: string;
+  images: ImageProps[];
+  price: number;
+  publishedAt: string;
+  createdAt: string;
+  updatedAt: string;
+  PercentageDiscount: number;
+  product_categories: ProductCategoryProps[];
+  Is_new: boolean;
+}
+
+export interface CategoryProps {
+  id: number;
+  documentId: string;
+  name: string;
+  image: ImageProps;
+  slug: string;
+  publishedAt: string;
+  createdAt: string;
+  updatedAt: string;
 }

@@ -19,19 +19,21 @@ export interface CardProps {
     alternativeText: string,
   };
   price: number;
-  rating: number;
   createdAt: string;
+  percentagediscount: number;
+  Is_new:boolean;
+  category: string;
   isOnHome?: boolean;
 }
 
 export function Card({
   id,
-  name,
-  shortDescription,
+  title,
+  description,
   images,
   price,
-  rating,
   createdAt,
+  PercentageDiscount,
   isOnHome = false
 }: Readonly<CardProps>) {
 
@@ -58,7 +60,7 @@ export function Card({
     const cartContent = cartloader();
     const productToPush = {
           id: id,
-          prodName: name,
+          prodName: title,
           prodPrice: price,
           quantity: 1,
           image: {
@@ -111,21 +113,26 @@ export function Card({
           }, 150)
         }}
          /*onClick={()=>setShowActions(!showActions)*}*/>
-        {/*Is_new && */<div className="lg:w-[60px] lg:h-[30px] md:w-[52px] md:h-[25px] w-[45px] h-[20px] absolute top-[5%] left-[5%] bg-white rounded"><h1 className="font-semibold md:text-base lg:text-lg test-sm text-center">NEW</h1></div>}
-        {/*percentagediscount>0 && (<div className={`lg:w-[60px] lg:h-[30px] md:w-[52px] md:h-[25px] w-[45px] h-[20px]  absolute ${Is_new? "top-[2.4rem] sm:top-[16%] md:top-[16%] lg:top-[17%] xl:top-[15%]" : "top-[5%]"} left-[5%] bg-[#38CB89] rounded`}><h1 className="font-semibold text-white md:text-base lg:text-lg text-sm text-center">-{percentagediscount}%</h1></div>)*/}
+        {isNew && <div className="lg:w-[60px] lg:h-[30px] md:w-[52px] md:h-[25px] w-[45px] h-[20px] absolute top-[5%] left-[5%] bg-white rounded"><h1 className="font-semibold md:text-base lg:text-lg test-sm text-center">NEW</h1></div>}
+        {PercentageDiscount>0 && (<div className={`lg:w-[60px] lg:h-[30px] md:w-[52px] md:h-[25px] w-[45px] h-[20px]  absolute ${Is_new? "top-[2.4rem] sm:top-[16%] md:top-[16%] lg:top-[17%] xl:top-[15%]" : "top-[5%]"} left-[5%] bg-[#38CB89] rounded`}><h1 className="font-semibold text-white md:text-base lg:text-lg text-sm text-center">-{PercentageDiscount}%</h1></div>)}
        
-        <div className="rounded-[20px] h-[349px] w-[231px] md:w-[262px] border-1 border-[var(--neutral-4)]" style={{backgroundImage:'url("http://localhost:3000'+images.url+'")', backgroundSize:"contain", backgroundPosition:"center", backgroundRepeat:"no-repeat"}}>
-        </div>
-        {showActions && <div ref={addToCartBtnRef} onClick={addToCartHandler} className={`w-[90%] left-1/2 -translate-x-1/2 md:px-[24px] md:py-[8px] px-[16px] py-[4px] absolute bottom bottom-[0%] bg-black rounded-lg transition-[all] duration-300 ease-in-out opacity-0 hover:scale-105 ${isOnHome? "!bg-[var(--blue-btn)]": ""}`}><h4 className="md:text-xl text-[15px] text-white text-center" style={{fontFamily:"var(--font-inter)", fontSize:"16px", letterSpacing:"-0.4px"}}>Add to Cart</h4></div>}
+
+        <StrapiImage
+          src={images.url}
+          alt={images.alternativeText || "No alternative text provided"}
+          width={400}
+          height={400}
+        />
+        {showActions && <div ref={addToCartBtnRef} onClick={addToCartHandler} className={`w-[90%] left-1/2 -translate-x-1/2 md:px-[24px] md:py-[8px] px-[16px] py-[4px] absolute bottom bottom-[0%] bg-black rounded-lg transition-[all] duration-300 ease-in-out opacity-0 hover:scale-105 ${isOnHome? "!bg-[var(--blue-btn)]": ""}`}><h4 className="md:text-xl text-[15px] text-white text-center" style={{fontFamily:"var(--font-inter)"}}>Add to Cart</h4></div>}
       </div>
       <div className={`flex flex-col gap-1 h-fit  ${isOnHome ? "": "mt-3"}`} style={{fontFamily:"var(--font-inter)"}}>
         <StarRating rating={3.7} color={isOnHome ? "#ffc554" : "var(--neutral-5)"}/>
-        <h5 className={`font-[600] font-semibold leading-[24px]  ${isOnHome ? "text-[#31393B]": "text-var(--neutral-7)"}`}>{name}</h5>
-        {/*percentagediscount > 0 && <div className="flex gap-2">
-                                        <p className="text-[14px] font-[600] font-semibold leading-[22px]" style={{fontFamily:"var(--font-inter)"}}>${ (price * ((100 - percentagediscount) / 100)).toFixed(2) }</p>
+        <h5 className={`font-[600] font-semibold leading-[24px]  ${isOnHome ? "text-[#31393B]": "text-var(--neutral-7)"}`}>{title}</h5>
+        {PercentageDiscount > 0 && <div className="flex gap-2">
+                                        <p className="text-[14px] font-[600] font-semibold leading-[22px]" style={{fontFamily:"var(--font-inter)"}}>${ (price * ((100 - PercentageDiscount) / 100)).toFixed(2) }</p>
                                         <p className="line-through text-[var(--neutral-4)] text-[14px] font-[400] text-sm leading-[22px]" style={{fontFamily:"var(--font-inter)"}}> ${price}</p>
-                                     </div>*/} 
-        {/*percentagediscount === 0 && */<p className={"text-[14px] font-[600] font-semibold leading-[22px]" + (isOnHome ? " text-left": "")}>${price}</p>}
+                                     </div>} 
+        {PercentageDiscount === 0 && <p className={"text-[14px] font-[600] font-semibold leading-[22px]" + (isOnHome ? " text-left": "")}>${price}</p>}
       </div>
     </div>
   );

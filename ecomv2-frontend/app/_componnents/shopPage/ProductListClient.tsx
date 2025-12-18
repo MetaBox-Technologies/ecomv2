@@ -35,17 +35,17 @@ export  function ProductListClient({
   articles,
   uniquecategories
 }: Readonly<ProductListProps>) {
-  const [visibleCount,setVisibleCount] = useState(4)
+  const [visibleCount,setVisibleCount] = useState(3)
 
   const [PriceFilters, setPriceFilters] = useState<PriceRange[]>([]);
   const [open, setOpen]=useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All products");
   //After passing through child function, pricefilters now stores all selected price ranges objects
   const showMore =() => {
-    setVisibleCount(prev => prev+4);
+    setVisibleCount(prev => prev+3);
   };
   const showLess =() => {
-    setVisibleCount(4);
+    setVisibleCount(3);
   }
   const Component = component;
   const [sortOption, setSortOption] = useState<SortOption>("none");
@@ -57,7 +57,7 @@ const filteredArticles = useMemo(() => {
   if (PriceFilters.length > 0) {
     result = result.filter((a) =>
       PriceFilters.some((range) => {
-        const finalPrice = a.price * ((100 - a.percentagediscount) / 100);
+        const finalPrice = a.price * ((100 - a.PercentageDiscount) / 100);
         return finalPrice >= range.min && finalPrice <= range.max;
       })
     );
@@ -66,18 +66,18 @@ const filteredArticles = useMemo(() => {
   // Apply sorting
   if (sortOption === "lowest") {
     result.sort((a, b) => 
-      (a.price * ((100 - a.percentagediscount) / 100)) -
-      (b.price * ((100 - b.percentagediscount) / 100))
+      (a.price * ((100 - a.PercentageDiscount) / 100)) -
+      (b.price * ((100 - b.PercentageDiscount) / 100))
     );
   } else if (sortOption === "highest") {
     result.sort((a, b) => 
-      (b.price * ((100 - b.percentagediscount) / 100)) -
-      (a.price * ((100 - a.percentagediscount) / 100))
+      (b.price * ((100 - b.PercentageDiscount) / 100)) -
+      (a.price * ((100 - a.PercentageDiscount) / 100))
     );
   } else if (sortOption === "az") {
-    result.sort((a, b) => a.name.localeCompare(b.name));
+    result.sort((a, b) => a.title.localeCompare(b.title));
   } else if (sortOption === "za"){
-    result.sort((a, b)=> b.name.localeCompare(a.name));
+    result.sort((a, b)=> b.title.localeCompare(a.title));
   }
 
   return result;

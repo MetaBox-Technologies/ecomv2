@@ -5,22 +5,31 @@ import { fetchAPI } from "../utils/fetch-api";
 
 const BASE_URL = GetStrapiURL()
 
-const globalSettingsQuery= qs.stringify({
-populate:{
-  hero:{
-    populate:{
-      image:{
-        fields:["url","alternativeText"]
+const globalSettingsQuery= qs.stringify(
+{
+    filters: {
+      slug: {
+        $eq: "shop-page",
+      },
+    },
+    populate: {
+      blocks: {
+        on: {
+          "blocks.hero-banner": {
+            populate: {
+              backgroundImage:{
+                fields: ["url", "alternativeText"],
+              },
+            }
+          }
+         }
         }
       }
-    }
-  }
 }
-,{ encodeValuesOnly: true }
 )
 
 export async function getShopPage() {
-    const path="/api/shop-page";
+    const path="/api/pages";
     const url = new URL(path, BASE_URL)
     url.search = globalSettingsQuery;
     return fetchAPI(url.href, { method: "GET" });
@@ -30,19 +39,26 @@ export async function getContent(path: string,query?: string) {
   const url = new URL(path, BASE_URL);
   url.search = qs.stringify({
     filters: { //gets data based on query,
-         category: { $containsi: query } 
+         product_categories: {
+            name: {
+              $containsi: query,
+            },
+         },
     },
     populate: {
       images: {
         fields: ["url", "alternativeText"],
       },
+      product_categories: {
+      fields: ["name", "slug"],
+    },
     },
   });
 
   return fetchAPI(url.href, { method: "GET" });
 }
 
-export async function getArticles(path:string) {
+export async function getProdCategories(path:string) {
   const url = new URL(path, BASE_URL);
   return fetchAPI(url.href, {method: "GET"});
 }
