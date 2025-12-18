@@ -1,0 +1,102 @@
+[
+  {
+    "id": 4,
+        "documentId": "bu0gt6uus2fybm4liu6pi0iq",
+        "name": "Tray table",
+        "slug": "tray-table",
+        "shortDescription": "Tray tables with multicolors",
+        "description": "Experience the perfect blend of functionality and flair with our Multicolored Tray Tables. These versatile tables are designed to inject a vibrant splash of color into any room while providing an instant, sturdy surface for dining, working, or leisure activities. Crafted for convenience, each table features a reliable folding mechanism, making them the ultimate space-saving solution for small apartments, dorms, or dynamic living areas—they can be effortlessly tucked away when not in use. Built from durable materials with an easy-to-clean finish, these lightweight tables are highly portable and stand up well to everyday spills and use, ensuring they are as practical as they are decorative. Choose from a selection of eye-catching hues to create a playful, personalized look or to simply add a bright, functional accent wherever you need it most.",
+        "price": 19.99,
+        "sku": null,
+        "measurement":"17 1/2x20 5/8",
+        "colours": ["black","grey","red","white"],
+        "reviewsCount":0,
+        "images":[
+      {
+      "url":"/images/products/TABLE.jpg",
+      "alternativeText":null
+      },
+      {
+        "url":"/images/products/TABLE1.jpg",
+        "alternativeText":null
+      },
+      {
+        "url":"/images/products/TABLE2.jpg",
+        "alternativeText":null
+      }
+    ],
+        "stock": 50,
+        "featured": false,
+        "rating": 3.5,
+        "createdAt": "2025-12-08T10:21:52.700Z",
+        "updatedAt": "2025-12-08T10:22:44.974Z",
+        "publishedAt": "2025-12-08T10:22:45.121Z"
+  },
+  {
+    "id": 15,
+    "documentId": "m97u3a4jjkmc75qe2fj7hxnn",
+    "name": "Luxury Sofa",
+    "slug": "luxury-sofa",
+    "shortDescription": "white luxury sofa",
+    "description": "Introducing the epitome of refined comfort and stately design: our Opulent Luxury Sofa. This masterpiece of seating is crafted for the discerning homeowner, combining breathtaking aesthetics with unparalleled comfort. Upholstered in sumptuously soft, high-grade [Mention fabric, e.g., velvet, Italian leather, or bespoke chenille], the sofa features deep, hand-tufted cushions and elegantly rolled or streamlined arms, providing a look that is both timeless and grand. The structure rests on finely detailed, solid [Mention material, e.g., mahogany or polished brass] legs, adding a layer of subtle glamour. Designed to be the undisputed focal point of any high-end living space, this sofa delivers a seating experience that defines true luxury and enduring style.",
+    "price": 299,
+    "sku": null,
+    "measurement":"34 1/2 x 32 3/4 x 29 1/4",
+    "colours": ["beige","grey","white"],
+    "reviewsCount":0,
+    "images":[
+      {
+      "url":"/images/products/luxury sofa.jpg",
+      "alternativeText":null
+      },
+      {
+        "url":"/images/products/luxury sofa1.jpg",
+        "alternativeText":null
+      },
+      {
+        "url":"/images/products/luxury sofa2.jpg",
+        "alternativeText":null
+      }
+    ],
+    "stock": 50,
+    "featured": true,
+    "rating": 5,
+    "createdAt": "2025-12-08T10:27:01.877Z",
+    "updatedAt": "2025-12-08T10:31:35.204Z",
+    "publishedAt": "2025-12-08T10:31:35.286Z"
+  },
+  {
+      "id": 18,
+      "documentId": "hjfctj57z6aqq1vn0yhhrgyh",
+      "name": "Loveseat Sofa",
+      "slug": "loveseat-sofa",
+      "shortDescription": "grey love seat sofa",
+      "description": "Meet the perfect marriage of comfort and compact style with our Grey Loveseat Sofa. Upholstered in a soft, durable fabric in a sophisticated shade of grey, this piece is designed to seamlessly blend into any contemporary or traditional decor scheme, from minimalist apartments to cozy dens. Ideal for smaller living spaces, the loveseat comfortably seats two people without sacrificing luxurious feel. Featuring plush, generously padded cushions and supportive armrests, it offers a welcoming spot for relaxing, reading, or enjoying a quiet evening. The neutral grey hue ensures versatility, easily complementing bold accent colors or",
+      "price": 199,
+      "sku": null,
+
+      "images":[
+      {
+      "url":"/images/products/loveseat sofa.jpg",
+      "alternativeText":null
+      },
+      {
+        "url":"/images/products/loveseat sofa1.jpg",
+        "alternativeText":null
+      },
+      {
+        "url":"/images/products/loveseat sofa2.jpg",
+        "alternativeText":null
+      }
+    ],
+      "measurement":"17 1/2x20 5/8",
+       "colours": ["grey","pink","beige","white"],
+       "reviewsCount":0,
+      "stock": 50,
+      "featured": true,
+      "rating": 4,
+      "createdAt": "2025-12-08T10:24:56.541Z",
+      "updatedAt": "2025-12-08T10:32:29.939Z",
+      "publishedAt": "2025-12-08T10:32:30.052Z"
+    }
+]

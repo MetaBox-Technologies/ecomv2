@@ -118,8 +118,8 @@ export function Card({
        
 
         <StrapiImage
-          src={images[0].url}
-          alt={images[0].alternativeText || "No alternative text provided"}
+          src={images.url}
+          alt={images.alternativeText || "No alternative text provided"}
           width={400}
           height={400}
         />

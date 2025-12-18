@@ -86,11 +86,19 @@
   font-size:20px;
 }
 
+.color-arrow{
+ margin-left:50px;
+}
+
 .btn-container{
   @apply flex flex-row gap-[27px] md:gap-[16px] items-center
 }
 .btn-container:first-child {
   @apply flex-1
+}
+
+.product-page i{
+  color:black;
 }
 
 .cart-btn{

@@ -149,7 +149,7 @@ const filteredArticles = useMemo(() => {
     </div>
     <div className="products_grid">
       {filteredArticles.slice(0, visibleCount).map((article) => (
-        <Component key={article.documentId} {...article} />
+        <Component key={article.documentId} {...article} images={{url:article.images[0].url, alternativeText: article.images[0].alternativeText}} />
       ))}
     </div>
 

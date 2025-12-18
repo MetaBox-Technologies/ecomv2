@@ -43,7 +43,7 @@ export const CartContent = React.memo(forwardRef(({cStatic = false, closer, cont
                         </>
                     }
                     {(products && products.length > 0) &&
-                       products.map((product)=><Cell key={product.id}{...product} onCheckout={cStatic ? false : true} />)
+                       products.map((product,index)=><Cell key={index}{...product} onCheckout={cStatic ? false : true} />)
                     }
                 </div>
                 

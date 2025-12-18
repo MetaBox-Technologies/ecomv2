@@ -81,6 +81,10 @@
   @apply bg-[#141718] text-white;
 }
 
+.reviews-section i{
+  color:black;
+}
+
 /*Large laptops */
 @media (max-width: 1368px) {
   .reviews-section {

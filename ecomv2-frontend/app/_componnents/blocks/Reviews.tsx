@@ -3,17 +3,99 @@ import '../../globals.css';
 import "./Reviews.css";
 import React from "react";
 
-type Review={
-    pfp: { url: string };
-    reviewerName:string;
-    comment:string;
+type Review = {
+  reviewId: number;
+  pfp: string;
+  reviewerName: string;
+  rating: number;
+  comment: string;
+  date: string;
+  productId: number;
+};
+
+//Function to calculate next id
+function getNextReviewId(reviews: Review[]): number {
+  if (reviews.length === 0) return 1;
+  const maxId = Math.max(
+    ...reviews.map(r => (r.reviewId !== null ? r.reviewId : 0))
+  );
+  return maxId + 1;
 }
+
+//Default profile picture
+const DEFAULT_PFP = "/images/reviewDefault.jpg";
 
 interface ReviewsProps {
   reviews: Review[];
+  productId: number;
 }
 
-export default function Reviews({ reviews }: ReviewsProps) {
+export default function Reviews({ reviews, productId }: ReviewsProps) {
+    const [allReviews, setAllReviews] = React.useState<Review[]>(reviews);
+    const [sortOrder, setSortOrder] = React.useState<"default" | "newest" | "oldest">("default");
+
+    const handleReviewSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+
+        const form = e.currentTarget.closest("form");
+        if (!form) return;
+
+        const formData = new FormData(form);
+        const name = formData.get("reviewerName")?.toString();
+        const comment = formData.get("reviewComment")?.toString();
+
+        if (!name || !comment) {
+            alert("Please fill in your name and comment!");
+            return;
+        }
+
+        const newReview: Review = {
+            reviewId: 0,
+            pfp: DEFAULT_PFP,
+            reviewerName: name,
+            rating: Number(formData.get("rating") || 3),
+            comment,
+            date: new Date().toISOString().split("T")[0],
+            productId: Number(formData.get("productId")),
+        };
+
+        try {
+            const res = await fetch("/api/reviews", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(newReview),
+            });
+
+            if (res.ok) {
+                console.log("Review saved successfully");
+                setAllReviews(prev => [...prev, newReview]);
+                setSortOrder("newest"); //new comments always appear at the top
+                form.reset(); 
+            }
+        } catch (err) {
+            console.error("Error saving review:", err);
+        }
+    };
+
+    const sortedReviews = React.useMemo(() => {
+        if (sortOrder === "default") return allReviews;
+
+        return [...allReviews].sort((a, b) => {
+            const dateA = new Date(a.date).getTime();
+            const dateB = new Date(b.date).getTime();
+
+            if (sortOrder === "newest") {
+            return dateB - dateA; //newest first
+            }
+
+            if (sortOrder === "oldest") {
+            return dateA - dateB; //oldest first
+            }
+
+            return 0;
+        });
+    }, [allReviews, sortOrder]);
+
   return (
     <section className="reviews-section">
         <hr className="divider" />
@@ -24,7 +106,7 @@ export default function Reviews({ reviews }: ReviewsProps) {
                     <i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i>
                 </div>
                 <div className="num-reviews">
-                    {reviews.length} Reviews
+                    {allReviews.length} Reviews
                 </div>
             </div>
             <p className="prod-name">Tray Table</p>
@@ -39,6 +121,7 @@ export default function Reviews({ reviews }: ReviewsProps) {
                 {/* Name Input */}
                 <input
                     type="text"
+                    name="reviewerName"
                     placeholder="Your name"
                     className="border border-[#E8ECEF] md:border-0 rounded-full md:rounded-none
                             bg-white focus-visible:ring-0 
@@ -52,15 +135,34 @@ export default function Reviews({ reviews }: ReviewsProps) {
                 {/* Comment Input */}
                 <input
                     type="text"
+                    name="reviewComment"
                     placeholder="Share your thoughts"
                     className="border border-[#E8ECEF] md:border-0 rounded-full md:rounded-none
                             bg-white focus-visible:ring-0 flex-1
                             px-4 text-sm placeholder:text-gray-400 !h-10"
                 />
 
+                {/* Hidden product ID */}
+                <input
+                    type="hidden"
+                    name="productId"
+                    value={productId}
+                />
+
+                {/* Hidden date */}
+                    <input
+                    type="hidden"
+                    name="date"
+                    value={new Date().toISOString()}
+                />
+
+                {/* Rating - to be removed */}
+                <input type="hidden" name="rating" value={3} />
+
                 {/* Button INSIDE FRAME on Desktop, separated on Mobile */}
                 <button
-                    type="submit"
+                    type="button"
+                    onClick={handleReviewSubmit}
                     className="rounded-full w-full md:w-auto h-10 px-6 text-sm font-medium
                             bg-[#0C1120] text-white cursor-pointer
                             transition hover:bg-[#484848]
@@ -75,14 +177,14 @@ export default function Reviews({ reviews }: ReviewsProps) {
 
         <div className="filter-reviews">
             <div className="total-reviews">
-                <p>{reviews.length} Reviews</p>
+                <p>{allReviews.length} Reviews</p>
             </div>
 
             <div className="dropdown">
-                <select>
-                    <option>Newest</option>
-                    <option>Oldest</option>
-                    <option>Default</option>
+                <select onChange={(e) =>setSortOrder(e.target.value as "default" | "newest" | "oldest")}>
+                    <option value="default">Default</option>
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>            
                 </select>
             </div>
         </div>
@@ -90,13 +192,13 @@ export default function Reviews({ reviews }: ReviewsProps) {
         <div className="comments-section">
             <div className="comments-container">
 
-                {reviews.length > 0 ? (
-                reviews.map((r, index) => (
-                    <React.Fragment key={index}>
+                {sortedReviews.length > 0 ? (
+                  sortedReviews.map((r, index) => (
+                    <React.Fragment key={r.reviewId}>
                     <div className="comment-card">
                         <div className="comment-up">
                             <div className="profile-pic">
-                                <img src={r.pfp.url} alt={r.reviewerName} />
+                                <img src={r.pfp} alt={r.reviewerName} />
                             </div>
 
                             <div className="comment-info">
@@ -113,7 +215,7 @@ export default function Reviews({ reviews }: ReviewsProps) {
                     </React.Fragment>
                 ))
                 ) : (
-                // This shows only when there are no reviews
+                //This shows only when there are no reviews
                 <div className="empty-reviews flex flex-col items-center my-12">
                     <img
                         src="/images/textbubble.png"
@@ -132,7 +234,7 @@ export default function Reviews({ reviews }: ReviewsProps) {
                 )}
             </div>
 
-            {reviews.length > 0 && (
+            {allReviews.length > 0 && (
                 <button className="load-btn">Load More</button>
             )}
         </div>

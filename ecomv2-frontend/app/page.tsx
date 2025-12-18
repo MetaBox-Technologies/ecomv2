@@ -10,7 +10,6 @@ import { Aboutone } from "./_componnents/about1/about1";
 import ExpandingSearchBar from "./_componnents/expanding/ExpandingSearchBar";
 import { GetStrapiURL } from "./utils/get-strapi-url";
 
-
 export default async function Home() {
  
   const {data} =  await getContent('api/products')

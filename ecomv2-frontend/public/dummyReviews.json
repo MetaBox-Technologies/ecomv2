@@ -1,0 +1,65 @@
+[
+  {
+    "reviewId": 1,
+    "pfp": "/images/review1.jpg",
+    "reviewerName": "Sofia Havertz",
+    "rating": 4,
+    "comment": "I bought it 3 weeks ago and now come back just to say “Awesome Product”. I really enjoy it. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupt et quas molestias excepturi sint non provident.",
+    "date": "2025-10-28",
+    "productId": 4
+  },
+  {
+    "reviewId": 2,
+    "pfp": "/images/review2.jpg",
+    "reviewerName": "Nicolas Jensen",
+    "rating": 4.5,
+    "comment": "I bought it 3 weeks ago and now come back just to say “Awesome Product”. I really enjoy it. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupt et quas molestias excepturi sint non provident.",
+    "date": "2025-11-12",
+    "productId": 4
+  },
+  {
+    "reviewId": 3,
+    "pfp": "/images/review3.jpg",
+    "reviewerName": "Nicolas Jensen",
+    "rating": 5,
+    "comment": "I bought it 3 weeks ago and now come back just to say “Awesome Product”. I really enjoy it. At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupt et quas molestias excepturi sint non provident.",
+    "date": "2025-10-25",
+    "productId": 15
+  },
+  {
+    "reviewId": 4,
+    "pfp": "/images/reviewDefault.jpg",
+    "reviewerName": "Asliya Imaan",
+    "rating": 3,
+    "comment": "Nice sofa!",
+    "date": "2025-12-18",
+    "productId": 15
+  },
+  {
+    "reviewId": 5,
+    "pfp": "/images/reviewDefault.jpg",
+    "reviewerName": "Asliya Imaan",
+    "rating": 3,
+    "comment": "Comfortable!",
+    "date": "2025-12-18",
+    "productId": 18
+  },
+  {
+    "reviewId": 6,
+    "pfp": "/images/reviewDefault.jpg",
+    "reviewerName": "Oowais",
+    "rating": 3,
+    "comment": "sofa la bonto. aster ici mem",
+    "date": "2025-12-18",
+    "productId": 15
+  },
+  {
+    "reviewId": 7,
+    "pfp": "/images/reviewDefault.jpg",
+    "reviewerName": "Yoonus",
+    "rating": 3,
+    "comment": "Very nice website. I'm interested in the luxury sofa, looks very comfortable.",
+    "date": "2025-12-18",
+    "productId": 15
+  }
+]
