@@ -1,6 +1,8 @@
 import { useState, useRef } from "react";
 import { Search, X, LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { usePathname, useRouter } from "next/navigation";
+import { useDebounce, useDebouncedCallback } from "use-debounce";
 
 interface ExpandingSearchBarProps {
   icon?: LucideIcon;
@@ -11,16 +13,40 @@ const ExpandingSearchBar = ({ icon: Icon = Search }: ExpandingSearchBarProps) =>
   const [searchValue, setSearchValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
+  const path = usePathname();
 
   const handleIconClick = () => {
     setIsExpanded(true);
     inputRef.current?.focus();
   };
-
+  
+  const handleKeyPress = (e) => {
+    if(e.key === "Enter" && e.target.value.trim().length !== 0) {
+      router.push(`/shop?search=${e.target.value.trim()}`)
+    }
+  }
   const handleClear = () => {
     setSearchValue("");
     inputRef.current?.focus();
   };
+  const debounce = useDebouncedCallback((e: Event)=>{
+      const term = e.target.value.trim().length > 0;
+      const queryParams = new URLSearchParams();
+      if(term) {
+        queryParams.set("search", e.target.value.trim())
+      } else {
+        queryParams.delete("search")
+      }
+      router.replace(`${path}?${queryParams.toString()}`, {scroll: false})
+
+  }, 300)
+  const handLeChange = (e) => {
+    setSearchValue(e.target.value);
+    if(path === "/shop") {
+      debounce(e);
+    }
+  }
 
   return (
     <div
@@ -51,12 +77,13 @@ const ExpandingSearchBar = ({ icon: Icon = Search }: ExpandingSearchBarProps) =>
         ref={inputRef}
         type="text"
         value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
+        onChange={handLeChange}
         onFocus={() => setIsFocused(true)}
         onBlur={() => {
           setIsFocused(false);
           if (!searchValue) setIsExpanded(false);
         }}
+        onKeyDown={handleKeyPress}
         placeholder="Search..."
         className={cn(
           "w-full h-full bg-transparent pl-8 pr-11 text-search-text placeholder:text-search-placeholder outline-none transition-opacity duration-300 relative z-10",

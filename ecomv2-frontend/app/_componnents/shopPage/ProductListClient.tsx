@@ -2,6 +2,7 @@
 import "../../globals.css";
 import './ProductListGrid.css';
 import { useState, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { FilterCat } from "./FilterCategory";
 import PriceFilter, {PriceRange} from "./PriceFilterRange";
@@ -34,8 +35,8 @@ export  function ProductListClient({
   articles,
   uniquecategories
 }: Readonly<ProductListProps>) {
-  const [visibleCount,setVisibleCount] = useState(3)
-
+  const [visibleCount,setVisibleCount] = useState(4)
+  const searchParams = useSearchParams();
   const [PriceFilters, setPriceFilters] = useState<PriceRange[]>([]);
   const [open, setOpen]=useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All products");
@@ -52,6 +53,15 @@ export  function ProductListClient({
 const filteredArticles = useMemo(() => {
   let result = [...articles];
 
+
+  if(searchParams.has("search") && searchParams.get("search")?.length > 0){
+    const term = searchParams.get("search");
+    result = result.filter((searched)=>{
+      return searched.title.toLowerCase().includes(term.toLowerCase());
+    })
+  }
+
+
   // Apply price filter
   if (PriceFilters.length > 0) {
     result = result.filter((a) =>
@@ -61,6 +71,8 @@ const filteredArticles = useMemo(() => {
       })
     );
   }
+
+  
 
   // Apply sorting
   if (sortOption === "lowest") {
@@ -80,7 +92,7 @@ const filteredArticles = useMemo(() => {
   }
 
   return result;
-}, [articles, PriceFilters, sortOption]);
+}, [articles, PriceFilters, sortOption, searchParams]);
 
   return (
     <section className="w-full flex flex-col md:flex-row mb-[10%]">
@@ -175,14 +187,14 @@ const filteredArticles = useMemo(() => {
 
   <div className="lg:w-[66%] md:w-[61%] mx-[8%] md:mx-0 mb-[25%] ">
     <div className="flex justify-between">
-        <h2 className="xl:text-[150%]  md:text-[140%] sm:text-[130%] text-[1.1rem] font-semibold  font-sans md:mb-[4%] my-[2%] md:my-0">{selectedCategory}</h2>
+        <h2 className="xl:text-[150%]  md:text-[140%] sm:text-[130%] text-[1.1rem] font-semibold  font-sans md:mb-[4%] my-[2%] md:my-0">{selectedCategory + ((searchParams.has("search") && searchParams.get("search")?.trim().length > 0) ? ` with "${searchParams.get("search")?.trim()}"` : "")}</h2>
         <div className="flex justify-end mr-[8%] md:mr-0 my-[2%] md:my-0">
         <SortBy onChange={setSortOption} />
         </div>
     </div>
     <div className="products_grid">
       {filteredArticles.slice(0, visibleCount).map((article) => (
-        <Component key={article.documentId} {...article} images={{url:article.images[0].url, alternativeText: article.images[0].alternativeText}} />
+        <Component key={article.documentId} {...article} images={{url: article.images[0].url , alternativeText: article.images[0].alternativeText}} />
       ))}
     </div>
 

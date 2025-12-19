@@ -35,6 +35,8 @@ export default function ProductCardScrollable({ articles }:Readonly<ProductCardS
     hide: false,
     draggable: true,
   };
+  console.log("------test log")
+  articles.forEach((article)=>{console.log(article.images)})
 
   const modulesConfig = [FreeMode, Scrollbar]; //modules needed
 
@@ -145,7 +147,7 @@ export default function ProductCardScrollable({ articles }:Readonly<ProductCardS
           }
         }
       >
-        {articles.map( (article)=><SwiperSlide key={article.id}><Card {...article} images={{url: article.images[0].url, alternativeText: article.images[0].alternativeText}} isOnHome/></SwiperSlide>)}
+        {articles.map( (article)=><SwiperSlide key={article.id}><Card {...article} images={{url: article.images[0].url, alternativeText: article.images[0].alternativeText}} isOnHome={true}/></SwiperSlide>)}
       </Swiper>
     </div>
     <div className='swiper-scrollbar' ref={scrollbarRef}></div>

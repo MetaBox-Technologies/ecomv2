@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useContext } from "react";
 import { RootContext } from "@/app/_providers/RootContext";
 import { popProductFromCart } from "./cartContentLoader";
+import { GetStrapiURL } from "@/app/utils/get-strapi-url";
 
 
 export default function Row({id, image, prodName, color, prodPrice, quantity}:Readonly<ProductCellProps>) {
@@ -17,7 +18,7 @@ export default function Row({id, image, prodName, color, prodPrice, quantity}:Re
     return (
         <div className="product-table__row">
             <div className="col__main">
-                <div className="w-[80px] h-[96px] rounded-md border-1 border-[var(--neutral-4)]" style={{backgroundImage:'url("http://localhost:3000'+image.url+'")', backgroundSize:"contain", backgroundPosition:"center", backgroundRepeat:"no-repeat"}}/>
+                <div className="w-[80px] h-[96px] rounded-md border-1 border-[var(--neutral-4)]" style={{backgroundImage:'url("'+GetStrapiURL().slice(0, GetStrapiURL().length-1)+image.url+'")', backgroundSize:"contain", backgroundPosition:"center", backgroundRepeat:"no-repeat"}}/>
                 <div className="product-item__overview">
                     <p className="name">{prodName}</p>
                     <p className="color">Color: {color}</p>

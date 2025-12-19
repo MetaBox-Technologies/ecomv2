@@ -1,9 +1,10 @@
-"use client"
+"use server"
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { headers } from "next/headers";
 
-export default function Breadcrumbs(){
-    const pathname= usePathname();
+export default async function Breadcrumbs(){
+    const pathname= (await headers()).get("x-pathname");
+    console.log(pathname)
     const segments = pathname.split("/").filter(Boolean) //split return ["","SHOP","PRODUCT",""], filter boolean remove the ""
     
     const breadCrumbItems = segments.map((segment,index)=>{
@@ -34,6 +35,6 @@ export default function Breadcrumbs(){
         </span>
       );
     })}
-  </div>
-);                                                 
+  </div> 
+);                                             
 }

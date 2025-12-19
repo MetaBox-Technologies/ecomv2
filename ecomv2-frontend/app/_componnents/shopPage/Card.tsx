@@ -1,5 +1,5 @@
 "use client";
-import{useContext, useRef, useState} from "react";
+import{useContext, useEffect, useRef, useState} from "react";
 import { ImageProps} from "../../data/types"
 import Link from "next/link";
 import { StrapiImage } from "../strapiImage";
@@ -9,6 +9,7 @@ import { url } from "inspector";
 import { RootContext } from "@/app/_providers/RootContext";
 import Image from "next/image";
 import './description.css';
+import { GetStrapiURL } from "@/app/utils/get-strapi-url";
 
 export interface CardProps {
   id: number,
@@ -46,6 +47,7 @@ export function Card({
   const [showActions, setShowActions] = useState(false);
   const addToCartBtnRef = useRef(null);
   const { isCartOpen, cartUpdater } = useContext( RootContext );
+  const offuscimgUrl = btoa(`url("${GetStrapiURL() + images.url.slice(1)}")`);
 
   const pushNewPorduct = (productToPush: Product) => {
     if(addToCartBtnRef.current)
@@ -94,9 +96,12 @@ export function Card({
      }
   }
 
+ 
+
   return (
-    <div className={`flex sm:flex-col  gap-3 sm:gap-0 ${isOnHome ? "w-[231px] md:w-[262px]  flex-shrink-0 flex flex-col items-start gap-3" : ""}`}>
-      <div className={`relative w-[100%] hover:cursor-pointer rounded-3xl overflow-hidden ${isOnHome ? "" : "sm:h-[200px] lg:h-[300px] xl:h-[350px] bg-gray-100"} `}
+    <div className={`flex sm:flex-col  gap-3 sm:gap-0 ${isOnHome ? "w-[231px] md:w-[262px] flex-shrink-0 flex flex-col items-start gap-3" : ""}`}>
+      <div className={`relative w-[100%] hover:cursor-pointer rounded-3xl overflow-hidden ${isOnHome ? "h-[308px] md:h-[349px border-1 border-black]" : "sm:h-[200px] lg:h-[300px] xl:h-[350px] bg-gray-100"}`}
+          style={{backgroundImage: atob(offuscimgUrl), backgroundSize:"contain", backgroundPosition: "center", backgroundRepeat: "no-repeat"}}
          onMouseEnter={()=>{
           setShowActions(true);
           setTimeout(()=>{
@@ -115,18 +120,18 @@ export function Card({
         }}
         
          /*onClick={()=>setShowActions(!showActions)*}*/>
-        <Link href={`/product/${ProductId}`} className="w-full h-full">
+        <Link href={`/product/${ProductId}`} className='w-full h-full prod-bg' data-bg={offuscimgUrl}>
         {isNew && <div className="lg:w-[60px] lg:h-[30px] md:w-[52px] md:h-[25px] w-[45px] h-[20px] absolute top-[5%] left-[5%] bg-white rounded"><h1 className="font-semibold md:text-base lg:text-lg test-sm text-center">NEW</h1></div>}
         {PercentageDiscount>0 && (<div className={`lg:w-[60px] lg:h-[30px] md:w-[52px] md:h-[25px] w-[45px] h-[20px]  absolute ${isNew? "top-[2.8rem] sm:top-[19%] md:top-[20%] lg:top-[19%] xl:top-[17%]" : "top-[5%]"} left-[5%] bg-[#38CB89] rounded`}><h1 className="font-semibold text-white md:text-base lg:text-lg text-sm text-center">-{PercentageDiscount}%</h1></div>)}
        
 
-        <StrapiImage
+        {/*<StrapiImage
           src={images.url}
           alt={images.alternativeText || "No alternative text provided"}
           width={400}
           height={400}
           className="w-full h-full object-contain"
-        />
+        />*/}
         </Link>
         {showActions && <div ref={addToCartBtnRef} onClick={addToCartHandler} className={`hidden sm:block w-[90%] left-1/2 -translate-x-1/2 md:px-[24px] md:py-[8px] px-[16px] py-[4px] absolute bottom bottom-[0%] bg-black rounded-lg transition-[all] duration-300 ease-in-out opacity-0 hover:scale-105 ${isOnHome? "!bg-[var(--blue-btn)]": ""}`}><h4 className="md:text-xl text-[15px] text-white text-center" style={{fontFamily:"var(--font-inter)"}}>Add to Cart</h4></div>}
       </div>

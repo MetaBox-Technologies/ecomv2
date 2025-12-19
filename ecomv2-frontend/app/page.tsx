@@ -13,6 +13,7 @@ import { GetStrapiURL } from "./utils/get-strapi-url";
 export default async function Home() {
  
   const {data} =  await getContent('api/products')
+  console.log(data[0].images);
   
   return(
     <>

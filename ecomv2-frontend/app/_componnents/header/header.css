@@ -18,7 +18,7 @@ header:not(.cart-header) {
     padding: 0;
     width: 100%;
     position: fixed;
-    z-index: 99;
+    z-index: 9;
     transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
