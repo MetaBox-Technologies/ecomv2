@@ -1,7 +1,7 @@
 @reference "../../globals.css";
 
 .product-page {
-  @apply px-[200px] py-[50px] mt-[70px];
+  @apply px-[200px] py-[50px];
 }
 
 .product-card {

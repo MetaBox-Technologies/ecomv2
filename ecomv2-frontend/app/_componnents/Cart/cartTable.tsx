@@ -42,7 +42,7 @@ export default function ProductTable(){
             </div>
         </div>
         <div className="product-table__body flex flex-col items-center sm:block">
-            {products.map((product)=><ResponsiveManager key={product.id} Mobile={cell} MobileProps={{...product}} Desktop={row} DesktopProps={{...product}}/>)}
+            {products.map((product, index)=><ResponsiveManager key={product.id + index} Mobile={cell} MobileProps={{...product}} Desktop={row} DesktopProps={{...product}}/>)}
         </div>
     </div>)}
     {!isEmpty && (<FormCartSummary delivery={deliveryContext}/>)}
