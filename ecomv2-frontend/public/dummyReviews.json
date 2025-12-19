@@ -70,5 +70,23 @@
     "comment": "Great sofa",
     "date": "2025-12-18",
     "productId": 47
+  },
+  {
+    "reviewId": 9,
+    "pfp": "/images/reviewDefault.jpg",
+    "reviewerName": "sam",
+    "rating": 3,
+    "comment": "Great sofa",
+    "date": "2025-12-19",
+    "productId": 61
+  },
+  {
+    "reviewId": 10,
+    "pfp": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png",
+    "reviewerName": "sam",
+    "rating": 3,
+    "comment": "Great sofa",
+    "date": "2025-12-19",
+    "productId": 69
   }
 ]

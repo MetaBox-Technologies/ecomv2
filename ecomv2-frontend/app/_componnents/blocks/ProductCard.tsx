@@ -19,8 +19,7 @@ type Product = {
   price: number;
   sku: string | null;
   measurement: string;
-  colours: string[];
-  reviewsCount: number;
+  reviewsCount?: number;
   images: {
     url: string;
     alternativeText: string | null;
@@ -31,6 +30,7 @@ type Product = {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
+  colour: any;
 };
 
 export interface ProductCardProps {
@@ -50,10 +50,15 @@ type CartItem = {
 };
 
 export default function ProductCard({ product }: ProductCardProps) {
+    console.log("----colour")
+    const colours = Array.isArray(product.colour)
+    ? product.colour.map(c => c.name)
+  : [];
+    console.log(colours)
   const images = product.images;
-  console.log(images)
+
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedColor, setSelectedColor] = useState(product.colours[0]);
+  const [selectedColor, setSelectedColor] = useState(colours[0]);
   const { cartContent, cartUpdater, isCartOpen } = useContext(RootContext);
   const addToCartBtnRef = useRef<HTMLButtonElement | null>(null);
 
@@ -131,8 +136,6 @@ export default function ProductCard({ product }: ProductCardProps) {
         }
     };
 
-    console.log(product.description)
-
   return (
     <section className="product-page">
             <div className="product-card">
@@ -181,7 +184,13 @@ export default function ProductCard({ product }: ProductCardProps) {
                                 </div>
                             </div>
                             <h2 className="product-name">{product.title}</h2>
-                            <p className="product-description"></p>
+                            <p className="product-description">
+                                {product.description.map((block, i) => (
+                                <span key={i}>
+                                    {block.children.map(child => child.text).join("")}
+                                </span>
+                                ))}
+                            </p>
                         </div>
 
                         <p className="price">$ {product.price.toFixed(2)}</p>
@@ -199,7 +208,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                             <p className="choosen-color">{selectedColor}</p>
 
                             <div className="colors">
-                                {Array.isArray(product.colours) && product.colours.map((color, index) => (
+                                {Array.isArray(colours) && colours.map((color, index) => (
                                 <label key={index} className="color-option">
                                     <input
                                     type="radio"

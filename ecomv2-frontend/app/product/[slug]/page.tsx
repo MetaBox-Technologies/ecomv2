@@ -4,6 +4,7 @@ import Reviews from "../../_componnents/blocks/Reviews";
 import { PageRenderer } from "@/app/_componnents/blocks/ProductPageRenderer";
 import { getContent, getReviews } from "@/app/data/loaders";
 import { ArticleProps } from "@/app/data/types";
+import { title } from "process";
 //const ProductCard = dynamic(()=>import('../../_componnents/blocks/ProductCard'), {ssr: false});
 //const Reviews = dynamic(()=>import('../../_componnents/blocks/Reviews'), {ssr: false});
 
@@ -22,11 +23,11 @@ export default async function  page({ params }) {
     const fetchData = async () => {
       try {
           const res=await loader();
+
           //Searching for the slug name in the url
           const match = res.articles.filter(item =>
             item.ProductId === slugStr
           );
-
           return match;
 
         } catch (err) {
@@ -53,12 +54,13 @@ export default async function  page({ params }) {
 
     const dummyProduct = await fetchData();
     const allReviews = await fetchReviews();
+    console.log(dummyProduct[0].id)
     const productReviews = allReviews
       .filter((r: any) => r.productId.id === dummyProduct[0].id)
       .map((r: any) => ({
-        pfp: { url: r.pfp.url},  
         reviewerName: r.name,
         comment: r.Comment,
+        rating: r.rating,
       }));
     console.log('----the match review')
     console.log(productReviews)
@@ -67,6 +69,6 @@ export default async function  page({ params }) {
       return <h1>Product not found</h1>;
     //Product found and display its data and reviews*/
     return(
-      <PageRenderer product={dummyProduct[0]} reviews={productReviews} productId={dummyProduct[0].id}/>
+      <PageRenderer product={dummyProduct[0]} reviews={productReviews} productId={dummyProduct[0].id} name={dummyProduct[0].title}/>
     );
 }

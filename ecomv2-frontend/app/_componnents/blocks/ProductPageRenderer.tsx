@@ -10,7 +10,7 @@ interface PageRendererProps{
     productId: number;
 }
 
-export function PageRenderer({product,reviews,productId}:Readonly<PageRendererProps>){
+export function PageRenderer({product,reviews,productId,name}:Readonly<PageRendererProps>){
 
     const ProductCard = dynamic(()=>import('../../_componnents/blocks/ProductCard'), {ssr: false});
     const Reviews = dynamic(()=>import('../../_componnents/blocks/Reviews'), {ssr: false});
@@ -20,7 +20,7 @@ export function PageRenderer({product,reviews,productId}:Readonly<PageRendererPr
     return (
         <main className="relative top-[105px]">
             <ProductCard product={product} />
-            <Reviews reviews={reviews} productId={productId}/>
+            <Reviews reviews={reviews} productId={productId} name={name}/>
         </main>
     );
 }

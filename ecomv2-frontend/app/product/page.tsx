@@ -1,10 +1,13 @@
-"use client"
 
-import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { usePathname } from "next/navigation";
-const ProductCard = dynamic(()=>import('../_componnents/blocks/ProductCard'), {ssr: false});
-const Reviews = dynamic(()=>import('../_componnents/blocks/Reviews'), {ssr: false});
+import { getContent, getReviews } from "../data/loaders";
+import { ArticleProps } from "../data/types";
+import { PageRenderer } from "@/app/_componnents/blocks/ProductPageRenderer";
+import ProductCard from "../_componnents/blocks/ProductCard";
+import Reviews from "../_componnents/blocks/Reviews";
+
+//const ProductCard = dynamic(()=>import('../_componnents/blocks/ProductCard'), {ssr: false});
+//const Reviews = dynamic(()=>import('../_componnents/blocks/Reviews'), {ssr: false});
 
 const dummyReviews = [
   {
@@ -24,28 +27,54 @@ const dummyReviews = [
   },
 ];
 
-export default function ProductDisplay(){
-  const [dummyProduct, setDummyProduct] = useState<any | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res=await fetch("/dummyProduct.json");
-        const data= await res.json();
-        setDummyProduct(data[0]);
-      } catch (err) {
-        console.error("Error loading dummy product JSON:", err);
+export default async function ProductDisplay(){
+  async function loader() {
+        const { data } = await getContent("/api/products");
+        return {
+          articles: (data as ArticleProps[]) || [],
+        };
       }
-    };
-    fetchData();
-  }, []);
+  const fetchData = async () => {
+      try {
+        const res=await loader();
 
-  /*const newArrivalsDummy =  await fetchAPI("http://localhost:3000/dummyData.json", {method : "GET"});*/
+        //Searching for the slug name in the url
+        const match = res.articles.filter(item =>
+          item.ProductId === "bedside-lamp"
+        );
+      return match;
+  
+      } catch (err) {
+          console.error("Error loading dummy product JSON:", err);
+      }
+      };
+  
+  const fetchReviews = async () => {
+        try {
+          const review = await getReviews();
+          console.log('------reviews 2');
+          return review.data;
+        } catch (err) {
+          console.error("Error loading dummy reviews JSON:", err);
+          return [];
+        }
+      };
+
+  const dummyProduct = await fetchData();
+  const allReviews = await fetchReviews();
+    const productReviews = allReviews
+      .filter((r: any) => r.productId.id === dummyProduct[0].id)
+      .map((r: any) => ({  
+        reviewerName: r.name,
+        comment: r.Comment,
+        rating: r.rating,
+      }));
+    console.log('----the match review')
+    console.log(productReviews)
 
   return (
     <main>
-      <ProductCard product={dummyProduct} />
-      <Reviews reviews={dummyReviews} />
+      <PageRenderer product={dummyProduct[0]} reviews={productReviews} productId={dummyProduct[0].id}/>
     </main>
   );
 }

@@ -52,6 +52,9 @@ export async function getContent(path: string,query?: string) {
       product_categories: {
       fields: ["name", "slug"],
     },
+      colour:{
+        fields: ["name"],
+      }
     },
   });
 
@@ -91,6 +94,7 @@ export async function getReviews(){
     populate: {
       productId:{
         fields: ['ProductId'],
+        
       },
       pfp: {
         fields: ["url"]

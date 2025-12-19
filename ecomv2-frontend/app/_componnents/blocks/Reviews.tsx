@@ -4,6 +4,9 @@ import '../../globals.css';
 import "./Reviews.css";
 import React from "react";
 import { Slice } from 'lucide-react';
+import StarRating from '../shopPage/StarRating';
+import StarRatingInput from '../global/StarRatingInput';
+import { useState } from 'react';
 
 type Review = {
   pfp: {url:string}
@@ -24,48 +27,68 @@ function getNextReviewId(reviews: Review[]): number {
 }
 
 //Default profile picture
-const DEFAULT_PFP = "/images/reviewDefault.jpg";
+//const DEFAULT_PFP = GetStrapiURL().slice(0, GetStrapiURL().length - 1) + "/images/reviewDefault.jpg";;
+const DEFAULT_PFP = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+console.log(DEFAULT_PFP)
 
 interface ReviewsProps {
   reviews: Review[];
-  productId: number;
+  productId: any;
+  name: string;
 }
 
-export default function Reviews({ reviews, productId }: ReviewsProps) {
+export default function Reviews({ reviews, productId, name }: ReviewsProps) {
     const [allReviews, setAllReviews] = React.useState<Review[]>(reviews);
     const [sortOrder, setSortOrder] = React.useState<"default" | "newest" | "oldest">("default");
+    const [rating, setRating] = useState(0);
+    const [visibleCount,setVisibleCount] = useState(1)
 
-    const handleReviewSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    const showMore =() => {
+    setVisibleCount(prev => prev+1);
+  };
+  const showLess =() => {
+    setVisibleCount(1);
+  }
+
+    const handleReviewSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const form = e.currentTarget.closest("form");
+        const form = e.currentTarget
+        console.log(form)
         if (!form) return;
 
         const formData = new FormData(form);
         const name = formData.get("reviewerName")?.toString();
         const comment = formData.get("reviewComment")?.toString();
-
+        console.log("--------name1")
+        console.log(name)
+        console.log(comment)
+        console.log(Number(formData.get("productId")))
+        console.log(new Date().toISOString().split("T")[0])
+        console.log(Number(formData.get("rating")))
         if (!name || !comment) {
             alert("Please fill in your name and comment!");
             return;
         }
-
-        const newReview: Review = {
-            reviewId: 0,
-            pfp: DEFAULT_PFP,
-            reviewerName: name,
+                const newReview = {
+        data: {
+            name,
             rating: Number(formData.get("rating") || 3),
-            comment,
-            date: new Date().toISOString().split("T")[0],
+            Comment: comment,
+            Date: new Date().toISOString().split("T")[0],
             productId: Number(formData.get("productId")),
+        }
         };
 
+
         try {
-            const res = await fetch("/api/reviews", {
+            const res = await fetch(`http://159.65.15.249:1337/api/review-webs`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(newReview),
             });
+
+            console.log(res.json())
 
             if (res.ok) {
                 console.log("Review saved successfully");
@@ -110,11 +133,11 @@ export default function Reviews({ reviews, productId }: ReviewsProps) {
                     {allReviews.length} Reviews
                 </div>
             </div>
-            <p className="prod-name">Tray Table</p>
+            <p className="prod-name">{name}</p>
         </div>
 
         <div className="reviews-form w-full">
-            <form className="w-full rounded-3xl border border-[#E8ECEF] bg-white p-4
+            <form onSubmit={handleReviewSubmit} className="w-full rounded-3xl border border-[#E8ECEF] bg-white p-4
                         md:rounded-ful md:py-2 md:px-4"
             >
                 <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-4 w-full">
@@ -158,12 +181,13 @@ export default function Reviews({ reviews, productId }: ReviewsProps) {
                 />
 
                 {/* Rating - to be removed */}
-                <input type="hidden" name="rating" value={3} />
+                <input type="hidden" name="rating" value={rating} />
+                <StarRatingInput value={rating} onChange={setRating} />
 
                 {/* Button INSIDE FRAME on Desktop, separated on Mobile */}
                 <button
-                    type="button"
-                    onClick={handleReviewSubmit}
+                    type="submit"
+                   
                     className="rounded-full w-full md:w-auto h-10 px-6 text-sm font-medium
                             bg-[#0C1120] text-white cursor-pointer
                             transition hover:bg-[#484848]
@@ -194,17 +218,19 @@ export default function Reviews({ reviews, productId }: ReviewsProps) {
             <div className="comments-container">
 
                 {sortedReviews.length > 0 ? (
-                  sortedReviews.map((r, index) => (
+                  sortedReviews.slice(0, visibleCount).map((r, index) => (
                     <React.Fragment key={index}>
                     <div className="comment-card">
                         <div className="comment-up">
                             <div className="profile-pic">
-                                <img src={GetStrapiURL().slice(0, GetStrapiURL().length - 1)+ r.pfp.url} alt={r.reviewerName} />
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" />
                             </div>
 
                             <div className="comment-info">
                                 <h3 className="reviewer-name">{r.reviewerName}</h3>
-                                <p className="ratings"><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i></p>
+                                <div className="ratings">
+                                    <StarRating rating={r.rating}/>
+                                </div>
                             </div>
                         </div>
 
@@ -235,9 +261,9 @@ export default function Reviews({ reviews, productId }: ReviewsProps) {
                 )}
             </div>
 
-            {allReviews.length > 0 && (
-                <button className="load-btn">Load More</button>
-            )}
+            {visibleCount < allReviews.length && (
+            <button className="load-btn" onClick={showMore}>Load More</button>
+    )}
         </div>
     </section>
   );

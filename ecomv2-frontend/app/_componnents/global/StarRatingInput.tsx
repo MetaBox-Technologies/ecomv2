@@ -36,7 +36,7 @@ export default function StarRatingInput({
           >
             <FaStar
               style={{
-                color: ratingValue <= (hover ?? value)? "gold" :"lightgray"
+                color: ratingValue <= (hover ?? value)? "black" :"lightgray"
               }} 
             />
           </button>
