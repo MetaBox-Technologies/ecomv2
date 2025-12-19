@@ -48,6 +48,7 @@ nav {
     height: 65px;
     padding: 0% 12% 0%;
     font-family: var(--font-grotesk);
+    box-shadow: 0 10px 12px -5px rgba(0, 0, 0, 0.2);
 }
 
 .logo {
@@ -56,10 +57,10 @@ nav {
 }
 
 #icon_container {
-    display: inline-flex;
-    gap: 5px;
+    display: flex;
     color: black;
     align-items: center;
+    gap: 10px;
 }
 
 #icon {
@@ -74,7 +75,7 @@ nav {
     color: rgb(123, 123, 123);
 }
 
-#links_container:hover, #links_container:active {
+#links_container a:hover, #links_container a:active {
     color: black;
 }
 
@@ -88,10 +89,6 @@ nav {
 @media screen and (max-width: 768px) {
     .icon2 {
         display: none;
-    }
-
-    #icon_container {
-        gap: 10px;
     }
 
     #links_container {
@@ -111,4 +108,8 @@ nav {
 
 .item-icon {
     @apply absolute bg-[red] w-[10px] h-[10px] rounded-full top-0 right-0;
+
+    #icon_container {
+        gap: 10px;
+    }
 }

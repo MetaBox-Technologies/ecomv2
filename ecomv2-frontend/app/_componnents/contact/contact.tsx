@@ -1,7 +1,12 @@
+"use client"
 import './contact.css';
 import Image from "next/image";
+import { ContactAction } from './contactAction';
+import { useActionState, useEffect } from 'react';
 
 export function Contitle() {
+    const [formState, formAction] = useActionState(ContactAction, {})
+    useEffect(()=>{console.log(formState)}, [formState])
     return (
         <section className='Contact_Title'>
             <div className='section-one'>
@@ -32,18 +37,18 @@ export function Contitle() {
                 </div>
             </div>
             <div className='section-three'>
-                <form className="contact-form">
+                <form className="contact-form" action={formAction}>
                     <div className='container'>
                         <label className="name">FULL NAME</label>
-                        <input type="text" id="name" placeholder="Your Name"/>
+                        <input type="text" id="name" name='name' placeholder="Your Name"/>
                     </div>
                     <div className='container'>
                         <label className="email">EMAIL ADDRESS</label>
-                        <input type="email" id="email" placeholder="Your Email"/>
+                        <input type="email" id="email" name='email' placeholder="Your Email"/>
                     </div>
                     <div className='container'>
                         <label className="message">MESSAGE</label>
-                        <textarea id="message" placeholder="Your message"></textarea>
+                        <textarea id="message" name='message' placeholder="Your message"></textarea>
                     </div>
                     <button type="submit" id='button'>Send Message</button>
                 </form>

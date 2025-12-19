@@ -49,13 +49,17 @@ const ExpandingSearchBar = ({ icon: Icon = Search }: ExpandingSearchBarProps) =>
   }
 
   return (
-    <div
-      className={cn(
-        "relative flex items-center h-10 rounded-full transition-all duration-500 ease-out ml-auto",
-        isExpanded || isFocused
-          ? "w-60 bg-search-expanded shadow-search-glow"
-          : "w-0 bg-transparent"
-      )}
+
+      /*-----------------*/
+      <div className="relative h-12 w-1">
+      <div
+        className={cn(
+          "absolute right-0 top-0 flex items-center h-9 mt-[6px] rounded-full transition-all duration-350 ease-out",
+          isExpanded || isFocused
+            ? "w-55 bg-search-expanded bg-white shadow-search-glow"
+            : "w-0 bg-transparent p-0"
+        )}
+      /*-----------------*/
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => !isFocused && setIsExpanded(false)}
     >
@@ -66,9 +70,9 @@ const ExpandingSearchBar = ({ icon: Icon = Search }: ExpandingSearchBarProps) =>
             e.preventDefault();
             handleClear();
           }}
-          className="absolute left-2 p-1 rounded-full text-search-icon hover:text-search-icon-active hover:bg-search-clear-hover transition-colors duration-200 z-20"
+          className="absolute left-[9px] rounded-full text-search-icon hover:text-search-icon-active hover:bg-search-clear-hover transition-colors duration-200 z-20"
         >
-          <X className="w-4 h-4" />
+          <X className="w-[12] h-[11]" />
         </button>
       )}
 
@@ -84,9 +88,9 @@ const ExpandingSearchBar = ({ icon: Icon = Search }: ExpandingSearchBarProps) =>
           if (!searchValue) setIsExpanded(false);
         }}
         onKeyDown={handleKeyPress}
-        placeholder="Search..."
+        placeholder="Seeking something?"
         className={cn(
-          "w-full h-full bg-transparent pl-8 pr-11 text-search-text placeholder:text-search-placeholder outline-none transition-opacity duration-300 relative z-10",
+          "w-full h-full bg-transparent pl-6 pr-9 text-search-text text-[12px] placeholder:text-search-placeholder outline-none transition-opacity duration-300 relative z-10",
           isExpanded || isFocused ? "opacity-100" : "opacity-0 pointer-events-none"
         )}
       />
@@ -95,7 +99,7 @@ const ExpandingSearchBar = ({ icon: Icon = Search }: ExpandingSearchBarProps) =>
       <button
         onClick={handleIconClick}
         className={cn(
-          "absolute right-3 flex items-center justify-center transition-all duration-300 cursor-pointer",
+          "absolute right-2 flex items-center justify-center transition-all duration-300 cursor-pointer",
           isExpanded || isFocused ? "text-search-icon-active" : "text-search-icon"
         )}
       >
@@ -105,12 +109,13 @@ const ExpandingSearchBar = ({ icon: Icon = Search }: ExpandingSearchBarProps) =>
       {/* Animated Border */}
       <div
         className={cn(
-          "absolute inset-0 rounded-full border transition-all duration-500 pointer-events-none",
+          "absolute inset-0 rounded-[20px] border transition-all duration-500 pointer-events-none",
           isExpanded || isFocused
             ? "border-search-border-active opacity-100"
             : "border-transparent opacity-0"
         )}
       />
+      </div>
     </div>
   );
 };

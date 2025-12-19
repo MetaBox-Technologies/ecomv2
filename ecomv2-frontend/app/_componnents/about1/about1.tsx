@@ -24,7 +24,7 @@ export function Aboutone() {
         your everyday moments, without the fuss.
         </p>
 
-        <a href="/contactus" id='contactus'>Contact Us <i className="fa-solid fa-arrow-right"></i></a>
+        <a href="/contact" id='contactus'>Contact Us <i className="fa-solid fa-arrow-right"></i></a>
     </div>
 
 </section>

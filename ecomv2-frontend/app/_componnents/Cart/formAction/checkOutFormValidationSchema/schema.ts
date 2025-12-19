@@ -49,7 +49,7 @@ export const zipCodeSchema = z.string(
          message:"This field is required"
     }
 )
-.min(2, {message: "Your zip code is too shory"})
+.min(2, {message: "Your zip code is too short"})
 .regex(codeRegex, {message: "Your zip code format is invalid"})
 .optional();
 
@@ -65,6 +65,11 @@ export const nidSchema = z.string({
 .max(18, {message: "You have a maximum of 18 characters"})
 .regex(codeRegex, {message: "Your NID format is invalid"})
 
+export const messageSchema = z.string({
+    message: "This field is required"
+}).trim()
+.min(5, {message: "Your message is too short"})
+
 export const schema  =  z.object({
     fname: nameSchema,
     lname: nameSchema,
@@ -74,5 +79,6 @@ export const schema  =  z.object({
     city: CountryCitySchema,
     state: stateSchema,
     zip: zipCodeSchema,
-    phone: phoneSchema
+    phone: phoneSchema,
+    message: messageSchema
 })

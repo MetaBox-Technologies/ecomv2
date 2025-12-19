@@ -18,14 +18,10 @@ export function Header(){
         {
             name:"Home",
             href:"/"
-        },
+        },    
         {
             name:"Shop",
             href:"/shop"
-        },
-        {
-            name:"Product",
-            href:"/product"
         },
         {
             name:"Contact Us",
@@ -36,6 +32,7 @@ export function Header(){
     useEffect(()=>{
       setHasItems(cartloader().length > 0)
     })
+    
 
     
 
@@ -52,7 +49,7 @@ export function Header(){
           {/*<p id="logo">VisioCreate</p>*/}
           <Image className="logo" src="/images/file.svg" alt="" width={90} height={18}/>
           <div id="links_container">
-            {links.map((link, index)=><a key={index} href={link.href}>{link.name}</a>)}
+            {links.map((link, index)=><a key={index} href={link.href} style={{color:(path.startsWith(link.href) ? "black" : "rgb(123, 123, 123)")}}>{link.name} </a>)}
           </div>
           <div id="icon_container">
           {/*<a href=""><Image className="icon1" src="/images/search 02.svg" alt="" width={25} height={18}/></a>*/}
@@ -68,6 +65,7 @@ export function Header(){
           </div>
           </nav>
         </header>
+        
 
     );
 }
