@@ -216,7 +216,7 @@ export default function Reviews({ reviews, productId }: ReviewsProps) {
                     </React.Fragment>
                 ))
                 ) : (
-                //This shows only when there are no reviews
+                // This shows only when there are no reviews
                 <div className="empty-reviews flex flex-col items-center my-12">
                     <img
                         src="/images/textbubble.png"

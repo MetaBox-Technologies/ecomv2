@@ -1,0 +1,12 @@
+{
+  "name": "ecomv2",
+  "version": "1.0.0",
+  "description": "E Commerce using Next Js &amp; Strapi connected to Zoho Inventory by n8n",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
