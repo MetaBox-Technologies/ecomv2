@@ -44,7 +44,6 @@ export default async function  page({ params }) {
     const fetchReviews = async () => {
       try {
         const review = await getReviews();
-        console.log('------reviews 2');
         return review.data;
       } catch (err) {
         console.error("Error loading dummy reviews JSON:", err);
@@ -54,7 +53,6 @@ export default async function  page({ params }) {
 
     const dummyProduct = await fetchData();
     const allReviews = await fetchReviews();
-    console.log(dummyProduct[0].id)
     const productReviews = allReviews
       .filter((r: any) => r.productId.id === dummyProduct[0].id)
       .map((r: any) => ({
@@ -62,8 +60,6 @@ export default async function  page({ params }) {
         comment: r.Comment,
         rating: r.rating,
       }));
-    console.log('----the match review')
-    console.log(productReviews)
     //Product not found
     if (!dummyProduct[0])
       return <h1>Product not found</h1>;

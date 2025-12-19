@@ -13,7 +13,7 @@ export function Header(){
     const path = usePathname();
     const [hasItems, setHasItems] = useState(false)
     const { isCartOpen } = useContext(RootContext);
-    const isOnCartPage = path.startsWith("/cart") || path.startsWith("/checkout");
+    const isOnCartPage = path.startsWith("/cart") || path.startsWith("/checkout") || path.startsWith("/complete");
     const links = [
         {
             name:"Home",

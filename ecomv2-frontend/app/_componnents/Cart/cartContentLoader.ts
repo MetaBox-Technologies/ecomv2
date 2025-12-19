@@ -88,3 +88,8 @@ export function popProductFromCart(id: number, color?: string) {
     return newCartState;
 }
 
+export function clearCart() {
+    localStorage.removeItem("cart");
+    return [];
+}
+

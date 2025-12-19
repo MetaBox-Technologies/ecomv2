@@ -11,6 +11,7 @@ export default function FormCartSummary({delivery}) {
     const { deliverySetter } = useContext(PageNavigationContext);
     const [total, setTotal] = useState(subtotal);
     const [computedTotal, setComputedTotal] = useState(total);
+    const { finalTotalSetter } = useContext(PageNavigationContext);
 
 
     const handleSubmit = (submitEvent : Event)=>{
@@ -48,15 +49,19 @@ export default function FormCartSummary({delivery}) {
         switch(delivery){
             default:
                 setComputedTotal(total);
+                finalTotalSetter(total);
                 break
             case "free":
                 setComputedTotal(total);
+                finalTotalSetter(total)
                 break;
             case "express":
                 setComputedTotal(total + 15);
+                finalTotalSetter(total + 15);
                 break
             case "pick-up":
                 setComputedTotal(total * 0.79);
+                finalTotalSetter(total * 0.79);
                 break
         }
     }, [total, delivery])

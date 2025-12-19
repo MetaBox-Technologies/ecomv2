@@ -12,6 +12,7 @@ import { RootContext } from "../_providers/RootContext";
 import { useRouter } from "next/navigation";
 import { useFormState } from "react-dom";
 import testAction from "../_componnents/Cart/testAction";
+import { CompletedOrder } from "../_componnents/Cart/completedOrder";
 
 
 export const PageNavigationContext = createContext({})
@@ -24,11 +25,14 @@ export default function CartPage(){
     const [delivery, setDelivery] = useState(null);
     const [stage, setStage] =  useState({current: "cart", next: "checkout", stagePrev: null});
     const [firstRender, setFirstRender] = useState(true);
+    const [finalTotal, setFinalTotal] = useState(0);
     const [checkoutFormState, checkoutFormAction] = useActionState(testAction, {valid:{}, errors:{},  sent: false});
     const mainRef = useRef(null);
     const RenderCount = useRef(0);
     const stepperRef = createRef();
     const router = useRouter();
+    const products = useContext(RootContext).cartContent;
+
 
 
 
@@ -56,9 +60,25 @@ export default function CartPage(){
             },750)});
             mainRef.current.classList.remove("opacity-0");
             mainRef.current.classList.remove("-translate-x-full");
+        }
+    }
 
-
-            
+    const completeOrder = async()=>{
+        if(mainRef.current) {
+            mainRef.current.classList.add("translate-x-full", "opacity-0");
+            await new Promise((resolve)=>{setTimeout(()=>{
+                mainRef.current.classList.remove("translate-x-full");
+                mainRef.current.classList.add("-translate-x-full");
+                window.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: "smooth"
+                })
+                setStage({current: "complete", next: null, stagePrev:"checkout"});
+                resolve()
+            },750)});
+            mainRef.current.classList.remove("opacity-0");
+            mainRef.current.classList.remove("-translate-x-full");
         }
     }
 
@@ -91,14 +111,13 @@ export default function CartPage(){
     const handleStepClick = async (step: number) => {
         switch(step){
             case 1:
-                if(stage.current === "cart") {
-                    console.log("unsatisfied");
+                if(stage.current === "cart" || stage.current === "complete") {
                     return;
                 }
                 await goBack();
                 break;
             case 2:
-                if(stage.current === "checkout" )
+                if(stage.current === "checkout"  || stage.current === "complete" || products.length === 0)
                     return;
                 if(stage.current === "cart" && delivery === null) {
                     const radioForm = document.querySelector("form[name=delivery]");
@@ -141,7 +160,6 @@ export default function CartPage(){
     },[])
 
     useEffect(()=>{
-        console.log("delivery selected: ",delivery)
         const {step1, step2, step3} = stepperRef.current;
         if(stage.stagePrev !== null)
             history.replaceState(stage, "",`/${stage.current}`)
@@ -164,7 +182,13 @@ export default function CartPage(){
         step1.removeEventListener("click", handleStep1)
         step2.removeEventListener("click", handleStep2);
         }
-    }, [stage, delivery])
+    }, [stage, delivery]);
+
+    useEffect(()=>{
+        if(checkoutFormState.sent && checkoutFormState.result.success) {
+            completeOrder()
+        }
+    },[checkoutFormState])
     
     
 
@@ -183,7 +207,7 @@ export default function CartPage(){
                     <Stepper current={stage.current} ref={stepperRef}/>
                 </header>
             </div>
-            <main ref={mainRef} className={stage.current === "checkout" ? "items-center" : ""}>
+            <main ref={mainRef} className={(stage.current === "checkout" || stage.current === "complete") ? "items-center" : ""}>
                 <PageNavigationContext.Provider value={
                     {
                         goNextHandler:goToCheckout, 
@@ -191,10 +215,12 @@ export default function CartPage(){
                         deliveryContext: delivery, 
                         deliverySetter: setDelivery,
                         formState: checkoutFormState,
-                        checkoutAction: checkoutFormAction
+                        checkoutAction: checkoutFormAction,
+                        finalTotalSetter: setFinalTotal,
                     }}>
                     {stage.current === "cart" &&  ((RenderCount.current > 0 )? <DynamicCartTable/> : <CartTable/>)}
                     {stage.current === "checkout" && <CheckoutForm delivery={delivery}/>}
+                    {stage.current === "complete" && <CompletedOrder products={products} total={finalTotal}/>}
                 </PageNavigationContext.Provider>    
             </main>
         </div>

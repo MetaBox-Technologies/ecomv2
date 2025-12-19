@@ -139,7 +139,7 @@ export function Card({
         <div className="text-[30px] sm:text-[18px]">
         <StarRating rating={3.7} color={isOnHome ? "#ffc554" : "var(--neutral-5)"}/>
         </div>
-        <h5 className={`font-[600] mt-[2%] font-semibold leading-[24px]  ${isOnHome ? "text-[#31393B] text-left": "text-var(--neutral-7)"}`}>{title}</h5>
+        <Link href={`/product/${ProductId}`}> <h5 className={`font-[600] mt-[2%] font-semibold leading-[24px] transiton-all duration-300 ease in out hover:scale-[1.05] ${isOnHome ? "text-[#31393B] text-left": "text-var(--neutral-7)"}`}>{title}</h5></Link>
         {PercentageDiscount > 0 && <div className="flex gap-2">
                                         <p className="text-[14px] font-[600] font-semibold leading-[22px]" style={{fontFamily:"var(--font-inter)"}}>${ (price * ((100 - PercentageDiscount) / 100)).toFixed(2) }</p>
                                         <p className="line-through text-[var(--neutral-4)] text-[14px] font-[400] text-sm leading-[22px]" style={{fontFamily:"var(--font-inter)"}}> ${price}</p>

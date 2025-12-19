@@ -1,14 +1,15 @@
 "use client"
 
 import "./page.css";
-import { StepperDesktop } from "../_componnents/Cart/stepperDesktop";
+import { Stepper } from "../_componnents/Cart/stepperDesktop";
 import Link from "next/link";
 import Row from "../_componnents/Cart/row";
-import Cell from "../_componnents/Cart/cell";
 import dynamic from "next/dynamic";
 import CountrySelector from "../_componnents/global/countrySelector";
 import { CartContent } from "../_componnents/Cart/cartContent";
 import Image from "next/image";
+import { size } from "zod";
+import { CompletedOrder } from "../_componnents/Cart/completedOrder";
 
 interface ProdDetailProps {
         image: {
@@ -56,10 +57,11 @@ export default function CartPage(){
                 </Link>
                 <header>
                     <h2>Cart</h2>
-                    <StepperDesktop/>
+                    <Stepper/>
                 </header>
             </div>
             <main>
+                <CompletedOrder products={[]}/>{/*
                 <div className="complete">
                     <div className="complete__header">
                         <p>Thank you! 🎉</p>
@@ -67,17 +69,18 @@ export default function CartPage(){
                     </div>
                     <div className="complete__product-img">
                         <div className="img__container">
-                            <Image src="/images/products/TABLE.jpg" width={88} height={104} alt=""/>
+                            <div src="http://159.65.15.249:1337/uploads/Paste_image_7d03658df6.svg" className="w-[88px] h-[104px]" style={{backgroundImage: 'url("http://159.65.15.249:1337/uploads/Paste_image_7d03658df6.svg")', backgroundSize: 'contain', backgroundPosition: 'center'}} alt=""/>
                             <span className="qt">2</span>
                         </div>
                         <div className="img__container">
-                            <Image src="/images/products/TABLE.jpg" width={88} height={104} alt=""/>
+                            <div src="http://159.65.15.249:1337/uploads/Paste_image_7d03658df6.svg" className="w-[88px] h-[104px]" style={{backgroundImage: 'url("http://159.65.15.249:1337/uploads/Paste_image_7d03658df6.svg")', backgroundSize: 'contain', backgroundPosition: 'center'}} alt=""/>
                             <span className="qt">2</span>
                         </div>
                         <div className="img__container">
-                            <Image src="/images/products/TABLE.jpg" width={88} height={104} alt=""/>
+                            <div src="http://159.65.15.249:1337/uploads/Paste_image_7d03658df6.svg" className="w-[88px] h-[104px]" style={{backgroundImage: 'url("http://159.65.15.249:1337/uploads/Paste_image_7d03658df6.svg")', backgroundSize: 'contain', backgroundPosition: 'center'}} alt=""/>
                             <span className="qt">2</span>
                         </div>
+                        
                     </div>
                     <div className="complete__info">
                         <div className="info__row">
@@ -94,7 +97,7 @@ export default function CartPage(){
                         </div>
                     </div>
                     <Link href={"/"}>Go back to shop</Link>
-                </div>
+                </div>*/}
             </main>
         </div>
     )

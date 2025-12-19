@@ -25,17 +25,17 @@ export const Stepper = forwardRef((props, forwardRef) => {
     })
 
     return (
-        <div className={"process-steps relative transition-[all] duration-300 ease-in-out " + (current === "checkout" ? "-translate-x-[288px] md:translate-none" : "")}>
-            <div ref={internalStep1Ref} className={"process first hover:cursor-not-allowed " + (current === "checkout" ? "complete hover:cursor-pointer": "")}>
-                <div className={"process__no "+(current === "checkout" ? "material-symbols-outlined": "")}>{current === "checkout" ? "check": "1"}</div>
+        <div className={"process-steps relative transition-[all] duration-300 ease-in-out " + (current === "checkout" ? "-translate-x-[288px] md:translate-none" : "") + (current === "complete" ? "-translate-x-[576px] md:translate-none " :"")}>
+            <div ref={internalStep1Ref} className={"process first hover:cursor-not-allowed " + (current === "checkout" ? "complete hover:cursor-pointer": "") + (current === "complete" ? "complete hover:cursor-not-allowed " : "")}>
+                <div className={"process__no "+((current === "checkout" || current === "complete") ? "material-symbols-outlined": "")}>{(current === "checkout" || current === "complete") ? "check": "1"}</div>
                 <p className="process__name">Shopping Cart</p>
             </div>
-            <div ref={internalStep2Ref} className={"process "+ (current === "cart" ? "incomplete hover:cursor-pointer" : "") + (current === "checkout" ? "current hover:cursor-not-allowed" : "")}>
-                <div className="process__no">2</div>
+            <div ref={internalStep2Ref} className={"process "+ (current === "cart" ? "incomplete hover:cursor-pointer " : "") + ((current === "checkout" || current === "complete") ? "current hover:cursor-not-allowed " : "") + (current ==="complete" ? "complete ": "")}>
+                <div className={"process__no "+((current === "complete") ? "material-symbols-outlined ": "" )}>{(current !== "complete") ? "2" : "check"}</div>
                 <p className="process__name">Checkout details</p>
             </div>
-            <div ref={internalStep3Ref} className="process incomplete hover:cursor-not-allowed">
-                <div className="process__no">3</div>
+            <div ref={internalStep3Ref} className={"process hover:cursor-not-allowed " +((current === "complete") ? "current complete ": "incomplete")}>
+                <div className={"process__no "+ ((current === "complete")? "material-symbols-outlined ": "")}>{(current !== "complete") ? "3" : "check"}</div>
                 <p className="process__name">Order complete</p>
             </div>
         </div>
