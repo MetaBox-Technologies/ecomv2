@@ -59,6 +59,7 @@ export default async function  page({ params }) {
         reviewerName: r.name,
         comment: r.Comment,
         rating: r.rating,
+        date: r.Date,
       }));
     //Product not found
     if (!dummyProduct[0])

@@ -103,9 +103,9 @@ export default function Reviews({ reviews, productId, name }: ReviewsProps) {
 
     const sortedReviews = React.useMemo(() => {
         if (sortOrder === "default") return allReviews;
-
         return [...allReviews].sort((a, b) => {
             const dateA = new Date(a.date).getTime();
+            console.log(dateA)
             const dateB = new Date(b.date).getTime();
 
             if (sortOrder === "newest") {
