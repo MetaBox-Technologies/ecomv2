@@ -35,19 +35,20 @@ interface ReviewsProps {
   reviews: Review[];
   productId: any;
   name: string;
+  avgRating: number;
 }
 
-export default function Reviews({ reviews, productId, name }: ReviewsProps) {
+export default function Reviews({ reviews, productId, name, avgRating }: ReviewsProps) {
     const [allReviews, setAllReviews] = React.useState<Review[]>(reviews);
     const [sortOrder, setSortOrder] = React.useState<"default" | "newest" | "oldest">("default");
     const [rating, setRating] = useState(0);
-    const [visibleCount,setVisibleCount] = useState(1)
+    const [visibleCount,setVisibleCount] = useState(3)
 
     const showMore =() => {
-    setVisibleCount(prev => prev+1);
+    setVisibleCount(prev => prev+3);
   };
   const showLess =() => {
-    setVisibleCount(1);
+    setVisibleCount(3);
   }
 
     const handleReviewSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -75,7 +76,7 @@ export default function Reviews({ reviews, productId, name }: ReviewsProps) {
             name,
             rating: Number(formData.get("rating") || 3),
             Comment: comment,
-            Date: new Date().toISOString().split("T")[0],
+            Date: new Date().toISOString(),
             productId: Number(formData.get("productId")),
         }
         };
@@ -121,13 +122,13 @@ export default function Reviews({ reviews, productId, name }: ReviewsProps) {
     }, [allReviews, sortOrder]);
 
   return (
-    <section className="reviews-section">
+    <section className="reviews-section mb-[90px]">
         <hr className="divider" />
         <div className="upper-reviews">
             <h2>Customer Reviews</h2>
             <div className="reviews">
                 <div className="stars">
-                    <i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i>
+                    <StarRating rating={avgRating}/>
                 </div>
                 <div className="num-reviews">
                     {allReviews.length} Reviews
@@ -263,6 +264,9 @@ export default function Reviews({ reviews, productId, name }: ReviewsProps) {
 
             {visibleCount < allReviews.length && (
             <button className="load-btn" onClick={showMore}>Load More</button>
+    )}
+            {visibleCount >= allReviews.length && allReviews.length>1 && (
+            <button className="load-btn" onClick={showLess}>Load less</button>
     )}
         </div>
     </section>

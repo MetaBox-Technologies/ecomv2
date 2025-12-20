@@ -100,7 +100,7 @@ export function Card({
 
   return (
     <div className={`flex sm:flex-col  gap-3 sm:gap-0 ${isOnHome ? "w-[231px] md:w-[262px] flex-shrink-0 flex flex-col items-start gap-3" : ""}`}>
-      <div className={`relative w-[100%] hover:cursor-pointer rounded-3xl overflow-hidden ${isOnHome ? "h-[308px] md:h-[349px border-1 border-black]" : "sm:h-[200px] lg:h-[300px] xl:h-[350px] bg-gray-100"}`}
+      <div className={`relative w-[100%] border-1 border-gray-200 hover:cursor-pointer rounded-3xl overflow-hidden ${isOnHome ? "h-[308px] md:h-[349px border-1 border-black]" : "sm:h-[200px] lg:h-[300px] xl:h-[350px] bg-white"}`}
           style={{backgroundImage: atob(offuscimgUrl), backgroundSize:"contain", backgroundPosition: "center", backgroundRepeat: "no-repeat"}}
          onMouseEnter={()=>{
           setShowActions(true);
@@ -133,13 +133,13 @@ export function Card({
           className="w-full h-full object-contain"
         />*/}
         </Link>
-        {showActions && <div ref={addToCartBtnRef} onClick={addToCartHandler} className={`hidden sm:block w-[90%] left-1/2 -translate-x-1/2 md:px-[24px] md:py-[8px] px-[16px] py-[4px] absolute bottom bottom-[0%] bg-black rounded-lg transition-[all] duration-300 ease-in-out opacity-0 hover:scale-105 ${isOnHome? "!bg-[var(--blue-btn)]": ""}`}><h4 className="md:text-xl text-[15px] text-white text-center" style={{fontFamily:"var(--font-inter)"}}>Add to Cart</h4></div>}
+        {showActions && <div ref={addToCartBtnRef} onClick={addToCartHandler} className={`hidden sm:block w-[90%] left-1/2 -translate-x-1/2 lg:px-[24px] lg:py-[8px] px-[16px] py-[4px] absolute bottom bottom-[0%] bg-black rounded-lg transition-[all] duration-300 ease-in-out opacity-0 hover:scale-105 ${isOnHome? "!bg-[var(--blue-btn)]": ""}`}><h4 className="lg:text-xl text-[15px] text-white text-center" style={{fontFamily:"var(--font-inter)"}}>Add to Cart</h4></div>}
       </div>
       <div className={`relative pb-[50px] p-[3%] w-[100%] ${isOnHome ? "": ""}`} style={{fontFamily:"var(--font-inter)"}}>
         <div className="text-[30px] sm:text-[18px]">
         <StarRating rating={3.7} color={isOnHome ? "#ffc554" : "var(--neutral-5)"}/>
         </div>
-        <Link href={`/product/${ProductId}`}> <h5 className={`font-[600] mt-[2%] font-semibold leading-[24px] transiton-all duration-300 ease in out hover:scale-[1.05] ${isOnHome ? "text-[#31393B] text-left": "text-var(--neutral-7)"}`}>{title}</h5></Link>
+        <Link href={`/product/${ProductId}`}> <h5 className={`text-left font-[600] mt-[2%] font-semibold leading-[24px] transiton-all duration-300 ease in out hover:scale-[1.05] ${isOnHome ? "text-[#31393B]": "text-var(--neutral-7)"}`}>{title}</h5></Link>
         {PercentageDiscount > 0 && <div className="flex gap-2">
                                         <p className="text-[14px] font-[600] font-semibold leading-[22px]" style={{fontFamily:"var(--font-inter)"}}>${ (price * ((100 - PercentageDiscount) / 100)).toFixed(2) }</p>
                                         <p className="line-through text-[var(--neutral-4)] text-[14px] font-[400] text-sm leading-[22px]" style={{fontFamily:"var(--font-inter)"}}> ${price}</p>
@@ -153,7 +153,7 @@ export function Card({
             ))}
           </div>
         <div onClick={addToCartHandler} className={` ${isOnHome ? "hidden" : ""} sm:hidden absolute w-[90%] left-1/2 -translate-x-1/2 absolute bottom bottom-[2%] bg-black rounded-lg  py-[2px]
-                                        `}><h4 className="text-white text-center">Add to Cart</h4></div>
+                                        `}><h4 className="text-white text-center ">Add to Cart</h4></div>
       </div>
     </div>
   );

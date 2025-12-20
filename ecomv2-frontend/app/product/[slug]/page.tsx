@@ -61,11 +61,15 @@ export default async function  page({ params }) {
         rating: r.rating,
         date: r.Date,
       }));
+    const avgRating =
+    productReviews.length === 0 ? 0
+    :Math.round(productReviews.reduce((sum, r) => sum + r.rating, 0) / productReviews.length);
     //Product not found
+    console.log(avgRating)
     if (!dummyProduct[0])
       return <h1>Product not found</h1>;
     //Product found and display its data and reviews*/
     return(
-      <PageRenderer product={dummyProduct[0]} reviews={productReviews} productId={dummyProduct[0].id} name={dummyProduct[0].title}/>
+      <PageRenderer product={dummyProduct[0]} reviews={productReviews} productId={dummyProduct[0].id} name={dummyProduct[0].title} avgRating={avgRating}/>
     );
 }

@@ -35,17 +35,17 @@ export  function ProductListClient({
   articles,
   uniquecategories
 }: Readonly<ProductListProps>) {
-  const [visibleCount,setVisibleCount] = useState(4)
+  const [visibleCount,setVisibleCount] = useState(6)
   const searchParams = useSearchParams();
   const [PriceFilters, setPriceFilters] = useState<PriceRange[]>([]);
   const [open, setOpen]=useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All products");
   //After passing through child function, pricefilters now stores all selected price ranges objects
   const showMore =() => {
-    setVisibleCount(prev => prev+3);
+    setVisibleCount(prev => prev+6);
   };
   const showLess =() => {
-    setVisibleCount(3);
+    setVisibleCount(6);
   }
   const Component = component;
   const [sortOption, setSortOption] = useState<SortOption>("none");
@@ -185,7 +185,7 @@ const filteredArticles = useMemo(() => {
   </div>
 </div>
 
-  <div className="lg:w-[66%] md:w-[61%] mx-[8%] md:mx-0 mb-[25%] ">
+  <div className="lg:w-[66%] md:w-[61%] mx-[8%] md:mx-0 lg:mb-[15%] md:mb-[20%] sm:mb-[25%] mb-[35%] ">
     <div className="flex justify-between">
         <h2 className="xl:text-[150%]  md:text-[140%] sm:text-[130%] text-[1.1rem] font-semibold  font-sans md:mb-[4%] my-[2%] md:my-0">{selectedCategory + ((searchParams.has("search") && searchParams.get("search")?.trim().length > 0) ? ` with "${searchParams.get("search")?.trim()}"` : "")}</h2>
         <div className="flex justify-end mr-[8%] md:mr-0 my-[2%] md:my-0">
@@ -199,10 +199,10 @@ const filteredArticles = useMemo(() => {
     </div>
 
     {visibleCount < filteredArticles.length && (
-      <button className="block mx-auto mt-[3%] sm:text-base  sm:px-10 sm:py-[6px] text-sm px-7 py-[4px] border border-[#141718] rounded-full text-[#141718] cursor-pointer transition-colors duration-300 hover:bg-[#141718] hover:text-white" onClick={showMore}>Show more</button>
+      <button className="block mx-auto mt-[3%] md:mt-[1%] sm:text-base  sm:px-10 sm:py-[6px] text-sm px-7 py-[4px] border border-[#141718] rounded-full text-[#141718] cursor-pointer transition-colors duration-300 hover:bg-[#141718] hover:text-white" onClick={showMore}>Show more</button>
     )}
     {visibleCount >= filteredArticles.length && filteredArticles.length>3 && (
-      <button className="block mx-auto mt-[3%] sm:text-base  sm:px-10 sm:py-[6px] text-sm px-7 py-[4px] border border-[#141718] rounded-full text-[#141718] cursor-pointer transition-colors duration-300 hover:bg-[#141718] hover:text-white" onClick={showLess}>Show less</button>
+      <button className="block mx-auto mt-[3%] md:mt-[1%]sm:text-base  sm:px-10 sm:py-[6px] text-sm px-7 py-[4px] border border-[#141718] rounded-full text-[#141718] cursor-pointer transition-colors duration-300 hover:bg-[#141718] hover:text-white" onClick={showLess}>Show less</button>
     )}
 
     {filteredArticles.length == 0 && ( <h5 className="text-gray-600">No available products at the moment.</h5>)}

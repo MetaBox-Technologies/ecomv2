@@ -8,6 +8,7 @@ import { RootContext } from "@/app/_providers/RootContext";
 import { cartloader, pushProductToCart, updateCart} from "../Cart/cartContentLoader";
 import { StrapiImage } from '../strapiImage';
 import { GetStrapiURL } from '@/app/utils/get-strapi-url';
+import StarRating from '../shopPage/StarRating';
 
 type Product = {
   id: number;
@@ -17,6 +18,7 @@ type Product = {
   shortDescription: string;
   description: any;
   price: number;
+  PercentageDiscount: number;
   sku: string | null;
   measurement: string;
   reviewsCount?: number;
@@ -35,6 +37,8 @@ type Product = {
 
 export interface ProductCardProps {
   product: Product;
+  avgRating: number;
+  numReviews: number;
 }
 
 type CartItem = {
@@ -49,7 +53,7 @@ type CartItem = {
   color: string;
 };
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, avgRating, numReviews }: ProductCardProps) {
     console.log("----colour")
     const colours = Array.isArray(product.colour)
     ? product.colour.map(c => c.name)
@@ -145,7 +149,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                         <img
                                   src={GetStrapiURL().slice(0, GetStrapiURL().length-1) + images[currentIndex].url}
                                   alt={images[currentIndex].alternativeText || "No alternative text provided"}
-                            className='caroussel-image'
+                            className='caroussel-image object-contain'
                         />
                         </div>
 
@@ -165,7 +169,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                                 <img
                                   src={GetStrapiURL().slice(0, GetStrapiURL().length-1) + img.url}
                                   alt={img.alternativeText || "No alternative text provided"}
-                                  className="thumbnail cursor-pointer border-1 border-[black] rounded-lg"
+                                  className="thumbnail cursor-pointer border-1 border-[black] rounded-lg object-contain"
                         />
                         </div>
                     ))}
@@ -177,10 +181,10 @@ export default function ProductCard({ product }: ProductCardProps) {
                         <div className="product-info">
                             <div className="reviews">
                                 <div className="stars">
-                                    <i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i><i className="fas fa-star"></i>
+                                    <StarRating rating={avgRating}/>
                                 </div>
                                 <div className="num-reviews">
-                                    {product.reviewsCount || 0} Reviews
+                                    {numReviews || 0} Reviews
                                 </div>
                             </div>
                             <h2 className="product-name">{product.title}</h2>
@@ -192,8 +196,11 @@ export default function ProductCard({ product }: ProductCardProps) {
                                 ))}
                             </p>
                         </div>
-
-                        <p className="price">$ {product.price.toFixed(2)}</p>
+                        {product.PercentageDiscount > 0 && <div className="flex gap-2">
+                                        <p className="price mr-[2%]">${ (product.price * ((100 - product.PercentageDiscount) / 100)).toFixed(2) }</p>
+                                        <p className="line-through price text-gray-500" > ${product.price}</p>
+                                     </div>} 
+                        {product.PercentageDiscount === 0 && <p className="price">${product.price.toFixed(2)}</p>}
                     </div>
                     <hr className="divider" />
 
