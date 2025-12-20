@@ -95,7 +95,8 @@ export default function Reviews({ reviews, productId, name, avgRating }: Reviews
                 console.log("Review saved successfully");
                 setAllReviews(prev => [...prev, newReview]);
                 setSortOrder("newest"); //new comments always appear at the top
-                form.reset(); 
+                form.reset();
+                window.location.reload();
             }
         } catch (err) {
             console.error("Error saving review:", err);

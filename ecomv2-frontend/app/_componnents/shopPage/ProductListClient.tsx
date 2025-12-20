@@ -37,17 +37,17 @@ export  function ProductListClient({
   uniquecategories,
   allReviews
 }: Readonly<ProductListProps>) {
-  const [visibleCount,setVisibleCount] = useState(3)
+  const [visibleCount,setVisibleCount] = useState(6)
   const searchParams = useSearchParams();
   const [PriceFilters, setPriceFilters] = useState<PriceRange[]>([]);
   const [open, setOpen]=useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All products");
   //After passing through child function, pricefilters now stores all selected price ranges objects
   const showMore =() => {
-    setVisibleCount(prev => prev+3);
+    setVisibleCount(prev => prev+6);
   };
   const showLess =() => {
-    setVisibleCount(3);
+    setVisibleCount(6);
   }
   const Component = component;
   const [sortOption, setSortOption] = useState<SortOption>("none");
@@ -203,7 +203,7 @@ const filteredArticles = useMemo(() => {
     {visibleCount < filteredArticles.length && (
       <button className="block mx-auto mt-[3%] md:mt-[1%] sm:text-base  sm:px-10 sm:py-[6px] text-sm px-7 py-[4px] border border-[#141718] rounded-full text-[#141718] cursor-pointer transition-colors duration-300 hover:bg-[#141718] hover:text-white" onClick={showMore}>Show more</button>
     )}
-    {visibleCount >= filteredArticles.length && filteredArticles.length>3 && (
+    {visibleCount >= filteredArticles.length && filteredArticles.length>6 && (
       <button className="block mx-auto mt-[3%] md:mt-[1%]sm:text-base  sm:px-10 sm:py-[6px] text-sm px-7 py-[4px] border border-[#141718] rounded-full text-[#141718] cursor-pointer transition-colors duration-300 hover:bg-[#141718] hover:text-white" onClick={showLess}>Show less</button>
     )}
 

@@ -16,6 +16,8 @@ export default async function  page({ params }) {
 
     async function loader(query? :string) {
       const { data } = await getContent("/api/products",query);
+      console.log("---issue")
+      console.log(data)
       return {
         articles: (data as ArticleProps[]) || [],
       };
@@ -50,8 +52,8 @@ export default async function  page({ params }) {
         return [];
       }
     };
-
     const dummyProduct = await fetchData();
+
     const allReviews = await fetchReviews();
    const productReviews = allReviews
       .filter((r: any) => r.productId.id === dummyProduct[0].id)
@@ -70,6 +72,6 @@ export default async function  page({ params }) {
       return <h1>Product not found</h1>;
     //Product found and display its data and reviews*/
     return(
-      <PageRenderer product={dummyProduct[0]} reviews={productReviews} productId={dummyProduct[0].id} name={dummyProduct[0].title} avgRating={avgRating}/>
+      <PageRenderer product={dummyProduct[0]} reviews={productReviews} productId={dummyProduct[0].id -1} name={dummyProduct[0].title} avgRating={avgRating}/>
     );
 }

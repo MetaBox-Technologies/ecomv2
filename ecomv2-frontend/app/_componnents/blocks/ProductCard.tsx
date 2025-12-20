@@ -54,7 +54,6 @@ type CartItem = {
 };
 
 export default function ProductCard({ product, avgRating, numReviews }: ProductCardProps) {
-    console.log("----colour")
     const colours = Array.isArray(product.colour)
     ? product.colour.map(c => c.name)
   : [];
