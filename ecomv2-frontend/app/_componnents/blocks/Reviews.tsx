@@ -265,7 +265,7 @@ export default function Reviews({ reviews, productId, name, avgRating }: Reviews
             {visibleCount < allReviews.length && (
             <button className="load-btn" onClick={showMore}>Load More</button>
     )}
-            {visibleCount >= allReviews.length && allReviews.length>1 && (
+            {visibleCount >= allReviews.length && allReviews.length>3 && (
             <button className="load-btn" onClick={showLess}>Load less</button>
     )}
         </div>

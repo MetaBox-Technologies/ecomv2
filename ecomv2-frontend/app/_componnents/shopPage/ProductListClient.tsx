@@ -27,25 +27,27 @@ interface ProductListProps {
   component: React.ComponentType<ArticleProps>;
   articles: ArticleProps[];
   uniquecategories:string[];
+  allReviews:any;
 }
 
 
 export  function ProductListClient({
   component,
   articles,
-  uniquecategories
+  uniquecategories,
+  allReviews
 }: Readonly<ProductListProps>) {
-  const [visibleCount,setVisibleCount] = useState(6)
+  const [visibleCount,setVisibleCount] = useState(3)
   const searchParams = useSearchParams();
   const [PriceFilters, setPriceFilters] = useState<PriceRange[]>([]);
   const [open, setOpen]=useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All products");
   //After passing through child function, pricefilters now stores all selected price ranges objects
   const showMore =() => {
-    setVisibleCount(prev => prev+6);
+    setVisibleCount(prev => prev+3);
   };
   const showLess =() => {
-    setVisibleCount(6);
+    setVisibleCount(3);
   }
   const Component = component;
   const [sortOption, setSortOption] = useState<SortOption>("none");
@@ -194,7 +196,7 @@ const filteredArticles = useMemo(() => {
     </div>
     <div className="products_grid">
       {filteredArticles.slice(0, visibleCount).map((article) => (
-        <Component key={article.documentId} {...article} images={{url: article.images[0].url , alternativeText: article.images[0].alternativeText}} />
+        <Component key={article.documentId} {...article} images={{url: article.images[0].url , alternativeText: article.images[0].alternativeText}} allReviews={allReviews} />
       ))}
     </div>
 

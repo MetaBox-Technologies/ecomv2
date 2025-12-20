@@ -10,6 +10,7 @@ import { RootContext } from "@/app/_providers/RootContext";
 import Image from "next/image";
 import './description.css';
 import { GetStrapiURL } from "@/app/utils/get-strapi-url";
+import { getReviews } from "@/app/data/loaders";
 
 export interface CardProps {
   id: number,
@@ -27,6 +28,7 @@ export interface CardProps {
   Is_new:boolean;
   category: string;
   isOnHome?: boolean;
+  allReviews:any
 }
 
 export function Card({
@@ -38,7 +40,8 @@ export function Card({
   price,
   createdAt,
   PercentageDiscount,
-  isOnHome = false
+  isOnHome = false,
+  allReviews
 }: Readonly<CardProps>) {
 
   const before = new Date("2025-08-01");
@@ -95,8 +98,14 @@ export function Card({
         pushNewPorduct(productToPush)
      }
   }
-
- 
+  const productReviews = allReviews
+      .filter((r: any) => r.productId.id === id)
+      .map((r: any) => ({
+        rating: r.rating,
+      }));
+      const avgRating =
+      productReviews.length === 0 ? 0
+      :Math.round(productReviews.reduce((sum, r) => sum + r.rating, 0) / productReviews.length);
 
   return (
     <div className={`flex sm:flex-col  gap-3 sm:gap-0 ${isOnHome ? "w-[231px] md:w-[262px] flex-shrink-0 flex flex-col items-start gap-3" : ""}`}>
@@ -137,7 +146,7 @@ export function Card({
       </div>
       <div className={`relative pb-[50px] p-[3%] w-[100%] ${isOnHome ? "": ""}`} style={{fontFamily:"var(--font-inter)"}}>
         <div className="text-[30px] sm:text-[18px]">
-        <StarRating rating={3.7} color={isOnHome ? "#ffc554" : "var(--neutral-5)"}/>
+        <StarRating rating={avgRating} color={isOnHome ? "#ffc554" : "var(--neutral-5)"}/>
         </div>
         <Link href={`/product/${ProductId}`}> <h5 className={`text-left font-[600] mt-[2%] font-semibold leading-[24px] transiton-all duration-300 ease in out hover:scale-[1.05] ${isOnHome ? "text-[#31393B]": "text-var(--neutral-7)"}`}>{title}</h5></Link>
         {PercentageDiscount > 0 && <div className="flex gap-2">

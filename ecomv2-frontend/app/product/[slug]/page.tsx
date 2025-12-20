@@ -53,7 +53,7 @@ export default async function  page({ params }) {
 
     const dummyProduct = await fetchData();
     const allReviews = await fetchReviews();
-    const productReviews = allReviews
+   const productReviews = allReviews
       .filter((r: any) => r.productId.id === dummyProduct[0].id)
       .map((r: any) => ({
         reviewerName: r.name,
