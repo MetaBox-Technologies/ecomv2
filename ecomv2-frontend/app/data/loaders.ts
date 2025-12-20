@@ -39,7 +39,7 @@ export async function getContent(path: string,query?: string) {
   const url = new URL(path, BASE_URL);
   url.search = qs.stringify({
     filters: { //gets data based on query,
-         product_categories: {
+         product_category: {
             name: {
               $containsi: query,
             },
@@ -49,7 +49,7 @@ export async function getContent(path: string,query?: string) {
       images: {
         fields: ["url", "alternativeText"],
       },
-      product_categories: {
+      product_category: {
       fields: ["name", "slug"],
     },
       colour:{

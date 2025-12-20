@@ -40,7 +40,7 @@ export interface ArticleProps {
   createdAt: string;
   updatedAt: string;
   PercentageDiscount: number;
-  product_categories: ProductCategoryProps[];
+  product_category: ProductCategoryProps[];
   Is_new: boolean;
 }
 
