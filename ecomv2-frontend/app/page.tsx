@@ -9,17 +9,30 @@ import { About } from "./_componnents/about/about";
 import { Aboutone } from "./_componnents/about1/about1";
 import ExpandingSearchBar from "./_componnents/expanding/ExpandingSearchBar";
 import { GetStrapiURL } from "./utils/get-strapi-url";
+import { getReviews } from "./data/loaders";
 
 export default async function Home() {
  
   const {data} =  await getContent('api/products')
   console.log(data[0].images);
+
+  const fetchReviews = async () => {
+          try {
+            const review = await getReviews();
+            return review.data;
+          } catch (err) {
+            console.error("Error loading dummy reviews JSON:", err);
+            return [];
+          }
+        };
+    
+        const allReviews = await fetchReviews();
   
   return(
     <>
     <HeroSection/>
     <BundleTest/>
-    <ProductScrollable articles={data}/>
+    <ProductScrollable articles={data} allReviews={allReviews}/>
     <Service/>
     <Aboutone/>
     </>

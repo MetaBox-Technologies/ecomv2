@@ -16,9 +16,10 @@ import Link from 'next/link';
 
 interface ProductCardScrollableType {
   articles : ArticleProps[]
+  allReviews: any;
 }
 
-export default function ProductCardScrollable({ articles }:Readonly<ProductCardScrollableType>) {
+export default function ProductCardScrollable({ articles, allReviews }:Readonly<ProductCardScrollableType>) {
   
   const timerIdRef = useRef(null)
   const swiperRef = useRef(null); //ref for swipper to cleanup after unmout
@@ -147,7 +148,7 @@ export default function ProductCardScrollable({ articles }:Readonly<ProductCardS
           }
         }
       >
-        {articles.map( (article)=><SwiperSlide key={article.id}><Card {...article} images={{url: article.images[0].url, alternativeText: article.images[0].alternativeText}} isOnHome={true}/></SwiperSlide>)}
+        {articles.map( (article)=><SwiperSlide key={article.id}><Card {...article} images={{url: article.images[0].url, alternativeText: article.images[0].alternativeText}} allReviews={allReviews} isOnHome={true}/></SwiperSlide>)}
       </Swiper>
     </div>
     <div className='swiper-scrollbar' ref={scrollbarRef}></div>
