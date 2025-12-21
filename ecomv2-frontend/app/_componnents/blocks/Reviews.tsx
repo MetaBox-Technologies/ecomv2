@@ -77,7 +77,7 @@ export default function Reviews({ reviews, productId, name, avgRating }: Reviews
             rating: Number(formData.get("rating") || 3),
             Comment: comment,
             Date: new Date().toISOString(),
-            productId: Number(formData.get("productId")),
+            productId: formData.get("productId"),
         }
         };
 
