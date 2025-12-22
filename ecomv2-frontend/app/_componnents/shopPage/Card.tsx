@@ -110,7 +110,7 @@ export function Card({
   return (
     <div className={`flex sm:flex-col  gap-3 sm:gap-0 ${isOnHome ? "w-[231px] md:w-[262px] flex-shrink-0 flex flex-col items-start gap-3" : ""}`}>
       <div className={`relative w-[100%] border-1 border-gray-200 hover:cursor-pointer rounded-3xl overflow-hidden ${isOnHome ? "h-[308px] md:h-[349px border-1 border-black]" : "sm:h-[200px] lg:h-[300px] xl:h-[350px] bg-white"}`}
-          style={{backgroundImage: atob(offuscimgUrl), backgroundSize:"contain", backgroundPosition: "center", backgroundRepeat: "no-repeat"}}
+          style={{backgroundImage: `url("https://strapi.ecomv2.online${images.url}")`, backgroundSize:"contain", backgroundPosition: "center", backgroundRepeat: "no-repeat"}}
          onMouseEnter={()=>{
           setShowActions(true);
           setTimeout(()=>{
