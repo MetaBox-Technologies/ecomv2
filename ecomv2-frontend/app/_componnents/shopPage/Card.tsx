@@ -129,9 +129,9 @@ export function Card({
         }}
         
          /*onClick={()=>setShowActions(!showActions)*}*/>
-        <Link href={`/product/${ProductId}`} className='w-full h-full prod-bg' data-bg={offuscimgUrl}>
-        {isNew && <div className="lg:w-[60px] lg:h-[30px] md:w-[52px] md:h-[25px] w-[45px] h-[20px] absolute top-[5%] left-[5%] bg-white rounded"><h1 className="font-semibold md:text-base lg:text-lg test-sm text-center">NEW</h1></div>}
-        {PercentageDiscount>0 && (<div className={`lg:w-[60px] lg:h-[30px] md:w-[52px] md:h-[25px] w-[45px] h-[20px]  absolute ${isNew? "top-[2.8rem] sm:top-[19%] md:top-[20%] lg:top-[19%] xl:top-[17%]" : "top-[5%]"} left-[5%] bg-[#38CB89] rounded`}><h1 className="font-semibold text-white md:text-base lg:text-lg text-sm text-center">-{PercentageDiscount}%</h1></div>)}
+        <Link href={`/product/${ProductId}`} className='relative block w-full h-full prod-bg' data-bg={offuscimgUrl}>
+        {isNew && <div className="pointer-events-none lg:w-[60px] lg:h-[30px] md:w-[52px] md:h-[25px] w-[45px] h-[20px] absolute top-[5%] left-[5%] bg-white rounded"><h1 className="font-semibold md:text-base lg:text-lg test-sm text-center">NEW</h1></div>}
+        {PercentageDiscount>0 && (<div className={`pointer-events-none lg:w-[60px] lg:h-[30px] md:w-[52px] md:h-[25px] w-[45px] h-[20px]  absolute ${isNew? "top-[2.8rem] sm:top-[19%] md:top-[20%] lg:top-[19%] xl:top-[17%]" : "top-[5%]"} left-[5%] bg-[#38CB89] rounded`}><h1 className="font-semibold text-white md:text-base lg:text-lg text-sm text-center">-{PercentageDiscount}%</h1></div>)}
        
 
         {/*<StrapiImage
@@ -142,7 +142,8 @@ export function Card({
           className="w-full h-full object-contain"
         />*/}
         </Link>
-        {showActions && <div ref={addToCartBtnRef} onClick={addToCartHandler} className={`hidden sm:block w-[90%] left-1/2 -translate-x-1/2 lg:px-[24px] lg:py-[8px] px-[16px] py-[4px] absolute bottom bottom-[0%] bg-black rounded-lg transition-[all] duration-300 ease-in-out opacity-0 hover:scale-105 ${isOnHome? "!bg-[var(--blue-btn)]": ""}`}><h4 className="lg:text-xl text-[15px] text-white text-center" style={{fontFamily:"var(--font-inter)"}}>Add to Cart</h4></div>}
+        {showActions && <div ref={addToCartBtnRef} onClick={addToCartHandler} className={`hidden lg:block w-[90%] left-1/2 -translate-x-1/2 lg:px-[24px] lg:py-[8px] px-[16px] py-[4px] absolute bottom bottom-[0%] bg-black rounded-lg transition-[all] duration-300 ease-in-out opacity-0 hover:scale-105 ${isOnHome? "!bg-[var(--blue-btn)]": ""}`}><h4 className="lg:text-xl text-[15px] text-white text-center" style={{fontFamily:"var(--font-inter)"}}>Add to Cart</h4></div>}
+        <div ref={addToCartBtnRef} onClick={addToCartHandler} className={`hidden sm:block lg:hidden w-[90%] left-1/2 -translate-x-1/2 px-[16px] py-[2px] absolute bottom bottom-[5%] bg-black/50 border-[0.2px] border-black rounded-lg transition-[all] duration-300 ease-in-out  border-2 hover:scale-105 ${isOnHome? "!bg-[var(--blue-btn)]": ""}`}><h4 className="lg:text-xl text-[15px] text-white text-center" style={{fontFamily:"var(--font-inter)"}}>Add to Cart</h4></div>
       </div>
       <div className={`relative pb-[50px] p-[3%] w-[100%] ${isOnHome ? "": ""}`} style={{fontFamily:"var(--font-inter)"}}>
         <div className="text-[30px] sm:text-[18px]">
