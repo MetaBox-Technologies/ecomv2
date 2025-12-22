@@ -21,7 +21,7 @@ export default function QuantityButton({quantity, width=80, height=34, isOnCart=
     
     const { cartUpdater } = useContext(RootContext)
 
-    console.log("quantityButton is on cart: ",isOnCart);    
+
 
     const addHander = ()=>{
         if(productInfo && isOnCart) {
@@ -33,7 +33,6 @@ export default function QuantityButton({quantity, width=80, height=34, isOnCart=
                 onAddNew();
             } else {
                 //do nothing
-                console.log("No onAddNew function passed, cannot add new product from here");
             }
         }
     }
@@ -48,13 +47,13 @@ export default function QuantityButton({quantity, width=80, height=34, isOnCart=
                 cartUpdater(newCartState);
             }
         }else {
-            console.log("No onAddNew function passed, cannot add new product from here");
+
         }
     }
     
     return (<div className="item-button__quantity" style={{width: `${width}px`, height: `${height}px`}}>
                 <button className="material-symbols-outlined hover:cursor-pointer" onClick={removeHandler}>remove</button>
-                <p>{quantity}</p>
+                <p>{quantity ? quantity : 1}</p>
                 <button className="material-symbols-outlined hover:cursor-pointer" onClick={addHander}>add</button>
             </div>)
 }
