@@ -31,7 +31,7 @@ export const  Cell =  React.memo(({id, image, prodName, color, prodPrice, quanti
 
     return (
         <div className="item-cell">
-            <div className="w-[80px] h-[96px] rounded-md border-1 border-[var(--neutral-4)]" style={{backgroundImage:'url("'+GetStrapiURL().slice(0, GetStrapiURL().length-1)+image.url+'")', backgroundSize:"contain", backgroundPosition:"center", backgroundRepeat:"no-repeat"}}/>
+            <div className="w-[80px] h-[96px] rounded-md border-1 border-[var(--neutral-4)]" style={{backgroundImage:'url("https://strapi.ecomv2.online'+image.url+'")', backgroundSize:"contain", backgroundPosition:"center", backgroundRepeat:"no-repeat"}}/>
             <div className="item-cell__info">
                 <div className="row-1">
                     <p className="item-name" style={{...(nameLength > 2 && {fontSize: "10px"})}}>{prodName}</p>
