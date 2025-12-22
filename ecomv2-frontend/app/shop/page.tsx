@@ -28,9 +28,9 @@ export default async function ShopPage({searchParams}:PageProps) {
               <div className=" w-full  flex justify-center mt-[2%] mb-[2%]">
                     <div className="relative w-17/20 h-[300px] rounded-[20px] overflow-hidden   xl:h-[400px]">
                         <div className="absolute z-8 w-9/10 top-[70px] left-1/2 -translate-x-1/2 text-center flex flex-col gap-5   xl:gap-7 xl:top-[100px] md:top-[75px]">
-                            <div className="text-[14px]"><Breadcrumbs/></div>
-                            <h2 className="font-poppins font-medium text-[54px] md:text-5xl">{hero[0]?.text}</h2>
-                            <h4 className="text-[20px] text-600    xl:text-[22px] md:text-[20px]">{hero[0]?.subtitle}</h4>
+                            <div className="text-[14px] xl:text-[20px]"><Breadcrumbs/></div>
+                            <h2 className="font-poppins font-medium text-[40px] xl:text-[54px] md:text-5xl">{hero[0]?.text}</h2>
+                            <h4 className="text-[16px] text-600    xl:text-[28px] md:text-[20px]">{hero[0]?.subtitle}</h4>
                         </div>
                         <StrapiImage
                             src={hero[0]?.backgroundImage[0].url}

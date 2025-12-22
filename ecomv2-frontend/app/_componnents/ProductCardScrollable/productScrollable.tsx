@@ -36,8 +36,6 @@ export default function ProductCardScrollable({ articles, allReviews }:Readonly<
     hide: false,
     draggable: true,
   };
-  console.log("------test log")
-  articles.forEach((article)=>{console.log(article.images)})
 
   const modulesConfig = [FreeMode, Scrollbar]; //modules needed
 
@@ -114,7 +112,6 @@ export default function ProductCardScrollable({ articles, allReviews }:Readonly<
 
   useEffect(()=>{
     const swiperInstance = swiperRef.current;
-    console.log(articles)
     if(swiperInstance) {
       const timerId = setTimeout(resizeHandler(swiperInstance), 150);
       return ()=>{

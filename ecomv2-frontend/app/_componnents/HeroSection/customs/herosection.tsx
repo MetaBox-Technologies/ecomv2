@@ -5,8 +5,21 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import "swiper/css/navigation";
 import './styles.css';
-
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+
+
+interface Slider{
+  sliderImage:{
+    url:string,
+    alternativeText: string,
+  },
+  sliderHeadline: string,
+  slidrText: string
+}
+
+interface HeroSectionProps {
+  Sliders: [Slider]
+}
 
 export default function HeroSection() {
   const pagination = {

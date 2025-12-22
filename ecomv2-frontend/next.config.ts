@@ -13,9 +13,33 @@ const nextConfig: NextConfig = {
     ],
     unoptimized: process.env.NODE_ENV === "development",
   },
+
   typescript: {
-    // Danger: allows production builds to succeed even with TS errors
     ignoreBuildErrors: true,
+  },
+
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value: [
+            "default-src *",
+            "script-src * 'unsafe-inline' 'unsafe-eval'",
+            "style-src * 'unsafe-inline'",
+            "img-src * data: blob:",
+            "font-src *",
+            "connect-src *",
+            "media-src *",
+            "frame-src *",
+            "object-src *",
+          ].join("; "),
+          },
+        ],
+      },
+    ];
   },
 };
 

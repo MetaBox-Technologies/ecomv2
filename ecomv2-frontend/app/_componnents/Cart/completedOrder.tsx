@@ -35,7 +35,7 @@ export function CompletedOrder({products, total}:Readonly<CompletedOrderProps>){
     return ()=> {
         cartUpdater(clearCart());
         }
-    })
+    },[])
     
     return (
         <div className="complete">

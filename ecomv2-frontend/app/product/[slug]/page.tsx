@@ -16,8 +16,6 @@ export default async function  page({ params }) {
 
     async function loader(query? :string) {
       const { data } = await getContent("/api/products",query);
-      console.log("---issue")
-      console.log(data)
       return {
         articles: (data as ArticleProps[]) || [],
       };

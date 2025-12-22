@@ -50,7 +50,6 @@ const ExpandingSearchBar = ({ icon: Icon = Search }: ExpandingSearchBarProps) =>
 
   return (
 
-      /*-----------------*/
       <div className="relative h-12 w-1">
       <div
         className={cn(
@@ -59,7 +58,6 @@ const ExpandingSearchBar = ({ icon: Icon = Search }: ExpandingSearchBarProps) =>
             ? "w-55 bg-search-expanded bg-white shadow-search-glow"
             : "w-0 bg-transparent p-0"
         )}
-      /*-----------------*/
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => !isFocused && setIsExpanded(false)}
     >

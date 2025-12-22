@@ -5,6 +5,7 @@ import { fetchAPI } from "../utils/fetch-api";
 
 const BASE_URL = GetStrapiURL()
 
+//gets hero banner content for shop page
 const globalSettingsQuery= qs.stringify(
 {
     filters: {
@@ -35,6 +36,7 @@ export async function getShopPage() {
     return fetchAPI(url.href, { method: "GET" });
 }
 
+//gets all products
 export async function getContent(path: string,query?: string) {
   const url = new URL(path, BASE_URL);
   url.search = qs.stringify({
@@ -61,6 +63,7 @@ export async function getContent(path: string,query?: string) {
   return fetchAPI(url.href, { method: "GET" });
 }
 
+//gets all product categories
 export async function getProdCategories(path:string) {
   const url = new URL(path, BASE_URL);
   return fetchAPI(url.href, {method: "GET"});
@@ -88,6 +91,7 @@ export async function getNewArticles(plimit?: number) {
   return fetchAPI(url.href, {method : "GET"})
 }
 
+//gets all reviews
 export async function getReviews(){
   const url = new URL('/api/review-webs', BASE_URL);
   const query = qs.stringify({

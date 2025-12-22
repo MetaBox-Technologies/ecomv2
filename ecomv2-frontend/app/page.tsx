@@ -14,7 +14,6 @@ import { getReviews } from "./data/loaders";
 export default async function Home() {
  
   const {data} =  await getContent('api/products')
-  console.log(data[0].images);
 
   const fetchReviews = async () => {
           try {

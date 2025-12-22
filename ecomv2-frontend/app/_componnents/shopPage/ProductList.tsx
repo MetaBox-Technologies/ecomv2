@@ -13,7 +13,6 @@ interface ContentListProps {
 
 async function loader(query? :string) {
   const { data } = await getContent("/api/products",query);
-  console.log(data)
   return {
     articles: (data as ArticleProps[]) || [],
   };

@@ -121,14 +121,14 @@ export default function CartPage(){
                     return;
                 if(stage.current === "cart" && delivery === null) {
                     const radioForm = document.querySelector("form[name=delivery]");
-                    const radios = radioForm.querySelectorAll(".summary-delivery__choice");
+                    const radios = radioForm?.querySelectorAll(".summary-delivery__choice");
                     if(window.innerWidth < 1024) {
                         radioForm?.scrollIntoView({
                             behavior: "smooth",
                             block: "center"
                         })
                     }
-                    radios.forEach((radio)=>{
+                    radios?.forEach((radio)=>{
                         radio.classList.add("shake-radio");
                     })
                     setTimeout(()=>{
