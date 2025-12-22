@@ -22,13 +22,13 @@ export default function SortBy({ onChange }: { onChange: (o: SortOption) => void
         className="flex items-center gap-1 cursor-pointer select-none my-[2%]"
         onClick={() => setOpen(!open)}
       >
-        <span className="font-medium font-sans md:text-[22px] text-[18px]">Sort by</span>
+        <span className="font-semibold font-sans md:text-[16px] text-[16px] mr-[5px]">Sort by</span>
         <Image
           src="/Vector.svg"
           alt="Open"
           width={16}
           height={16}
-          className={`transition-transform duration-200 w-[15px] h-[15px] md:w-[20px] md:h-[20px] ${open ? "rotate-180" : ""}`}
+          className={`transition-transform duration-200 w-[12px] h-[12px]  ${open ? "rotate-180" : ""}`}
         />
       </div>
 
