@@ -28,6 +28,7 @@ export interface ProductCategoryProps{
   updatedAt: string;
 }
 
+//note: article is product
 export interface ArticleProps {
   id: number;
   documentId: string;
