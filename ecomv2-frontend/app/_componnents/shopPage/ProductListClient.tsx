@@ -41,7 +41,7 @@ export  function ProductListClient({
   const searchParams = useSearchParams();
   const [PriceFilters, setPriceFilters] = useState<PriceRange[]>([]);
   const [open, setOpen]=useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("All products");
+  const selectedCategory = searchParams.get("query") ?? "All Rooms";
   //After passing through child function, pricefilters now stores all selected price ranges objects
   const showMore =() => {
     setVisibleCount(prev => prev+6);
@@ -112,11 +112,11 @@ const filteredArticles = useMemo(() => {
             style={{ objectFit: "contain" }}
           />
         </div>
-        <h4 className="xl:text-[150%]  md:text-[140%] font-semibold  font-poppins mb-[4%]"> Filter</h4>
+        <h4 className="xl:text-[150%]  md:text-[140%] font-semibold  font-sans mb-[4%]"> Filter</h4>
       </div>
 
-      <h4 className="lg:mb-[6%] font-semibold text-[110%] font-poppins md:mb-[3%]">CATEGORIES</h4>
-      <FilterCat categories={uniquecategories} selected={selectedCategory} onSelect={(value) => setSelectedCategory(value)} />
+      <h4 className="lg:mb-[6%] font-semibold text-[120%] font-sans      md:mb-[3%]">CATEGORIES</h4>
+      <FilterCat categories={uniquecategories} selected={selectedCategory} />
     </div>
 
     {/* a change in price filter will trigger this */}
@@ -165,16 +165,15 @@ const filteredArticles = useMemo(() => {
 
   {/* Content wrapper */}
   <div className="px-4 pb-10 h-full overflow-y-auto ml-[1%]">
-    <h4 className="font-semibold font-poppins text-[20px] ml-[2%]">Filter</h4>
+    <h4 className="font-semibold font-sans text-[25px] ml-[2%]">Filter</h4>
 
     <div className="mb-4">
-      <h4 className="font-poppins font-semibold text-[16px] mb-2 underline ml-[2%]">
+      <h4 className="font-sans font-semibold text-[110%] mb-2 underline ml-[2%]">
         CATEGORIES
       </h4>
       <FilterCat
         categories={uniquecategories}
         selected={selectedCategory}
-        onSelect={(value) => setSelectedCategory(value)}
         isOnMobile
       />
     </div>
@@ -189,7 +188,7 @@ const filteredArticles = useMemo(() => {
 
   <div className="lg:w-[66%] md:w-[61%] mx-[8%] md:mx-0 lg:mb-[15%] md:mb-[20%] sm:mb-[25%] mb-[35%] ">
     <div className="flex justify-between">
-        <h2 className="xl:text-[150%]  md:text-[140%] sm:text-[130%] text-[1.1rem] font-semibold  font-poppins md:mb-[4%] my-[2%] md:my-0">{selectedCategory + ((searchParams.has("search") && searchParams.get("search")?.trim().length > 0) ? ` with "${searchParams.get("search")?.trim()}"` : "")}</h2>
+        <h2 className="xl:text-[150%]  md:text-[140%] sm:text-[130%] text-[1.1rem] font-semibold  font-sans md:mb-[4%] my-[2%] md:my-0">{selectedCategory + ((searchParams.has("search") && searchParams.get("search")?.trim().length > 0) ? ` with "${searchParams.get("search")?.trim()}"` : "")}</h2>
         <div className="flex justify-end mr-[8%] md:mr-0 my-[2%] md:my-0">
         <SortBy onChange={setSortOption} />
         </div>
