@@ -2,15 +2,15 @@
 
 .test {
     background-color: #F3F5F7;
-    font-size: 15px;
+    font-size: 14px;
     color: black;
-    font-weight: 500;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
     padding: 10px;
     height: 40px;
+    font-family: 'Inter';
 }
 
 header:not(.cart-header) {

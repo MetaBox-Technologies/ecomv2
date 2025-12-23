@@ -144,13 +144,11 @@ export default function ProductCard({ product, avgRating, numReviews }: ProductC
             <div className="product-card">
                 <div className="product-left">
                     <div className="carousel">
-                        <div className="carousel-image flex flex-col justify-center items-center">
                         <img
                                   src={GetStrapiURL().slice(0, GetStrapiURL().length-1) + images[currentIndex].url}
                                   alt={images[currentIndex].alternativeText || "No alternative text provided"}
-                            className='caroussel-image object-contain'
+                            className='carousel-image'
                         />
-                        </div>
 
                         <button className="nav-button left" onClick={prevImage}>
                             <i className="fas fa-arrow-left"></i>
@@ -165,11 +163,11 @@ export default function ProductCard({ product, avgRating, numReviews }: ProductC
                     {images.map((img, index) => (
                         <div key={index}
                              onClick={() => setCurrentIndex(index)}>
-                                <img
-                                  src={GetStrapiURL().slice(0, GetStrapiURL().length-1) + img.url}
-                                  alt={img.alternativeText || "No alternative text provided"}
-                                  className="thumbnail cursor-pointer border-1 border-[black] rounded-lg object-contain"
-                        />
+                            <img
+                                src={GetStrapiURL().slice(0, GetStrapiURL().length-1) + img.url}
+                                alt={img.alternativeText || "No alternative text provided"}
+                                className="thumbnail cursor-pointer border-1 border-[black] rounded-lg object-contain"
+                            />
                         </div>
                     ))}
                     </div>

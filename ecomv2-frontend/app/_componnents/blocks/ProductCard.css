@@ -18,7 +18,7 @@
 }
 
 .carousel-image {
-  @apply w-full h-full object-cover object-center rounded-[20px];
+  @apply w-full h-full object-contain object-center;
 }
 
 .nav-button {
