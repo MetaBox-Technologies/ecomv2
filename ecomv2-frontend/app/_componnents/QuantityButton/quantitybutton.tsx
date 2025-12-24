@@ -27,13 +27,8 @@ export default function QuantityButton({quantity, width=80, height=34, isOnCart=
         if(productInfo && isOnCart) {
             const newCartState = updateCart(productInfo.id, 1, productInfo.color);
             cartUpdater(newCartState);
-        }else {
-            if (onAddNew) {
-                //not in cart → add new product(use parent callback if available)
-                onAddNew();
-            } else {
-                //do nothing
-            }
+        }else { 
+            //do nothing
         }
     }
 
@@ -47,13 +42,13 @@ export default function QuantityButton({quantity, width=80, height=34, isOnCart=
                 cartUpdater(newCartState);
             }
         }else {
-
+            //do nothing
         }
     }
     
     return (<div className="item-button__quantity" style={{width: `${width}px`, height: `${height}px`}}>
                 <button className="material-symbols-outlined hover:cursor-pointer" onClick={removeHandler}>remove</button>
-                <p>{quantity ? quantity : 1}</p>
+                <p>{quantity ? quantity : 0}</p>
                 <button className="material-symbols-outlined hover:cursor-pointer" onClick={addHander}>add</button>
             </div>)
 }
