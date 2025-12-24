@@ -103,7 +103,7 @@ const filteredArticles = useMemo(() => {
 
   return (
     <section className="w-full flex flex-col md:flex-row mb-[10%]">
-  <div className="hidden md:block lg:w-[15%] md:w-[20%] ml-[8%] mr-[4%]">
+  <div className="hidden md:block xl:w-[15%] lg:w-[17%] md:w-[20%] ml-[8%] mr-[4%]">
     {/* Full filtering div */} {/* Hidden on smaller devices */}
 
     <div>
