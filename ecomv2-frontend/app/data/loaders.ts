@@ -56,7 +56,10 @@ export async function getContent(path: string,query?: string) {
     },
       colour:{
         fields: ["name"],
-      }
+      },
+      featuredImage: {
+        fields: ["url", "alternativeText"],
+      },
     },
   });
 

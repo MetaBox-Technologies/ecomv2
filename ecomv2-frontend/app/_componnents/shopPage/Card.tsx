@@ -18,10 +18,7 @@ export interface CardProps {
   name: string;
   ProductId: string;
   description: string;
-  images: {
-    url: string,
-    alternativeText: string,
-  };
+  images: any;
   price: number;
   createdAt: string;
   percentagediscount: number;
@@ -50,7 +47,8 @@ export function Card({
   const [showActions, setShowActions] = useState(false);
   const addToCartBtnRef = useRef(null);
   const { isCartOpen, cartUpdater } = useContext( RootContext );
-  const offuscimgUrl = btoa(`url("${GetStrapiURL() + images.url.slice(1)}")`);
+  const offuscimgUrl = images?.url
+  ? btoa(`url("${GetStrapiURL() + images.url.slice(1)}")`) : null;
 
   const pushNewPorduct = (productToPush: Product) => {
     if(addToCartBtnRef.current)
@@ -71,10 +69,12 @@ export function Card({
           prodName: title,
           prodPrice: price,
           quantity: 1,
-          image: {
-            url: images.url,
-            alt: images.alternativeText
-          },
+          image: images?.url
+          ? {
+          url: images.url,
+          alt: images.alternativeText ?? "",
+          }
+          : null,
           color: "default"
         }
     if(cartContent.length > 0) {
@@ -110,7 +110,13 @@ export function Card({
   return (
     <div className={`flex sm:flex-col  gap-3 sm:gap-0 ${isOnHome ? "w-[231px] md:w-[262px] flex-shrink-0 flex flex-col items-start gap-3" : ""}`}>
       <div className={`relative w-[100%] border-1 border-gray-200 hover:cursor-pointer rounded-3xl overflow-hidden ${isOnHome ? "h-[308px] md:h-[349px border-1 border-black]" : "sm:h-[200px] lg:h-[300px] xl:h-[350px] bg-white"}`}
-          style={{backgroundImage: `url("https://strapi.ecomv2.online${images.url}")`, backgroundSize:"contain", backgroundPosition: "center", backgroundRepeat: "no-repeat"}}
+          style={images?.url?{
+                  backgroundImage: `url("https://strapi.ecomv2.online${images.url}")`,
+                  backgroundSize: "contain",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }: undefined
+                }
          onMouseEnter={()=>{
           setShowActions(true);
           setTimeout(()=>{
@@ -129,7 +135,7 @@ export function Card({
         }}
         
          /*onClick={()=>setShowActions(!showActions)*}*/>
-        <Link href={`/product/${ProductId}`} className='relative block w-full h-full prod-bg' data-bg={offuscimgUrl}>
+        <Link href={`/product/${ProductId}`} className='relative block w-full h-full prod-bg' {...(images?.url && { "data-bg": offuscimgUrl })}>
         {isNew && <div className="pointer-events-none lg:w-[60px] lg:h-[30px] md:w-[52px] md:h-[25px] w-[45px] h-[20px] absolute top-[5%] left-[5%] bg-white rounded"><h1 className="font-semibold md:text-base lg:text-lg test-sm text-center">NEW</h1></div>}
         {PercentageDiscount>0 && (<div className={`pointer-events-none lg:w-[60px] lg:h-[30px] md:w-[52px] md:h-[25px] w-[45px] h-[20px]  absolute ${isNew? "top-[2.8rem] sm:top-[19%] md:top-[20%] lg:top-[19%] xl:top-[17%]" : "top-[5%]"} left-[5%] bg-[#38CB89] rounded`}><h1 className="font-semibold text-white md:text-base lg:text-lg text-sm text-center">-{PercentageDiscount}%</h1></div>)}
        

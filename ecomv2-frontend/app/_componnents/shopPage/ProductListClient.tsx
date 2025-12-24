@@ -17,6 +17,10 @@ interface ArticleProps {
     url:string,
     alternativeText:string,
   },
+  featuredImage:{
+    url: string,
+    alternativeText:string,
+  }
   price: number;
   rating: number;
   publishedAt: string;
@@ -42,6 +46,8 @@ export  function ProductListClient({
   const [PriceFilters, setPriceFilters] = useState<PriceRange[]>([]);
   const [open, setOpen]=useState(false);
   const selectedCategory = searchParams.get("query") ?? "All Rooms";
+
+  console.log(articles)
   //After passing through child function, pricefilters now stores all selected price ranges objects
   const showMore =() => {
     setVisibleCount(prev => prev+6);
@@ -195,7 +201,7 @@ const filteredArticles = useMemo(() => {
     </div>
     <div className="products_grid">
       {filteredArticles.slice(0, visibleCount).map((article) => (
-        <Component key={article.documentId} {...article} images={{url: article.images[0].url , alternativeText: article.images[0].alternativeText}} allReviews={allReviews} />
+        <Component key={article.documentId} {...article} images={article.featuredImage} allReviews={allReviews} />
       ))}
     </div>
 
