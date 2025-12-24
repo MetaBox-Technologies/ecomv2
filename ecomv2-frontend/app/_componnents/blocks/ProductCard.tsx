@@ -26,6 +26,10 @@ type Product = {
     url: string;
     alternativeText: string | null;
   }[];
+  featuredImage:{
+    url: string;
+    alternativeText: string | null;
+  }
   stock: number;
   featured: boolean;
   rating: number;
@@ -58,7 +62,14 @@ export default function ProductCard({ product, avgRating, numReviews }: ProductC
     ? product.colour.map(c => c.name)
   : [];
     console.log(colours)
-  const images = product.images;
+  const featuredimage= product.featuredImage;
+  const images = [
+  ...(featuredimage ? [featuredimage] : []),
+  ...(product.images ?? []),
+].slice(0, 3);
+
+  console.log("------images------")
+  console.log(product.images)
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedColor, setSelectedColor] = useState(colours[0]);
