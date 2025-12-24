@@ -2,7 +2,7 @@
 import '../../globals.css';
 import "./ProductCard.css";
 import "../QuantityButton/quantitybutton";
-import{useContext, useRef, useState} from "react";
+import{useContext, useEffect, useRef, useState} from "react";
 import QuantityButton from '../QuantityButton/quantitybutton';
 import { RootContext } from "@/app/_providers/RootContext";
 import { cartloader, pushProductToCart, updateCart} from "../Cart/cartContentLoader";
@@ -11,7 +11,7 @@ import { GetStrapiURL } from '@/app/utils/get-strapi-url';
 import StarRating from '../shopPage/StarRating';
 
 type Product = {
-  id: number;
+  id: any;
   documentedId: string;
   title: string;
   slug: string;
@@ -43,6 +43,7 @@ export interface ProductCardProps {
   product: Product;
   avgRating: number;
   numReviews: number;
+  documentId: string;
 }
 
 type CartItem = {
@@ -57,7 +58,7 @@ type CartItem = {
   color: string;
 };
 
-export default function ProductCard({ product, avgRating, numReviews }: ProductCardProps) {
+export default function ProductCard({ product, avgRating, numReviews , documentId}: ProductCardProps) {
     const colours = Array.isArray(product.colour)
     ? product.colour.map(c => c.name)
   : [];
@@ -76,7 +77,7 @@ export default function ProductCard({ product, avgRating, numReviews }: ProductC
   const addToCartBtnRef = useRef<HTMLButtonElement | null>(null);
 
     const cartItem = (cartContent as CartItem[]).find(
-        item => item.id === product.id && item.color === selectedColor
+        item => item.id === documentId && item.color === selectedColor
     );
     const isOnCart = !!cartItem;
 
@@ -111,7 +112,7 @@ export default function ProductCard({ product, avgRating, numReviews }: ProductC
         const storedCart = cartloader(); //retrieves the current cart items (from local storage)
 
         const productToPush = {
-            id: product.documentedId,
+            id: documentId,
             prodName: product.title,
             prodPrice: product.price,
             quantity: 1,
@@ -148,6 +149,9 @@ export default function ProductCard({ product, avgRating, numReviews }: ProductC
             pushNewProduct(productToPush);
         }
     };
+    useEffect(()=>{
+        console.log(documentId);
+    })
 
   return (
     <section className="product-page">
@@ -246,14 +250,14 @@ export default function ProductCard({ product, avgRating, numReviews }: ProductC
                             quantity={quantity}
                             isOnCart={isOnCart}  
                             productInfo={{
-                                id: product.documentedId,
+                                id: documentId,
                                 color: selectedColor,
                             }}
                             width={127}
                             height={56}
                             onAddNew={() => {
                                 const productToPush = {
-                                    id: product.id,
+                                    id: documentId,
                                     prodName: product.title,
                                     prodPrice: product.price,
                                     quantity: 1,

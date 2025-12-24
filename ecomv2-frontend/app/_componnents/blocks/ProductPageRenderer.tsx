@@ -17,7 +17,7 @@ export function PageRenderer({product,reviews,productId,name}:Readonly<PageRende
 
     return (
         <main className="relative top-[105px]">
-            <ProductCard product={product} />
+            <ProductCard product={product} documentId={productId} />
             <Reviews reviews={reviews} productId={productId} name={name}/>
         </main>
     );

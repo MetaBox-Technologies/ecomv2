@@ -1,7 +1,7 @@
 "use client"
 
 import { useContext, useState } from "react";
-import { updateCart, popProductFromCart } from "../Cart/cartContentLoader";
+import { updateCart, popProductFromCart, cartloader } from "../Cart/cartContentLoader";
 import "./css/quantitybutton.css";
 import { RootContext } from "@/app/_providers/RootContext";
 
@@ -9,7 +9,7 @@ interface QuantityButtonProps {
     quantity: number,
     isOnCart?:boolean,
     productInfo:{
-        id: number,
+        id: any,
         color?: string
     }
     onAddNew?: () => void;
@@ -28,12 +28,24 @@ export default function QuantityButton({quantity, width=80, height=34, isOnCart=
             const newCartState = updateCart(productInfo.id, 1, productInfo.color);
             cartUpdater(newCartState);
         }else { 
-            //do nothing
+            const isOnList = cartloader()
+                            .filter((cartItem)=>{
+                                if((cartItem.id === productInfo.id) && (cartItem.color === productInfo.color))
+                                    return true;
+                            }).length > 0;
+
+            console.log("is on list: ", isOnList);
+
+            if(!isOnList) {
+                onAddNew();
+                return 
+            }
+            cartUpdater(updateCart(productInfo.id, 1, productInfo.color));
         }
     }
 
     const removeHandler = () => {
-        if(productInfo && isOnCart) {
+        if(productInfo) {
             if(quantity - 1 > 0) {
                 const newCartState = updateCart(productInfo.id, (-1) , productInfo.color);
                 cartUpdater(newCartState);
@@ -48,7 +60,7 @@ export default function QuantityButton({quantity, width=80, height=34, isOnCart=
     
     return (<div className="item-button__quantity" style={{width: `${width}px`, height: `${height}px`}}>
                 <button className="material-symbols-outlined hover:cursor-pointer" onClick={removeHandler}>remove</button>
-                <p>{quantity ? quantity : 0}</p>
+                <p>{quantity ? quantity : 1}</p>
                 <button className="material-symbols-outlined hover:cursor-pointer" onClick={addHander}>add</button>
             </div>)
 }
