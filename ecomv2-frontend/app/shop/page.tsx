@@ -33,8 +33,8 @@ export default async function ShopPage({searchParams}:PageProps) {
                             <h4 className="text-[16px] text-600 xl:text-[20px] md:text-[20px] font-inter">{hero[0]?.subtitle}</h4>
                         </div>
                         <StrapiImage
-                            src={hero[0]?.backgroundImage[0].url}
-                            alt={hero[0]?.backgroundImage[0].alternativeText || "No alternative text provided"}
+                            src={hero[0]?.backgroundImage.url}
+                            alt={hero[0]?.backgroundImage.alternativeText || "No alternative text provided"}
                             fill
                             className="object-cover"
                         />
