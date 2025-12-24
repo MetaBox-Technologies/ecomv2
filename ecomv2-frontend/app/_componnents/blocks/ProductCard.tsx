@@ -61,15 +61,14 @@ export default function ProductCard({ product, avgRating, numReviews }: ProductC
     const colours = Array.isArray(product.colour)
     ? product.colour.map(c => c.name)
   : [];
-    console.log(colours)
+
   const featuredimage= product.featuredImage;
   const images = [
   ...(featuredimage ? [featuredimage] : []),
   ...(product.images ?? []),
 ].slice(0, 3);
 
-  console.log("------images------")
-  console.log(product.images)
+
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedColor, setSelectedColor] = useState(colours[0]);
@@ -112,7 +111,7 @@ export default function ProductCard({ product, avgRating, numReviews }: ProductC
         const storedCart = cartloader(); //retrieves the current cart items (from local storage)
 
         const productToPush = {
-            id: product.id,
+            id: product.documentedId,
             prodName: product.title,
             prodPrice: product.price,
             quantity: 1,
@@ -156,7 +155,7 @@ export default function ProductCard({ product, avgRating, numReviews }: ProductC
                 <div className="product-left">
                     <div className="carousel">
                         <img
-                                  src={GetStrapiURL().slice(0, GetStrapiURL().length-1) + images[currentIndex].url}
+                                  src={"https://strapi.ecomv2.online" + images[currentIndex].url}
                                   alt={images[currentIndex].alternativeText || "No alternative text provided"}
                             className='carousel-image'
                         />
@@ -174,11 +173,11 @@ export default function ProductCard({ product, avgRating, numReviews }: ProductC
                     {images.map((img, index) => (
                         <div key={index}
                              onClick={() => setCurrentIndex(index)}>
-                            <img
-                                src={GetStrapiURL().slice(0, GetStrapiURL().length-1) + img.url}
-                                alt={img.alternativeText || "No alternative text provided"}
-                                className="thumbnail cursor-pointer border-1 border-[black] rounded-lg object-contain"
-                            />
+                                <img
+                                  src={"https://strapi.ecomv2.online" + img.url}
+                                  alt={img.alternativeText || "No alternative text provided"}
+                                  className="thumbnail cursor-pointer border-1 border-[black] rounded-lg object-contain"
+                        />
                         </div>
                     ))}
                     </div>
@@ -247,7 +246,7 @@ export default function ProductCard({ product, avgRating, numReviews }: ProductC
                             quantity={quantity}
                             isOnCart={isOnCart}  
                             productInfo={{
-                                id: product.id,
+                                id: product.documentedId,
                                 color: selectedColor,
                             }}
                             width={127}

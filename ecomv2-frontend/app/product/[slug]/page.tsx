@@ -65,7 +65,6 @@ export default async function  page({ params }) {
     productReviews.length === 0 ? 0
     :Math.round(productReviews.reduce((sum, r) => sum + r.rating, 0) / productReviews.length);
     //Product not found
-    console.log(avgRating)
     if (!dummyProduct[0])
       return <h1>Product not found</h1>;
     //Product found and display its data and reviews*/

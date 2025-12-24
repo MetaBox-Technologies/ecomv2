@@ -2,15 +2,25 @@
 import { z } from "zod";
 import { schema } from "./formAction/checkOutFormValidationSchema/schema";
 import { nameSchema, emailSchema, CountryCitySchema, phoneSchema, zipCodeSchema, addresSchema, stateSchema, nidSchema} from "./formAction/checkOutFormValidationSchema/schema";
-import { testOrderServices } from "@/app/data/_services/testService";
+import { OrderServices, type Item } from "@/app/data/_services/OrderService";
 import { send } from "process";
 
 
-export default async function testAction(currentState, formData) {
+export default async function checkoutAction(currentState, formData) {
 
     if(formData.get("deliveryMethod") === null) {
         return {...currentState}
     }
+
+    const items:Item[] = JSON.parse(formData.get("items")).map((item:Item)=>{
+        return {
+            id: item.id,
+            quantity: Number(item.quantity),
+            color: String(item.color)
+        }
+    })
+
+
 
     
     const fnameR  = z.safeParse(nameSchema, formData.get("fname") ? formData.get("fname") : null);
@@ -55,7 +65,7 @@ export default async function testAction(currentState, formData) {
     }
     
     if (Object.keys(errors).length === 0) {
-        const request = await testOrderServices({
+        const request = await OrderServices({
             firstName: valid.fname,
             lastName: valid.lname,
             email: valid.email,
@@ -65,7 +75,8 @@ export default async function testAction(currentState, formData) {
             city: valid.city,
             country: valid.country,
             postCode: valid.zip,
-            delivery: formData.get("deliveryMethod")
+            delivery: formData.get("deliveryMethod"),
+            items: items,
         });
 
 

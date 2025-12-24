@@ -8,21 +8,17 @@ interface PageRendererProps{
     product: any,
     reviews:any
     productId: number;
-    name: string;
-    avgRating: number;
 }
 
-export function PageRenderer({product,reviews,productId,name,avgRating}:Readonly<PageRendererProps>){
+export function PageRenderer({product,reviews,productId,name}:Readonly<PageRendererProps>){
 
     const ProductCard = dynamic(()=>import('../../_componnents/blocks/ProductCard'), {ssr: false});
     const Reviews = dynamic(()=>import('../../_componnents/blocks/Reviews'), {ssr: false});
-    console.log('---page renderer')
-    console.log(product)
 
     return (
         <main className="relative top-[105px]">
-            <ProductCard product={product} avgRating={avgRating} numReviews={reviews.length}/>
-            <Reviews reviews={reviews} productId={productId} name={name} avgRating={avgRating}/>
+            <ProductCard product={product} />
+            <Reviews reviews={reviews} productId={productId} name={name}/>
         </main>
     );
 }

@@ -2,16 +2,24 @@
 
 import "./css/checkoutForm.css";
 import dynamic from "next/dynamic";
-import testAction from "./testAction";
-import React, {useEffect, useCallback, useContext} from "react";
+import testAction from "./checkoutAction";
+import React, {useEffect, useCallback, useContext, createRef} from "react";
 import { useFormStatus } from "react-dom";
 import { PageNavigationContext } from "@/app/cart/page";
+import { RootContext } from "@/app/_providers/RootContext";
 
+interface CheckoutFormProps {
+    delivery: string,
+    finalTotal: number,
+}
 
-
-export function CheckoutForm({delivery}) {
+export function CheckoutForm({delivery, finalTotal}: Readonly<CheckoutFormProps>) {
     
-    const {formState, checkoutAction} = useContext(PageNavigationContext)
+    const {formState, checkoutAction} = useContext(PageNavigationContext);
+    const items = useContext(RootContext).cartContent;
+    const countryLableRef= createRef()
+    const { cartContent } = useContext(RootContext);
+
 
     const SubmitButton = React.memo(()=>{
         const { pending } = useFormStatus()
@@ -24,7 +32,19 @@ export function CheckoutForm({delivery}) {
             <input  type="text" disabled/>
     })
 
+
+    const handleCountryError = ()=>{
+        if("country" in formState.errors) {
+            countryLableRef.current.classList.add("shake");
+            setTimeout(()=>{
+                countryLableRef.current.classList.remove("shake");
+            },300)
+        }
+    }
+    
+
     const handleError = (inputElement: HTMLElement) =>{
+        handleCountryError();
         const fieldName: string | null = inputElement.getAttribute('name');
         if(fieldName && (fieldName in formState.errors))
             inputElement.classList.add("shake");
@@ -35,7 +55,6 @@ export function CheckoutForm({delivery}) {
 
 
     useEffect(()=>{
-        console.log(formState);
         const  inputs = document.querySelectorAll("input");
         if(inputs){
             for(let input of inputs) {
@@ -43,6 +62,10 @@ export function CheckoutForm({delivery}) {
             }
         }
     }, [formState])
+
+    useEffect(()=>{
+        localStorage.setItem("purchase", JSON.stringify(cartContent));
+    },[])
 
     const CountrySelector = useCallback(dynamic(()=>import("../global/countrySelector"), {ssr: false, loading: placeHolder}), []);
 
@@ -81,7 +104,7 @@ export function CheckoutForm({delivery}) {
                             <input key={formState.errors.street ? formState.errors.street[0] : "street-default"} className="text-[var(--neutral-4)]" type="text" name="address" id="street" placeholder={formState.errors?.address ? formState.errors?.address[0] : "Street address"} defaultValue={formState.valid?.address ? formState.valid?.address : ""}/>
                         </div>
                         <div className="input-group">
-                            <label htmlFor="country">COUNTRY*</label>
+                            <label htmlFor="country" ref={countryLableRef} className="text-[var(--neutral) transition-all duration-100 ease-in-out]">COUNTRY*</label>
                             <CountrySelector inputName={"country"}/>
                         </div>
                         <div className="input-group">
@@ -99,6 +122,8 @@ export function CheckoutForm({delivery}) {
                             </div>
                         </div>
                         <input type="hidden" name="deliveryMethod" value={delivery}/>
+                        <input type="hidden" name="total" value={finalTotal}/>
+                        <input type="hidden" name="items" value={JSON.stringify(items)}/>
                         <SubmitButton/>
                     </fieldset>
                     

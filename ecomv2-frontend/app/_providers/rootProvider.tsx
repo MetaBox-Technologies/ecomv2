@@ -7,12 +7,14 @@ import { Header } from "../_componnents/header/header";
 import { Footer } from "../_componnents/footer/footer";
 import { cartloader } from "../_componnents/Cart/cartContentLoader";
 import { CartContent } from "../_componnents/Cart/cartContent";
+import { usePathname } from "next/navigation";
 
 
 export function RootProviders({ children }:{children: ReactNode}) {
 
     const [isOpen, setIsOpen] = useState(false);
     const [products, setProducts] = useState([]);
+    const path = usePathname();
     
 
 
@@ -22,7 +24,10 @@ export function RootProviders({ children }:{children: ReactNode}) {
     }
 
     useEffect(()=>{
-        setProducts(cartloader())
+        setProducts(cartloader());
+        if(path !== "/cart")
+            if(localStorage.getItem("purchase"))
+                localStorage.removeItem("purchase");
     }, [])
 
 

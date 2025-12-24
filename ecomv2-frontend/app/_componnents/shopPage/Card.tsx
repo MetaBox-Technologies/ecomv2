@@ -30,6 +30,7 @@ export interface CardProps {
 
 export function Card({
   id,
+  documentId,
   title,
   ProductId,
   description,
@@ -65,7 +66,7 @@ export function Card({
     
     const cartContent = cartloader();
     const productToPush = {
-          id: id,
+          id: documentId,
           prodName: title,
           prodPrice: price,
           quantity: 1,

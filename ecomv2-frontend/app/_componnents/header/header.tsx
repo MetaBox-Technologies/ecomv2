@@ -14,20 +14,31 @@ export function Header(){
     const [hasItems, setHasItems] = useState(false)
     const { isCartOpen } = useContext(RootContext);
     const isOnCartPage = path.startsWith("/cart") || path.startsWith("/checkout") || path.startsWith("/complete");
+    const isOnHome = path === "/";
+    const isOnShopOrProduct = path.startsWith("/shop") || path.startsWith("/product");
+    const isOnContact = path.startsWith("/contact")
     const links = [
         {
             name:"Home",
-            href:"/"
+            href:"/",
+            color: (isOnHome ? "black" : "rgb(123, 123, 123)"),
+            scaleHover: (isOnHome ? "1": "1.05")
         },    
         {
             name:"Shop",
-            href:"/shop"
+            href:"/shop",
+            color: (isOnShopOrProduct ? "black" : "rgb(123, 123, 123)"),
+            scaleHover: (isOnShopOrProduct ? "1": "1.05")
         },
         {
             name:"Contact Us",
-            href:"/contact"
+            href:"/contact",
+            color: (isOnContact ? "black": "[rgb(123, 123, 123)]"),
+            scaleHover: (isOnContact ? "1": "1.05")
         },
     ];
+
+
 
     useEffect(()=>{
       setHasItems(cartloader().length > 0)
@@ -49,24 +60,7 @@ export function Header(){
           {/*<p id="logo">VisioCreate</p>*/}
           <Image className="logo" src="/images/file.svg" alt="" width={90} height={18}/>
           <div id="links_container">
-            {links.map((link, index) => {
-              const isActive =
-                link.href === "/"
-                  ? path === "/"
-                  : path.startsWith(link.href);
-
-              return (
-                <a
-                  key={index}
-                  href={link.href}
-                  style={{
-                    color: isActive ? "black" : "rgb(123, 123, 123)"
-                  }}
-                >
-                  {link.name}
-                </a>
-              );
-            })}
+            {links.map((link, index)=><a key={index} href={link.href}  className={`transition-[scale] duration-300 ease-in-out hover:scale-[${link.scaleHover}] hover:text-black text-${link.color}`}>{link.name} </a>)}
           </div>
           <div id="icon_container">
           {/*<a href=""><Image className="icon1" src="/images/search 02.svg" alt="" width={25} height={18}/></a>*/}

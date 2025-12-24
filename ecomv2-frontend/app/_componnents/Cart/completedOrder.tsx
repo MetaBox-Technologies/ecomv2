@@ -1,4 +1,5 @@
 import { Product } from "./cartContentLoader";
+import { createRef, useState } from "react";
 import  Link from "next/link";
 import "./css/completedOrder.css";
 import { useContext, useEffect } from "react";
@@ -16,7 +17,7 @@ const MiniProdCard: React.FC = ({url, qt}:MiniProdCardsProps)=>{
     
     return (
         <div className="img__container">
-            <div  className="w-[88px] h-[104px] rounded-[12px]" style={{backgroundImage: `url("http://159.65.15.249:1337${url}")`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat:'no-repeat'}} alt=""/>
+            <div  className="w-[88px] h-[104px] rounded-[12px]" style={{backgroundImage: `url("https://strapi.ecomv2.online${url}")`, backgroundSize: 'contain', backgroundPosition: 'center', backgroundRepeat:'no-repeat'}} alt=""/>
             <span className="qt">{qt}</span>
         </div>
     )
@@ -25,18 +26,25 @@ const MiniProdCard: React.FC = ({url, qt}:MiniProdCardsProps)=>{
 
 
 interface CompletedOrderProps {
-    products: [Product];
     total: number;
+    products: any[]
 }
-export function CompletedOrder({products, total}:Readonly<CompletedOrderProps>){
-    const {cartUpdater} = useContext(RootContext);
 
+export function CompletedOrder({total}:Readonly<CompletedOrderProps>){
+    const { cartUpdater } = useContext(RootContext);
+    const [products, setProducts] = useState([])
+
+    const handleCloseTab = () => {
+    cartUpdater(clearCart());
+    }
     useEffect(()=>{
-    return ()=> {
+        setProducts(JSON.parse(localStorage.getItem("purchase")));
+        window.addEventListener("beforeunload", handleCloseTab);
         cartUpdater(clearCart());
+        return ()=>{
+            window.removeEventListener("beforeunload", handleCloseTab);
         }
     },[])
-    
     return (
         <div className="complete">
                     <div className="complete__header">
@@ -44,7 +52,7 @@ export function CompletedOrder({products, total}:Readonly<CompletedOrderProps>){
                         <h2>Your order has been received</h2>
                     </div>
                     <div className={"complete__product-img " + (products.length > 4 ? "justify-start ": "justify-center")}>
-                       {products.map((product, index)=> {
+                       {products && products.map((product, index)=> {
                         return <MiniProdCard key={index} url={product.image.url} qt={product.quantity}/>
                        })}        
                     </div>

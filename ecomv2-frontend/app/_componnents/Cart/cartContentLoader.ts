@@ -1,7 +1,7 @@
 import { ReferrerEnum } from "next/dist/lib/metadata/types/metadata-types";
 
 export interface Product{
-    id: number,
+    id: any,
     prodName: string,
     prodPrice: number,
     quantity: number,
@@ -41,7 +41,7 @@ enum Operation {
     decrease = (-1)
 }
 
-export function updateCart(id: number,op:Operation = Operation.increase, color?: string) {
+export function updateCart(id: any,op:Operation = Operation.increase, color?: string) {
     const cart = cartloader();
 
     let newCartState = cart.map((product)=>{
@@ -61,7 +61,7 @@ export function updateCart(id: number,op:Operation = Operation.increase, color?:
     return newCartState;
 }
 
-export function popProductFromCart(id: number, color?: string) {
+export function popProductFromCart(id: any, color?: string) {
     const cart = cartloader();
 
     let newCartState = cart.filter((product) => {

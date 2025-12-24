@@ -47,7 +47,6 @@ export  function ProductListClient({
   const [open, setOpen]=useState(false);
   const selectedCategory = searchParams.get("query") ?? "All Rooms";
 
-  console.log(articles)
   //After passing through child function, pricefilters now stores all selected price ranges objects
   const showMore =() => {
     setVisibleCount(prev => prev+6);

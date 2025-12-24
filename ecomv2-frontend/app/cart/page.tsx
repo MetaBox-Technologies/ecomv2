@@ -11,7 +11,7 @@ import { createContext } from "react";
 import { RootContext } from "../_providers/RootContext";
 import { useRouter } from "next/navigation";
 import { useFormState } from "react-dom";
-import testAction from "../_componnents/Cart/testAction";
+import checkoutAction from "../_componnents/Cart/checkoutAction";
 import { CompletedOrder } from "../_componnents/Cart/completedOrder";
 
 
@@ -25,13 +25,14 @@ export default function CartPage(){
     const [delivery, setDelivery] = useState(null);
     const [stage, setStage] =  useState({current: "cart", next: "checkout", stagePrev: null});
     const [firstRender, setFirstRender] = useState(true);
+    const products = useContext(RootContext).cartContent;
     const [finalTotal, setFinalTotal] = useState(0);
-    const [checkoutFormState, checkoutFormAction] = useActionState(testAction, {valid:{}, errors:{},  sent: false});
+    const [checkoutFormState, checkoutFormAction] = useActionState(checkoutAction, {valid:{}, errors:{},  sent: false,});
     const mainRef = useRef(null);
     const RenderCount = useRef(0);
     const stepperRef = createRef();
     const router = useRouter();
-    const products = useContext(RootContext).cartContent;
+    
 
 
 
@@ -161,8 +162,6 @@ export default function CartPage(){
 
     useEffect(()=>{
         const {step1, step2, step3} = stepperRef.current;
-        if(stage.stagePrev !== null)
-            history.replaceState(stage, "",`/${stage.current}`)
         step1.addEventListener("click", handleStep1);
         step2.addEventListener("click", handleStep2);
         window.addEventListener("popstate", async ()=>{
@@ -186,7 +185,7 @@ export default function CartPage(){
 
     useEffect(()=>{
         if(checkoutFormState.sent && checkoutFormState.result.success) {
-            completeOrder()
+           completeOrder();
         }
     },[checkoutFormState])
     
@@ -219,8 +218,8 @@ export default function CartPage(){
                         finalTotalSetter: setFinalTotal,
                     }}>
                     {stage.current === "cart" &&  ((RenderCount.current > 0 )? <DynamicCartTable/> : <CartTable/>)}
-                    {stage.current === "checkout" && <CheckoutForm delivery={delivery}/>}
-                    {stage.current === "complete" && <CompletedOrder products={products} total={finalTotal}/>}
+                    {stage.current === "checkout" && <CheckoutForm delivery={delivery} finalTotal={finalTotal}/>}
+                    {stage.current === "complete" && <CompletedOrder total={finalTotal} products={products}/>}
                 </PageNavigationContext.Provider>    
             </main>
         </div>
