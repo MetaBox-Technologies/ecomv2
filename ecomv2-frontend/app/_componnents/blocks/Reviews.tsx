@@ -83,7 +83,7 @@ export default function Reviews({ reviews, productId, name, avgRating }: Reviews
 
 
         try {
-            const res = await fetch(`http://159.65.15.249:1337/api/review-webs`, {
+            const res = await fetch(`https://strapi.ecomv2.online/api/review-webs`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(newReview),
