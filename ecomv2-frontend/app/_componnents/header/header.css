@@ -95,10 +95,6 @@ nav {
         display: none;
     }
 
-    #shopnow {
-        display: none;
-    }
-
     #menu_icon {
         display: block;
         color: black;
@@ -112,4 +108,85 @@ nav {
     #icon_container {
         gap: 10px;
     }
+}
+
+/* Burger icon */
+.burger {
+    width: 30px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background-color: black;
+  }
+  
+  .burger span {
+    height: 3px;
+    width: 100%;
+    background: white;
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+  
+  /* Burger animation */
+  .burger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+  
+  .burger.open span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .burger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+  
+/* Menu container */
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+  
+    width: 175px;
+    height: 100vh;
+  
+    background: #FFFFFF;
+  
+    display: flex;
+    flex-direction: column;
+    padding: 0px 24px;
+    align-items: start;
+  
+    /* 🔒 Prevent vertical movement */
+    overflow-y: auto;
+  
+    /* ⬅️ ONLY horizontal animation */
+    transform: translate3d(-100%, 0, 0);
+    transition: transform 0.35s ease;
+    will-change: transform;
+  }
+  
+  .menu.show {
+    transform: translate3d(0, 0, 0);
+  }
+  
+  
+  /* Menu links */
+  .menu a {
+    padding: 10px 8px;
+    color: black;
+    text-decoration: none;
+    font-family: 'inter';
+    font-weight: 400;
+    font-size: 14px;
+  }
+  
+  
+  .menu a:hover, .menu a:active {
+    color: #2F7694;
+  }
+
+hr {
+    width: 100%;
+    padding-bottom: 24px;
 }

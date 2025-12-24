@@ -37,7 +37,7 @@ export default function HeroSection() {
   })
 
   return (
-    <div className="px-8 lg:px-[128px] pb-6 pt-[105px] lg:w-screen pt-9n">
+    <div className="px-8 lg:px-[128px] pb-6 pt-[125px] lg:w-screen pt-9n">
 
 
       <Swiper

@@ -2,11 +2,20 @@
 "use client"
 import './header.css';
 import Image from "next/image";
-import {useContext, useEffect, useState} from 'react';
+import {useContext, useEffect, useState, useRef} from 'react';
 import { RootContext } from "../../_providers/RootContext"
 import ExpandingSearchBar from '../expanding/ExpandingSearchBar';
 import { usePathname } from 'next/navigation';
 import { cartloader } from '../Cart/cartContentLoader';
+import { useRouter } from 'next/navigation';
+import Link from "next/link";
+import { forwardRef } from "react";
+
+
+interface CartContentProps{
+    cStatic:boolean,
+    closer?: CallableFunction,
+}
 
 export function Header(){
 
@@ -43,8 +52,35 @@ export function Header(){
     useEffect(()=>{
       setHasItems(cartloader().length > 0)
     })
-    
 
+    const router = useRouter();
+
+    const handleClick = () => {
+      router.push('/'); // Redirects to '/target-page'
+    };
+    
+    const [open, setOpen] = useState(false);
+
+    const menuRef = useRef<HTMLDivElement | null>(null);
+    const burgerRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (
+          open &&
+          menuRef.current &&
+          !menuRef.current.contains(event.target as Node) &&
+          burgerRef.current &&
+          !burgerRef.current.contains(event.target as Node)
+        ) {
+          setOpen(false);
+        }
+      };
+    
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
+    }, [open]);
     
 
     return (
@@ -56,9 +92,17 @@ export function Header(){
           </div>
 
           <nav className="flex gap-4 text-black bg-[white]">
-          <i className="fa-solid fa-bars" id="menu_icon"></i>
+          <i ref={burgerRef} className="fa-solid fa-bars" id="menu_icon" onClick={() => setOpen(!open)}>
+            <div  ref={menuRef} className={`menu ${open ? "show" : ""}`}>
+              <span><Image className="logo" src="/images/file.svg" alt="" width={90} height={18} onClick={handleClick}/></span>
+              <hr/>
+              <Link href="/" onClick={() => setOpen(false)}>Home</Link>
+              <Link href="/shop" onClick={() => setOpen(false)}>Shop</Link>
+              <Link href="/contact" onClick={() => setOpen(false)}>Contact Us</Link>
+            </div>
+          </i>
           {/*<p id="logo">VisioCreate</p>*/}
-          <Image className="logo" src="/images/file.svg" alt="" width={90} height={18}/>
+          <Image className="logo" src="/images/file.svg" alt="" width={90} height={18} onClick={handleClick}/>
           <div id="links_container">
             {links.map((link, index)=><a key={index} href={link.href}  className={`transition-[scale] duration-300 ease-in-out hover:scale-[${link.scaleHover}] hover:text-black text-${link.color}`}>{link.name} </a>)}
           </div>
