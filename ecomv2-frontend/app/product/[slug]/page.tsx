@@ -61,6 +61,7 @@ export default async function  page({ params }) {
         rating: r.rating,
         date: r.Date,
       }));
+      
     const avgRating =
     productReviews.length === 0 ? 0
     :Math.round(productReviews.reduce((sum, r) => sum + r.rating, 0) / productReviews.length);
