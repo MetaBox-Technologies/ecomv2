@@ -128,7 +128,7 @@ export function Card({
 
   return (
     <div className={`flex sm:flex-col  gap-3 sm:gap-0 ${isOnHome ? "w-[231px] md:w-[262px] flex-shrink-0 flex flex-col items-start gap-3" : ""}`}>
-      <div className={`relative w-[100%] border-1 border-gray-200 hover:cursor-pointer rounded-3xl overflow-hidden ${isOnHome ? "h-[308px] md:h-[349px border-1 border-black]" : "sm:h-[200px] lg:h-[300px] xl:h-[350px] bg-white"}`}
+      <div className={` relative w-[100%] border-1 border-gray-200 hover:cursor-pointer rounded-3xl overflow-hidden ${isOnHome ? "h-[308px] md:h-[349px border-1 border-black]" : "sm:h-[200px] lg:h-[300px] xl:h-[350px] bg-white"}`}
           style={images?.url?{
                   backgroundImage: `url("https://strapi.ecomv2.online${images.url}")`,
                   backgroundSize: "contain",
@@ -171,6 +171,7 @@ export function Card({
         {stock > 0 && <div ref={addToCartBtnRef} onClick={addToCartHandler} className={`hidden sm:block lg:hidden w-[90%] left-1/2 -translate-x-1/2 px-[16px] py-[2px] absolute bottom bottom-[5%] bg-[var(--neutral-7)] border-[0.2px] border-[transparent] rounded-lg transition-[all] duration-300 ease-in-out  border-2 hover:scale-105 ${isOnHome? "!bg-[var(--blue-btn)]": ""}`}><h4 className="lg:text-xl text-[15px] text-white text-center" style={{fontFamily:"var(--font-inter)"}}>Add to cart</h4></div>}
         {stock === 0 && <div ref={addToCartBtnRef} className={`w-[90%] left-1/2 -translate-x-1/2 px-[16px] py-[2px] absolute bottom bottom-[5%] bg-[transparent] border-[0.2px] border-[transparent] rounded-lg transition-[all] duration-300 ease-in-out  border-2 hover:scale-105 ${isOnHome? "!bg-[var(--blue-btn)]": ""}`}><h4 className="lg:text-xl text-[15px] text-[var(--neutral-7)] text-center" style={{fontFamily:"var(--font-inter)"}}>Out of stock</h4></div>}
       </div>
+      
       <div className={`relative pb-[50px] p-[3%] w-[100%] ${isOnHome ? "": ""}`} style={{fontFamily:"var(--font-inter)"}}>
         <div className="text-[30px] sm:text-[18px]">
         <StarRating rating={avgRating} color={isOnHome ? "#ffc554" : "var(--neutral-5)"}/>
