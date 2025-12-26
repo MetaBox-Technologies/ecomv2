@@ -34,7 +34,7 @@ export function FilterCat( {categories, selected, isOnMobile = false} : Readonly
 
   return (
     <div className={`flex  ${isOnMobile? "flex-wrap gap-3" : "flex-col items-start lg:gap-3 md:gap-1" }`}>
-        <button key="all" disabled={isLoading} className={`cursor-pointer ${isOnMobile? `transition-all duration-400 ease-in-out font-semibold rounded-full px-[10px] py-[6px] ${isLoading ? "opacity-50" : ""} ${selected==="All Rooms"? "text-gray-300 bg-black": "bg-gray-300"}` : `transition-all duration-400 ease-in-out font-semibold font-poppins ${selected==="All Rooms"? "text-black underline": "text-gray-500"}` }`}
+        <button key="all" disabled={isLoading} className={`cursor-pointer ${isOnMobile? `transition-all duration-400 ease-in-out font-semibold rounded-full px-[10px] py-[6px] ${isLoading ? "opacity-50" : ""} ${selected==="All Rooms"? "text-gray-300 bg-black hover:bg-gray-700": "bg-gray-300 hover:bg-gray-500"}` : `transition-all duration-400 ease-in-out font-semibold font-poppins ${selected==="All Rooms"? "text-black underline hover:scale-105": "text-gray-500 hover:scale-105"}` }`}
           onClick={() => {updateCategory()}
           }
         >
@@ -46,7 +46,7 @@ export function FilterCat( {categories, selected, isOnMobile = false} : Readonly
                 disabled={isLoading}
                 onClick={() => {updateCategory(category);}
                 }
-                className={`cursor-pointer ${isOnMobile? `transition-all duration-400 ease-in-out font-semibold font-poppins rounded-full px-[8px] py-[4px] ${isLoading ? "opacity-50" : ""} ${selected===category? "text-gray-300 bg-black": "bg-gray-300"}` : `transition-all duration-400 ease-in-out font-semibold font-poppins ${selected===category? "text-black underline": "text-gray-500"}` }`}
+                className={`cursor-pointer ${isOnMobile? `transition-all duration-400 ease-in-out font-semibold font-poppins rounded-full px-[8px] py-[4px] ${isLoading ? "opacity-50" : ""} ${selected===category? "text-gray-300 bg-black hover:bg-gray-700": "bg-gray-300 hover:bg-gray-500"}` : `transition-all duration-400 ease-in-out font-semibold font-poppins ${selected===category? "text-black underline hover:scale-105": "text-gray-500 hover:scale-105"}` }`}
             >
             {isLoading && selected === category ? "Loading…" : category}
             </button>
