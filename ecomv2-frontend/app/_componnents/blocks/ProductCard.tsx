@@ -112,7 +112,7 @@ export default function ProductCard({ product, avgRating, numReviews , documentI
         const storedCart = cartloader(); //retrieves the current cart items (from local storage)
 
         const productToPush = {
-            id: product.documentedId,
+            id: documentId,
             prodName: product.title,
             prodPrice: product.price,
             quantity: 1,
@@ -279,7 +279,7 @@ export default function ProductCard({ product, avgRating, numReviews , documentI
                             quantity={quantity}
                             isOnCart={isOnCart}  
                             productInfo={{
-                                id: product.documentedId,
+                                id: documentId,
                                 color: selectedColor,
                             }}
                             width={127}
