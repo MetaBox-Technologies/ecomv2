@@ -131,6 +131,20 @@ iframe {
     letter-spacing: -0.4px;
 }
 
+#button:hover {
+    background-color: #2F7694;
+    color: white;
+    border: 1px solid #2F7694;
+    transition: 0.15s ease;
+}
+
+#button:active {
+    background-color: white;
+    color: #2F7694;
+    border: 1px solid #2F7694;
+    transition: 0.15s ease;
+}
+
 @media screen and (max-width: 1390px) {
     .section-two {
         display: flex;

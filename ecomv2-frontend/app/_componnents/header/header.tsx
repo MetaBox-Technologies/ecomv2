@@ -18,6 +18,17 @@ interface CartContentProps{
 }
 
 export function Header(){
+    
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
     const path = usePathname();
     const [hasItems, setHasItems] = useState(false)
@@ -91,16 +102,21 @@ export function Header(){
             <a href="/shop" id='shopnow'>Shop Now <i className="fa-solid fa-arrow-right"></i></a>
           </div>
 
-          <nav className="flex gap-4 text-black bg-[white]">
+          <nav className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}>
           <i ref={burgerRef} className="fa-solid fa-bars" id="menu_icon" onClick={() => setOpen(!open)}>
             <div  ref={menuRef} className={`menu ${open ? "show" : ""}`}>
-              <span><Image className="logo" src="/images/file.svg" alt="" width={90} height={18} onClick={handleClick}/></span>
+              <div id='icon_space'><Image className="logo" src="/images/file.svg" alt="" width={90} height={18} onClick={handleClick}/>
+              <div className="material-symbols-outlined">close</div>
+              </div>
+            
               <hr/>
               <Link href="/" onClick={() => setOpen(false)}>Home</Link>
               <Link href="/shop" onClick={() => setOpen(false)}>Shop</Link>
               <Link href="/contact" onClick={() => setOpen(false)}>Contact Us</Link>
-            </div>
+              
+            </div>            
           </i>
+          {open && <div className="overlay" onClick={() => setOpen(false)} />}
           {/*<p id="logo">VisioCreate</p>*/}
           <Image className="logo" src="/images/file.svg" alt="" width={90} height={18} onClick={handleClick}/>
           <div id="links_container">

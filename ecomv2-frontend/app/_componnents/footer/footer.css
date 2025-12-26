@@ -91,6 +91,7 @@ footer img.logo {
         align-items: center;
         align-content: space-around;
         padding-right: 0;
+        width: auto;
     }
 
     #line {

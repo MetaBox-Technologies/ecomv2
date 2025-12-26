@@ -27,6 +27,24 @@ header .scrolled {
     background-color: white; /* stays white but can be changed if wanted */
   }
 
+  .navbar {
+    position: sticky; /* or fixed */
+    top: 0;
+    width: 100%;
+    height: 64px;
+  
+    background: white;
+    z-index: 1000;
+  
+    transition: box-shadow 0.25s ease;
+  }
+  
+  /* Shadow appears on scroll */
+  .navbar--scrolled {
+    box-shadow: 0 6px 12px -6px rgba(0, 0, 0, 0.5);
+  }
+  
+
 #shopnow {
     color: rgb(21, 110, 170);
     text-decoration: underline;
@@ -48,7 +66,6 @@ nav {
     height: 65px;
     padding: 0% 12% 0%;
     font-family: var(--font-grotesk);
-    box-shadow: 0 10px 12px -5px rgba(0, 0, 0, 0.2);
 }
 
 .logo {
@@ -85,6 +102,20 @@ nav {
 .cart-icon {
     @apply hover:cursor-pointer relative;
 }
+
+/* Dark overlay behind the menu */
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+  
+    width: 100vw;
+    height: 100vh;
+  
+    background: rgba(0, 0, 0, 0.25); /* dark transparent */
+    z-index: -1; /* below menu, above content */
+  }
+  
 
 @media screen and (max-width: 768px) {
     .icon2 {
@@ -128,6 +159,13 @@ nav {
     transition: 0.3s;
   }
   
+  #icon_space {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+
   /* Burger animation */
   .burger.open span:nth-child(1) {
     transform: rotate(45deg) translate(6px, 6px);
@@ -147,7 +185,7 @@ nav {
     top: 0;
     left: 0;
   
-    width: 175px;
+    width: 225px;
     height: 100vh;
   
     background: #FFFFFF;
