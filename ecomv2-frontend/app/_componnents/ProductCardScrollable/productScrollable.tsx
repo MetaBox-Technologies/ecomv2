@@ -145,7 +145,7 @@ export default function ProductCardScrollable({ articles, allReviews }:Readonly<
           }
         }
       >
-        {articles.map( (article)=><SwiperSlide key={article.id}><Card {...article} images={{url: article.images[0].url, alternativeText: article.images[0].alternativeText}} allReviews={allReviews} isOnHome={true}/></SwiperSlide>)}
+        {articles.map( (article)=><SwiperSlide key={article.id}><Card {...article} images={{url: (article.images ? article.images[0].url : ''), alternativeText: (article.images ? article.images[0].alternativeText : 'No image')}} allReviews={allReviews} isOnHome={true}/></SwiperSlide>)}
       </Swiper>
     </div>
     <div className='swiper-scrollbar' ref={scrollbarRef}></div>
