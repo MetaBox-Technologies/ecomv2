@@ -47,7 +47,7 @@ export interface ProductCardProps {
 }
 
 type CartItem = {
-  id: number;
+  id: any;
   name: string;
   price: number;
   quantity: number;
@@ -121,27 +121,57 @@ export default function ProductCard({ product, avgRating, numReviews , documentI
             alt: product.images[0].alternativeText || product.title,
             },
             color: selectedColor,
+            max: product.stock
         };
 
         if (storedCart.length > 0) {
             //Is this product (with this color) already in the cart?
             const cartItems = cartContent as CartItem[]; //make TS understand this is CartItem[]
-            const isArticleInside = cartItems.some(
-                item => item.id === product.id && item.color === selectedColor
-            );
+            const isArticleInside = cartItems.filter(
+                item => item.id === documentId 
+            ).length > 0;
+
+            const hasSameColor = cartItems.some(item => item.id === documentId && item.color === selectedColor);
+
+            const totalQuantity = (id:string) => {
+                const sameItemsDiffColors = cartItems.filter(item => item.id === id);
+                let total = 0 ;
+                sameItemsDiffColors.forEach((item)=>{
+                    total+= item.quantity;
+                })
+                return total;
+            }
+            
+
 
             if(isArticleInside) {
-                cartUpdater(updateCart(product.id, 1, selectedColor));
-
-                if(addToCartBtnRef.current) {
-                    addToCartBtnRef.current.innerText = "+1";
-                }
-
-                setTimeout(() =>{
-                    if(addToCartBtnRef.current){
-                    addToCartBtnRef.current.innerText = "Add to Cart";
+                const insideQt = totalQuantity(documentId);
+                if(insideQt + 1 > product.stock) {
+                    if(addToCartBtnRef.current) {
+                        addToCartBtnRef.current.innerText = "Max";
+                        setTimeout(() =>{
+                            if(addToCartBtnRef.current){
+                                addToCartBtnRef.current.innerText = "Add to Cart";
+                                }
+                        }, 200);
+                        return;
                     }
-                }, 200);
+                }
+                if(hasSameColor) {
+                    cartUpdater(updateCart(documentId, 1, selectedColor));
+
+                    if(addToCartBtnRef.current) {
+                        addToCartBtnRef.current.innerText = "+1";
+                    }
+                    setTimeout(() =>{
+                        if(addToCartBtnRef.current){
+                        addToCartBtnRef.current.innerText = "Add to Cart";
+                        }
+                    }, 200);
+
+                } else {
+                    pushNewProduct(productToPush);
+                }
             } else {
                 pushNewProduct(productToPush);
             }
@@ -149,9 +179,7 @@ export default function ProductCard({ product, avgRating, numReviews , documentI
             pushNewProduct(productToPush);
         }
     };
-    useEffect(()=>{
-        console.log(documentId);
-    })
+
 
   return (
     <section className="product-page">
@@ -246,6 +274,7 @@ export default function ProductCard({ product, avgRating, numReviews , documentI
                     </div>
 
                     <div className="btn-container">
+                        {product.stock > 0 && <>
                         <QuantityButton
                             quantity={quantity}
                             isOnCart={isOnCart}  
@@ -266,9 +295,11 @@ export default function ProductCard({ product, avgRating, numReviews , documentI
                                         alt: product.images[0].alternativeText || product.title,
                                     },
                                     color: selectedColor,
+                                    max: product.stock,
                                 };
                                 pushNewProduct(productToPush); //call existing pushNewProduct function
                             }}
+                            avStock={product.stock}
                         />
     
                         <button
@@ -278,7 +309,9 @@ export default function ProductCard({ product, avgRating, numReviews , documentI
                             >
                             Add to Cart
                         </button>
-
+                        </>
+                        }
+                        {product.stock === 0 && <div className='flex-1 text-center lg:text-left text-[28px]'>Out of Stock</div>}
                     </div>
                 </div>
             </div> 

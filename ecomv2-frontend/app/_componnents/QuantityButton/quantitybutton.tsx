@@ -15,27 +15,36 @@ interface QuantityButtonProps {
     onAddNew?: () => void;
     width?: number,
     height?: number,
+    avStock: number,
 }
 
-export default function QuantityButton({quantity, width=80, height=34, isOnCart=false, productInfo,onAddNew}:Readonly<QuantityButtonProps>) {
+export default function QuantityButton({quantity, width=80, height=34, isOnCart=false, productInfo,onAddNew, avStock}:Readonly<QuantityButtonProps>) {
     
     const { cartUpdater } = useContext(RootContext)
 
 
 
     const addHander = ()=>{
-        if(productInfo && isOnCart) {
-            const newCartState = updateCart(productInfo.id, 1, productInfo.color);
-            cartUpdater(newCartState);
-        }else { 
-            const isOnList = cartloader()
+        const isOnList = cartloader()
                             .filter((cartItem)=>{
                                 if((cartItem.id === productInfo.id) && (cartItem.color === productInfo.color))
                                     return true;
                             }).length > 0;
 
-            console.log("is on list: ", isOnList);
-
+        const totalItemQt = cartloader()
+                            .filter((cartItem) => {
+                                return (cartItem.id === productInfo.id)
+                            })
+                            .reduce((a, b) => {
+                                return a + b.quantity
+                            }, 0);
+        if((totalItemQt + 1) > avStock) {
+            return;
+        }                   
+        if(productInfo && isOnCart) {
+            const newCartState = updateCart(productInfo.id, 1, productInfo.color);
+            cartUpdater(newCartState);
+        }else { 
             if(!isOnList) {
                 onAddNew();
                 return 

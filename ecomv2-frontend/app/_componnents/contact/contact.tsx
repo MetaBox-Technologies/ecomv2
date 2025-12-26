@@ -6,7 +6,6 @@ import { useActionState, useEffect } from 'react';
 
 export function Contitle() {
     const [formState, formAction] = useActionState(ContactAction, {})
-    useEffect(()=>{console.log(formState)}, [formState])
     return (
         <section className='Contact_Title'>
             <div className='section-one'>

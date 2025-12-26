@@ -44,6 +44,7 @@ export interface ArticleProps {
   PercentageDiscount: number;
   product_category: ProductCategoryProps[];
   Is_new: boolean;
+  colours: String[];
 }
 
 export interface CategoryProps {

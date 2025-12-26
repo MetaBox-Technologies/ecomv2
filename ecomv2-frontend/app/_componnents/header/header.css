@@ -186,7 +186,7 @@ nav {
     color: #2F7694;
   }
 
-hr {
+hr:not(.divider) {
     width: 100%;
     padding-bottom: 24px;
 }

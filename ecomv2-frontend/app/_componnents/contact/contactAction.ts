@@ -6,9 +6,7 @@ import { fetchAPI } from "@/app/utils/fetch-api";
 import { FileDiff } from "lucide-react";
 
 export async function ContactAction(currentState, formData) {
-    console.log(formData.get('name'))
-    console.log(formData.get('email'))
-    console.log(formData.get('message'))
+
 
     const nameR  = z.safeParse(nameSchema, formData.get("name") ? formData.get("name") : null);
     const emailR  = z.safeParse(emailSchema, formData.get("email") ? formData.get("email"): null);

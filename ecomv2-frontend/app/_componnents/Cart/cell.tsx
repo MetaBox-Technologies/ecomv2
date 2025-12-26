@@ -15,10 +15,11 @@ export interface ProductCellProps {
     prodName: string, 
     color: string, 
     prodPrice: number, 
-    quantity:number
+    quantity:number,
+    max?:number
 }
 
-export const  Cell =  React.memo(({id, image, prodName, color, prodPrice, quantity}:Readonly<ProductCellProps>) => {
+export const  Cell =  React.memo(({id, image, prodName, color, prodPrice, quantity, max}:Readonly<ProductCellProps>) => {
 
     const { cartUpdater } = useContext( RootContext );
 
@@ -51,7 +52,7 @@ export const  Cell =  React.memo(({id, image, prodName, color, prodPrice, quanti
                     </button>
                 </div>
                 <div className="row-3">
-                    <QuantityButton quantity={quantity} productInfo={{id: id, color: color}} height={28} isOnCart/>
+                    <QuantityButton quantity={quantity} productInfo={{id: id, color: color}} height={28} isOnCart avStock={max}/>
                 </div>
             </div>
         </div>

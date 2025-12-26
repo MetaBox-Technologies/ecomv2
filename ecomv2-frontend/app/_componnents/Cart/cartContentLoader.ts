@@ -10,6 +10,7 @@ export interface Product{
         url: string,
         alt?: string 
     }
+    max: number
 }
 
 export function cartloader(): [Product] | []{
@@ -19,7 +20,7 @@ export function cartloader(): [Product] | []{
     return [];
 }
 
-export function pushProductToCart({id, prodName, prodPrice, quantity, image, color}:Readonly<Product>) {
+export function pushProductToCart({id, prodName, prodPrice, quantity, image, color, max}:Readonly<Product>) {
     const productToPush:Product = {
         id: id,
         prodName: prodName, 
@@ -27,6 +28,7 @@ export function pushProductToCart({id, prodName, prodPrice, quantity, image, col
         quantity: quantity,
         color: color,
         image: image,
+        max: max
     }
     
     const cart = cartloader();

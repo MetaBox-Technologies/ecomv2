@@ -4,7 +4,6 @@ import { headers } from "next/headers";
 
 export default async function Breadcrumbs(){
     const pathname= (await headers()).get("x-pathname");
-    console.log(pathname)
     const segments = pathname.split("/").filter(Boolean) //split return ["","SHOP","PRODUCT",""], filter boolean remove the ""
     
     const breadCrumbItems = segments.map((segment,index)=>{

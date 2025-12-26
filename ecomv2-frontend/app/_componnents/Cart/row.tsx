@@ -8,7 +8,7 @@ import { popProductFromCart } from "./cartContentLoader";
 import { GetStrapiURL } from "@/app/utils/get-strapi-url";
 
 
-export default function Row({id, image, prodName, color, prodPrice, quantity}:Readonly<ProductCellProps>) {
+export default function Row({id, image, prodName, color, prodPrice, quantity, max}:Readonly<ProductCellProps>) {
     const { cartUpdater } = useContext(RootContext)
     const removeCell = () => {
             const newCartState = popProductFromCart(id, color);
@@ -27,7 +27,7 @@ export default function Row({id, image, prodName, color, prodPrice, quantity}:Re
             </div>
             <div className="col__sg">
                 <div className="col__qt">
-                    <QuantityButton quantity={quantity} productInfo={{id: id, color: color}} isOnCart/>
+                    <QuantityButton quantity={quantity} productInfo={{id: id, color: color}} isOnCart avStock={max}/>
                 </div>
                 <div className="col__price">${prodPrice}</div>
                 <div className="col__subtotal">${(prodPrice * quantity).toFixed(2)}</div>

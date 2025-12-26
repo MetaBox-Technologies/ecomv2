@@ -6,6 +6,9 @@
             @apply text-center;
         }
         >button {
-            @apply text-[16px]
+            @apply text-[16px] transition-[all] duration-300 ease-in-out;
+        }
+        >button:active {
+            @apply scale-[1.025]
         }
     }

@@ -20,9 +20,6 @@ export const Stepper = forwardRef((props, forwardRef) => {
 
 
     const { current } = props;
-    useEffect(()=>{
-        console.log("current step: ", current)
-    })
 
     return (
         <div className={"process-steps relative transition-[all] duration-300 ease-in-out " + (current === "checkout" ? "-translate-x-[288px] md:translate-none" : "") + (current === "complete" ? "-translate-x-[576px] md:translate-none " :"")}>
