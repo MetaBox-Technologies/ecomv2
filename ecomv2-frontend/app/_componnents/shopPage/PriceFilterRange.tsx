@@ -10,11 +10,11 @@ export type PriceRange = {
 
 const priceRanges: PriceRange[] = [
   { label: "All prices", min: 0,max: Infinity},
-  { label: "MUR 0 - 19,999", min: 0, max: 19999 },
-  { label: "MUR 20,000 - 39,999", min: 20000, max: 39999 },
-  { label: "MUR 40,000 - 59,999", min: 40000, max: 59999 },
-  { label: "MUR 60,000 - 79,999", min: 60000, max: 79999 },
-  { label: "MUR 80,000+", min: 80000, max: Infinity }
+  { label: "RS 0 - 19,999", min: 0, max: 19999 },
+  { label: "RS 20,000 - 39,999", min: 20000, max: 39999 },
+  { label: "RS 40,000 - 59,999", min: 40000, max: 59999 },
+  { label: "RS 60,000 - 79,999", min: 60000, max: 79999 },
+  { label: "RS 80,000+", min: 80000, max: Infinity }
 ];
 
 interface Props {
