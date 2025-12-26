@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { Search, X, LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useDebounce, useDebouncedCallback } from "use-debounce";
 
 interface ExpandingSearchBarProps {
@@ -15,6 +15,8 @@ const ExpandingSearchBar = ({ icon: Icon = Search }: ExpandingSearchBarProps) =>
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const path = usePathname();
+  const searchParams = useSearchParams();
+  
 
   const handleIconClick = () => {
     setIsExpanded(true);
@@ -30,10 +32,16 @@ const ExpandingSearchBar = ({ icon: Icon = Search }: ExpandingSearchBarProps) =>
   const handleClear = () => {
     setSearchValue("");
     inputRef.current?.focus();
+    if(path.startsWith("/shop")){
+      const params = new URLSearchParams(searchParams.toString());
+      params.delete("search");
+      router.replace(`${path}${searchParams && "?"+params.toString()}`);
+    }  
+    inputRef.current.blur()
   };
   const debounce = useDebouncedCallback((e: Event)=>{
       const term = e.target.value.trim().length > 0;
-      const queryParams = new URLSearchParams();
+      const queryParams = new URLSearchParams(searchParams.toString());
       if(term) {
         queryParams.set("search", e.target.value.trim())
       } else {
@@ -41,7 +49,7 @@ const ExpandingSearchBar = ({ icon: Icon = Search }: ExpandingSearchBarProps) =>
       }
       router.replace(`${path}?${queryParams.toString()}`, {scroll: false})
 
-  }, 300)
+  }, 150)
   const handLeChange = (e) => {
     setSearchValue(e.target.value);
     if(path === "/shop") {
