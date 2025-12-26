@@ -52,7 +52,7 @@ export default function PriceFilter({ onChange,selectedPrice, isOnMobile=false }
             checked={selected.includes(index)}
             onChange={() => toggle(index)}
             className={`
-                w-4 h-4 border border-gray-400 transition-all duration-500 cursor-pointer
+                w-4 h-4 border border-gray-400 transition-all duration-500 cursor-pointer hover:scale-105
                ${isOnMobile ? "rounded-full mt-[5px]" : " rounded-2xl"} 
                ${selected.includes(index)? "accent-black text-white bg-black" : "bg-white"}
             `}
