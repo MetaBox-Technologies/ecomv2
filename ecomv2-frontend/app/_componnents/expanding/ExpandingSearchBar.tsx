@@ -23,7 +23,8 @@ const ExpandingSearchBar = ({ icon: Icon = Search }: ExpandingSearchBarProps) =>
   
   const handleKeyPress = (e) => {
     if(e.key === "Enter" && e.target.value.trim().length !== 0) {
-      router.push(`/shop?search=${e.target.value.trim()}`)
+      e.target.blur();
+      router.push(`/shop?search=${e.target.value.trim()}`);
     }
   }
   const handleClear = () => {

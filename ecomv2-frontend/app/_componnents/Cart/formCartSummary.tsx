@@ -79,14 +79,14 @@ export default function FormCartSummary({delivery}) {
                         <input name="delivery" id="free-shipping" type="radio" value={"free"} onChange={(e)=>{chooseDeliveryMethod(e.target.value)}}/>
                         <label htmlFor="free-shipping"> Free Shipping</label>
                     </div>
-                    <p className="added__price">$0.00</p>
+                    <p className="added__price">Rs 0.00</p>
                 </div>
                 <div className="summary-delivery__choice">
                     <div className="inpt-radio__group">
                         <input name="delivery" id="express" type="radio" value={"express"} onChange={(e)=>{chooseDeliveryMethod(e.target.value)}}/>
                         <label htmlFor="express">Express Shipping</label>
                     </div>
-                    <p className="added__price">+$15.00</p>
+                    <p className="added__price">+Rs 15.00</p>
                 </div>
                 <div className="summary-delivery__choice">
                     <div className="inpt-radio__group">
@@ -99,11 +99,11 @@ export default function FormCartSummary({delivery}) {
             <div className="fields">
                 <div className="fields__subtotal">
                     <p>Subtotal</p>
-                    <p>${(subtotal).toFixed(2)}</p>
+                    <p>Rs {(subtotal).toFixed(2)}</p>
                 </div>
                 <div className="fields__total">
                     <p className="font-semibold">Total</p>
-                    <p>${(computedTotal).toFixed(2)}</p>
+                    <p>Rs {(computedTotal).toFixed(2)}</p>
                 </div>
             </div>
             <button type="submit">Checkout</button>

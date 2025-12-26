@@ -43,7 +43,7 @@ export const  Cell =  React.memo(({id, image, prodName, color, prodPrice, quanti
             <div className="item-cell__info">
                 <div className="row-1">
                     <p className="item-name" style={{...(nameLength > 2 && {fontSize: "10px"})}}>{prodName}</p>
-                    <p className="item-price">${prodPrice}</p>
+                    <p className="item-price">Rs{prodPrice}</p>
                 </div>
                 <div className="row-2">
                     <p className="item-color">Color: {color}</p>

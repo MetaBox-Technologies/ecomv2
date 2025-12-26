@@ -90,7 +90,7 @@ form[name="order_checkout-info"] fieldset .__double {
     }
 }
 @keyframes l3 {to{transform: rotate(1turn)}}
-.loader {
+.submit-btn-loader {
   width: 24px;
   padding: 6px;
   margin: 0 auto;

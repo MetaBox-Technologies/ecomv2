@@ -24,7 +24,7 @@ export function CheckoutForm({delivery, finalTotal}: Readonly<CheckoutFormProps>
     const SubmitButton = React.memo(()=>{
         const { pending } = useFormStatus()
         return (
-            <button type="submit" className="px-10 py-3 rounded-[8px] bg-[var(--neutral-7)] text-white hover:cursor-pointer" style={{fontFamily:"var(--font-inter)"}} disabled={pending}> {!pending? "Place Order" : <div className="loader"/>} </button>
+            <button type="submit" className="px-10 py-3 rounded-[8px] bg-[var(--neutral-7)] text-white hover:cursor-pointer" style={{fontFamily:"var(--font-inter)"}} disabled={pending}> {!pending? "Place Order" : <div className="submit-btn-loader"/>} </button>
         )
     })
 

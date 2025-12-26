@@ -53,16 +53,16 @@ export const CartContent = React.memo(forwardRef(({cStatic = false, closer, cont
                     {!cStatic && (
                         <div className="fields__subtotal shipping py-[13px]">
                             <p>Shipping</p>
-                            <p className="number">${total.toFixed(2)}</p>
+                            <p className="number">MUR {total.toFixed(2)}</p>
                         </div>
                     )}
                     <div className={`fields__subtotal ${cStatic ? "flex-1":"py-[13px]"}`}>
                         <p>Subtotal</p>
-                        <p className="number">${total.toFixed(2)}</p>
+                        <p className="number">MUR {total.toFixed(2)}</p>
                     </div>
                     <div className={`fields__total ${cStatic ? "flex-1":"py-[13px]"}`}>
                         <p style={ { fontWeight :"400",} }>Total</p>
-                        <p>${total.toFixed(2)}</p>
+                        <p>MUR {total.toFixed(2)}</p>
                     </div>
                 </div>
                 {cStatic &&(

@@ -63,7 +63,7 @@ export function CompletedOrder({total}:Readonly<CompletedOrderProps>){
                         </div>
                         <div className="info__row">
                             <p className="label">Total:</p>
-                            <p className="info">${total}</p>
+                            <p className="info">MUR {total}</p>
                         </div>
                     </div>
                     <Link href={"/shop"}>Go back to shop</Link>
