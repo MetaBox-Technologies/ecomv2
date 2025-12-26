@@ -165,7 +165,7 @@ export default function Reviews({ reviews, productId, name, avgRating }: Reviews
                     placeholder="Share your thoughts"
                     className="border border-[#E8ECEF] md:border-0 rounded-full md:rounded-none
                             bg-white focus-visible:ring-0 flex-1
-                            px-4 text-sm placeholder:text-gray-400 !h-10"
+                            px-4 text-sm placeholder:text-gray-400 py-2"
                 />
 
                 {/* Hidden product ID */}

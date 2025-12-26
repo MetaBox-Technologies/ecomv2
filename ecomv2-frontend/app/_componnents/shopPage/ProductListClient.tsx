@@ -117,10 +117,10 @@ const filteredArticles = useMemo(() => {
             style={{ objectFit: "contain" }}
           />
         </div>
-        <h4 className="xl:text-[150%]  md:text-[140%] font-semibold  font-sans mb-[4%]"> Filter</h4>
+        <h4 className="xl:text-[150%]  md:text-[140%] font-semibold mb-[4%]"> Filter</h4>
       </div>
 
-      <h4 className="lg:mb-[6%] font-semibold text-[120%] font-sans      md:mb-[3%]">CATEGORIES</h4>
+      <h4 className="lg:mb-[6%] font-semibold text-[120%] font-poppins     md:mb-[3%]">CATEGORIES</h4>
       <FilterCat categories={uniquecategories} selected={selectedCategory} />
     </div>
 
@@ -137,7 +137,7 @@ const filteredArticles = useMemo(() => {
         style={{ objectFit: "contain" }}
       />
     </div>
-    <h4 className="text-[20px] font-semibold  font-sans ml-1 "> Filter</h4>
+    <h4 className="text-[20px] font-semibold  font-poppins ml-1 "> Filter</h4>
     </div>
   </div>
     {/* BACKDROP */}
@@ -170,10 +170,10 @@ const filteredArticles = useMemo(() => {
 
   {/* Content wrapper */}
   <div className="px-4 pb-10 h-full overflow-y-auto ml-[1%]">
-    <h4 className="font-semibold font-sans text-[25px] ml-[2%]">Filter</h4>
+    <h4 className="font-semibold font-poppins text-[25px] ml-[2%]">Filter</h4>
 
     <div className="mb-4">
-      <h4 className="font-sans font-semibold text-[110%] mb-2 underline ml-[2%]">
+      <h4 className="font-poppins font-semibold text-[110%] mb-2 underline ml-[2%]">
         CATEGORIES
       </h4>
       <FilterCat
@@ -193,7 +193,7 @@ const filteredArticles = useMemo(() => {
 
   <div className="lg:w-[66%] md:w-[61%] mx-[8%] md:mx-0 lg:mb-[15%] md:mb-[20%] sm:mb-[25%] mb-[35%] ">
     <div className="flex justify-between">
-        <h2 className="xl:text-[150%]  md:text-[140%] sm:text-[130%] text-[1.1rem] font-semibold  font-sans md:mb-[4%] my-[2%] md:my-0">{selectedCategory + ((searchParams.has("search") && searchParams.get("search")?.trim().length > 0) ? ` with "${searchParams.get("search")?.trim()}"` : "")}</h2>
+        <h2 className="xl:text-[150%]  md:text-[140%] sm:text-[130%] text-[1.1rem] font-semibold  font-poppins md:mb-[4%] my-[2%] md:my-0">{selectedCategory + ((searchParams.has("search") && searchParams.get("search")?.trim().length > 0) ? ` with "${searchParams.get("search")?.trim()}"` : "")}</h2>
         <div className="flex justify-end mr-[8%] md:mr-0 my-[2%] md:my-0">
         <SortBy onChange={setSortOption} />
         </div>

@@ -237,9 +237,9 @@ export default function ProductCard({ product, avgRating, numReviews , documentI
                         </div>
                         {product.PercentageDiscount > 0 && <div className="flex gap-2">
                                         <p className="price mr-[2%]"> MUR { (product.price * ((100 - product.PercentageDiscount) / 100)).toFixed(2) }</p>
-                                        <p className="line-through price text-gray-500" > MUR {product.price}</p>
+                                        <p className="line-through price text-gray-500" >MUR {product.price} </p>
                                      </div>} 
-                        {product.PercentageDiscount === 0 && <p className="price">MUR{product.price.toFixed(2)}</p>}
+                        {product.PercentageDiscount === 0 && <p className="price">MUR {product.price.toFixed(2)} </p>}
                     </div>
                     <hr className="divider" />
 
